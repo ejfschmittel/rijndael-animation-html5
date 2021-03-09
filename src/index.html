@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+  
+
+<div class="container">
+   <div class="rijndael-animation">
+
+    <div class="rijndael-animation__animation-container">
+      <div class="rijndael-animation__animation-frame">
+        <%= require('html-loader!./animation_pages/page1/page.html').default %>
+        <%= require('html-loader!./animation_pages/page4/page.html').default %>
+        <%= require('html-loader!./animation_pages/page8/page.html').default %>
+        <%= require('html-loader!./animation_pages/page9/page.html').default %>
+      </div>
+      <div class="rijndael-animation__controlls">
+        
+
+        <div class="rijndael-animation__play" id="rijndael-animation-play">
+      
+        </div>
+
+        <div class="rijndael-animation__menu">
+          <div class="rijndael-animation__menu--mobile">
+            <select id="rijndael-animation-menu-mobile">
+              
+            </select>
+          </div>
+          <div class="rijndael-animation__menu--desktop" id="rijndael-animation-menu-desktop">
+
+          </div>
+        </div>
+
+
+        <div class="rijndael-animation__options">
+          <div class="rijnadel-animation__icon">
+            settings
+          </div>
+          <div class="rijnadel-animation__icon">
+            fullscreen
+          </div>
+        </div>
+
+
+      
+      </div>
+
+
+ 
+      <div class="rijndael-animation__info">
+          <h3>Page 1- some info</h3>
+          <div>
+            Some info
+          </div>
+      </div>
+    </div>
+
+    <div class="rijndael-animation__form">
+    
+    </div>  
+    
+    
+   </div>
+  </div>
+ 
+    
+</body>
+</html>

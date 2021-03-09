@@ -1,0 +1,51 @@
+.rijndael-grid{
+    display: grid;
+    width:auto;
+
+
+    &--small{
+
+    }
+
+    &__big{
+
+    }
+
+
+}
+
+
+.rijndael-movable-cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--yellow{
+        background: #FFF997;
+        border: 1px solid #333;
+        color: #333;
+    }
+
+    &--pink{
+        background: #FFD0CC;
+        border: 1px solid #333;
+        color: #333;
+    }
+}
+
+.rijndael-cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 4rem;
+    height: 3rem;
+
+    &--big{
+        width: 5rem;
+        height: 3rem;
+    }
+
+   
+}
+
