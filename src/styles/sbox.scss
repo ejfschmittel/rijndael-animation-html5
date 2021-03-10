@@ -1,0 +1,86 @@
+.rijndael-lookup-table{
+    display: grid;
+    background: #fff;
+
+    max-width: 30rem;
+    max-height: 20rem;
+    border: 1px solid #333;
+
+
+    grid-template-columns: 2rem 1fr;
+    grid-template-rows: 2rem 1fr;
+    grid-template-areas: 
+        "hex yLegend"
+        "xLegend grid"
+    ;
+
+    &__title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__legend{
+        display: flex;
+        flex-direction: column;
+        
+        &--x{
+            flex-direction: row;
+        }
+    }
+
+    &__legend-label{
+      
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__legend--x &__legend-label{
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+    }
+
+    &__legend--y &__legend-label{
+        border-left: 1px solid #333;
+        border-bottom: 1px solid #333;
+    }
+
+    &__legend-cells{
+        display: flex;
+        flex: 1;
+        background: #eee;
+        
+    }
+
+    &__legend--y &__legend-cell{
+        border-left: 1px solid #333;
+    }
+    &__legend--x &__legend-cell{
+        border-top: 1px solid #333;
+    }
+
+    &__legend-cell{
+       
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .7rem;
+    }
+
+    &__legend--x &__legend-cells{
+        flex-direction: column;
+    }
+}
+
+.rijndael-sbox-cell{
+  
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .7rem;
+}

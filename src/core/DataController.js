@@ -14,7 +14,9 @@ import {getRandomHexValueList} from "../utils/conversions"
 
 
 const INITIAL_DATA = {
-    "shiftRowsGrid": getRandomHexValueList(16, 2)
+    "shiftRowsGrid": getRandomHexValueList(16, 2),
+    "sbox": getRandomHexValueList(16 * 16, 2),
+    "galoisField": ["02", "03", "01", "01", "01", "02", "03", "01", "01", "01", "02", "03", "03", "01", "01", "02"]
 }
 
 class DataController{

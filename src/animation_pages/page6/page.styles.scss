@@ -1,0 +1,42 @@
+
+
+.rijndael-page-6-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#rijndael-page-6-title{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    max-width: 16rem;
+}
+
+.rijndael-rounded-label{
+    width: 12rem;
+    height: 2.6rem; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    border-radius: 3rem;
+    border: 1px solid #333;
+    margin: 1rem 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--yellow{
+        background: #ECE9BF;
+    }
+    &--green{
+        background: #A3C0B6;
+    }
+    &--blue{
+        background: #B2D7F9;
+    }
+    &--red{
+        background:#FACCC7;
+    }
+}

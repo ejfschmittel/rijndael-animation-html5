@@ -1,0 +1,30 @@
+
+
+#rijndael-page-7-sbox{
+    width: 30rem;
+    height: 20rem;
+}
+
+#rijndael-page-7-cell-landing{
+    width: 4rem;
+    height: 3rem;
+    
+    
+    margin: 2rem 0;
+}
+
+.rijndael-page-7-layout{
+    height: 100%;
+    display: flex;
+
+    &__left{
+        flex: 2;
+    }
+
+    &__right{
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

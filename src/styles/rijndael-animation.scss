@@ -28,7 +28,7 @@
     &__animation-frame{
         overflow: hidden;
         width: 100%;
-        min-height: 30rem;
+        min-height: 38rem;
         background: red;
         position: relative;
         flex: 1;
@@ -144,7 +144,8 @@
         min-height: 2rem;
         padding: 1rem;
         @media screen and (max-width: 800px) {
-            min-height: 8rem;   
+            min-height: 8rem; 
+            display: none;  
         }
     }
 }

@@ -9,6 +9,8 @@ import Grid from "../../components/Grid"
 
 import DataController from "../../core/DataController"
 
+import "./page.styles.scss"
+
 class Page8 extends AnimationPage{
     constructor(){
         super("page-8");
@@ -23,7 +25,7 @@ class Page8 extends AnimationPage{
 
         // create a landing
         const gridLandings = new Grid(grid.id, 4,4, ["rijndael-cell"])
-        const gridMovables = gridLandings.createMovables("grid-page-8", ["rijndael-cell", "rijndael-cell--yellow"])
+        const gridMovables = gridLandings.createMovables("grid-page-8", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
         DataController.subscribe("shiftRowsGrid", gridMovables.movables)
 
 
@@ -43,6 +45,9 @@ class Page8 extends AnimationPage{
             titleMask,
             body,
             page,
+            textOne,
+            textTwo,
+            textThree
         } = this.pageElements
 
       
@@ -51,7 +56,7 @@ class Page8 extends AnimationPage{
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
         tl.set(animatableBackground, {y: "100%"})
-        tl.set([page, body], {opacity: 0})
+        tl.set([page, body, textOne, textTwo, textThree], {opacity: 0})
 
         return tl;
     }
@@ -115,18 +120,29 @@ class Page8 extends AnimationPage{
 
     createAnimationMain(){
 
-        const {gridLandings, gridMovables} = this.pageElements
+        const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
 
         const tl = gsap.timeline()
 
+        tl.to(textOne, {opacity: 1})
         tl.add(this.shiftRow(gridMovables.getRow(1), gridLandings.getRow(1)))
+
+
+        tl.to(textOne, {opacity: 0})
+        tl.to(textTwo, {opacity: 1}, "<")
 
         tl.add(this.shiftRow(gridMovables.getRow(2), gridLandings.getRow(2)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(2), 1), gridLandings.getRow(2)))
 
+        tl.to(textTwo, {opacity: 0})
+        tl.to(textThree, {opacity: 1}, "<")
+
         tl.add(this.shiftRow(gridMovables.getRow(3), gridLandings.getRow(3)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(3),1), gridLandings.getRow(3)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(3),2), gridLandings.getRow(3)))
+
+        tl.to(textThree, {opacity: 0})
+
         
         return tl;
     }

@@ -2,29 +2,45 @@ import AnimationPage from "../../core/AnimationPage"
 
 import {gsap} from "gsap"
 
-class Page8 extends AnimationPage{
+import Grid from "../../components/Grid"
+import LookupTable from "../../components/LookupTable"
+import DataController from "../../core/DataController"
+
+import "./page.styles.scss"
+
+class Page7 extends AnimationPage{
     constructor(){
-        super("page-8");
+        super("page-7");
     }
 
     init(){
+        const {grid, sbox} = this.pageElements
 
+        const gridLandings = new Grid(grid.id, 4,4 ,["rijndael-cell"])
+        const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
+
+        DataController.subscribe("shiftRowsGrid", gridMovables.movables)
+
+        const Sbox = new LookupTable(sbox.id)
+        DataController.subscribe("sbox", Sbox.gridMovables.movables)
+      
+
+        this.addToPageElements({
+            gridLandings,
+            gridMovables,
+            sbox,
+
+        })
     }
 
     createPreFadeIn(){
-
-
         const {
             animatableBackground,
-            animatableBackgroundBar,
-            bar,
-            titleMask,
             body,
             page,
         } = this.pageElements
 
-      
-
+    
         const obj = {val: 0}
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
@@ -70,8 +86,14 @@ class Page8 extends AnimationPage{
         return tl;
     }
 
-    createAnimationMain(){}
+    createAnimationMain(){
+        const {gridMovables, cellLanding} = this.pageElements
+        const tl = gsap.timeline();
+        tl.add(this.moveToLanding(gridMovables.get(0, 0), cellLanding, {duration: 1}))
+
+        return tl;
+    }
 }
 
 
-export default Page8
+export default Page7

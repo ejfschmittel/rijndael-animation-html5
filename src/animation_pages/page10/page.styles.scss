@@ -1,0 +1,40 @@
+
+
+.page-10-layout{
+    display: flex;
+    height: 100%;
+    &__left{
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__right{
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__center{
+        flex: 3;
+       display: flex;
+       flex-direction: column;
+       align-items: center;    
+    }
+}
+
+.rijndael-equation{
+    display: flex;
+    margin-top: 2rem;
+
+    &__symbol{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1rem;
+    }
+}

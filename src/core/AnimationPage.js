@@ -136,7 +136,7 @@ class AnimationPage{
         copy.height = startPos.h;
       
 
-       // copy.zIndex = 20;
+        copy.zIndex = 20;
 
         const tl = gsap.timeline({
             onStart: () => {
@@ -145,7 +145,7 @@ class AnimationPage{
             },
             onReverseComplete: () => {
                 currentParent.appendChild(movable)
-               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
+               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%", zIndex: 5})
             }
         })
        
@@ -159,7 +159,7 @@ class AnimationPage{
         width: endPos.w - (endPos.w - startPos.w) / 2, 
         height: endPos.h - (endPos.h - startPos.h) / 2})   
        tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, duration: 1})
-       tl.set(movable, {width: "100%", height: "100%"})
+       tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
        return tl;
 }
 
