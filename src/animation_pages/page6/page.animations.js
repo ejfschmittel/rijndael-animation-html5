@@ -30,8 +30,8 @@ class Page6 extends AnimationPage{
         const {title, labelContainer, labels} = this.pageElements;
 
         const tl = gsap.timeline({}) 
-        tl.to([labelContainer, title], {x: 0, opacity: 1, duration: 1.5})
-        tl.to(labels, {scale: 1, duration: 1.5},  "<")
+        tl.to([labelContainer, title], {x: 0, opacity: 1, duration: 1.5}, this.getAutoLabel())
+        tl.to(labels, {scale: 1, duration: 1.5},  "<", this.getAutoLabel())
         return tl;
     }
 

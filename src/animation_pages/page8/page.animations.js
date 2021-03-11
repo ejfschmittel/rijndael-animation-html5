@@ -80,24 +80,24 @@ class Page8 extends AnimationPage{
         const tl = gsap.timeline()
 
         // move in background
-        tl.to(animatableBackground, {y: 0})
+        tl.to(animatableBackground, {y: 0}, this.getAutoLabel())
 
         // move bar down
-        tl.to(animatableBackgroundBar, {y: barBounds.y})
-        tl.set(animatableBackgroundBar, {opacity: 0})
+        tl.to(animatableBackgroundBar, {y: barBounds.y}, this.getAutoLabel())
+        tl.set(animatableBackgroundBar, {opacity: 0}, this.getAutoLabel())
         tl.set(page, {opacity: 1}, "<")
 
         // reveal title
-        tl.to(titleMask, {x: "100%"})
+        tl.to(titleMask, {x: "100%"},this.getAutoLabel())
 
         // show body
         tl.set(gridMovables.movables, {opacity: 0, y: (idx, target) => {
             const y = gsap.getProperty(target, "y")
             return y + 100;
         }})
-        tl.to(body, {opacity: 1})
+        tl.to(body, {opacity: 1}, this.getAutoLabel())
 
-        tl.to(gridMovables.movables, {opacity: 1, y:0})
+        tl.to(gridMovables.movables, {opacity: 1, y:0}, this.getAutoLabel())
 
         // other page intro
 

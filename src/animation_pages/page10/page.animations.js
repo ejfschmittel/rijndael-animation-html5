@@ -95,18 +95,18 @@ class Page8 extends AnimationPage{
         const tl = gsap.timeline()
 
         // move in background
-        tl.to(animatableBackground, {y: 0})
+        tl.to(animatableBackground, {y: 0}, this.getAutoLabel())
 
         // move bar down
         tl.to(animatableBackgroundBar, {y: barBounds.y})
-        tl.set(animatableBackgroundBar, {opacity: 0})
+        tl.set(animatableBackgroundBar, {opacity: 0}, this.getAutoLabel())
         tl.set(page, {opacity: 1}, "<")
 
         // reveal title
         tl.to(titleMask, {x: "100%"})
 
         // show body
-        tl.to(body, {opacity: 1})
+        tl.to(body, {opacity: 1}, this.getAutoLabel())
 
         // animate grid up
 
@@ -132,29 +132,29 @@ class Page8 extends AnimationPage{
         const tl = gsap.timeline()
 
          // move result (set)
-        tl.add(this.moveGroup(gridResultMovables.getCol(0), equationResultLandings.cells, {duration: .0001}))
+        tl.add(this.moveGroup(gridResultMovables.getCol(0), equationResultLandings.cells, {duration: .0001}), this.getAutoLabel())
 
         // move first grid col to left side of equation
-        tl.add(this.moveGroup(gridYellowMovables.getCol(0), equationLeftLandings.cells, {duration: 1.5}))
+        tl.add(this.moveGroup(gridYellowMovables.getCol(0), equationLeftLandings.cells, {duration: 1.5}), this.getAutoLabel())
 
         // move first round key col to right side of equation
-        tl.add(this.moveGroup(gridRoundKeyMovables.getCol(0), equationRightLandings.cells, {duration: 1.5}))
+        tl.add(this.moveGroup(gridRoundKeyMovables.getCol(0), equationRightLandings.cells, {duration: 1.5}), this.getAutoLabel())
 
         // reveal result
-        tl.to(addSymbol, {opacity: 1})
-        tl.to(equalsSymbol, {opacity: 1})
-        tl.to(gridResultMovables.getCol(0), {opacity: 1})
+        tl.to(addSymbol, {opacity: 1}, this.getAutoLabel())
+        tl.to(equalsSymbol, {opacity: 1}, this.getAutoLabel())
+        tl.to(gridResultMovables.getCol(0), {opacity: 1}, this.getAutoLabel())
 
         // move to result to grid
-        tl.add(this.moveGroup(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), {duration: 1.5}))
+        tl.add(this.moveGroup(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), {duration: 1.5}), this.getAutoLabel())
         tl.to(equation, {opacity: 0}, "<")
 
         // reval # hide
-        tl.to(gridResultMovables.getCol(1), {opacity: 1})
+        tl.to(gridResultMovables.getCol(1), {opacity: 1}, this.getAutoLabel())
         tl.to(gridRoundKeyMovables.getCol(1), {opacity: 0}, "<")
-        tl.to(gridResultMovables.getCol(2), {opacity: 1})
+        tl.to(gridResultMovables.getCol(2), {opacity: 1}, this.getAutoLabel())
         tl.to(gridRoundKeyMovables.getCol(2), {opacity: 0}, "<")
-        tl.to(gridResultMovables.getCol(3), {opacity: 1})
+        tl.to(gridResultMovables.getCol(3), {opacity: 1}, this.getAutoLabel())
         tl.to(gridRoundKeyMovables.getCol(3), {opacity: 0}, "<")
         return tl;
     }

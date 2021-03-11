@@ -27,6 +27,13 @@
     justify-content: center;
     align-items: center;
 
+    &--small{
+        width: 8rem;
+        height: 2rem;
+        font-size: 1rem;
+        margin: .3rem 0;
+    }
+
     &--yellow{
         background: #ECE9BF;
     }

@@ -1,0 +1,81 @@
+
+
+.rijndael-page-5{
+
+    display: grid;
+
+
+    height: 100%;
+    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-rows: 2fr 4fr 3fr;
+    width: 80%;
+    margin: 0 auto;
+
+    grid-template-areas: 
+        "anim1 grid1 title1"
+        "anim2 grid2 title2"
+        "anim3 grid3 title3"
+    ;
+
+    
+    &__path{
+        grid-area: anim1 / 1 / anim3/ 1;
+  
+        display: flex;
+        justify-content: center;
+        z-index: 5;
+    }
+
+    &__svg{
+
+        height: 100%;
+        width: 200px;
+        transform: translateX(50%);
+
+        
+    }
+
+    &__labels{
+        z-index: 6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &--1{
+            grid-area: anim1;
+        }
+
+        &--2{
+            grid-area: anim2;
+        }
+
+        &--3{
+            grid-area: anim3;
+        }
+    }
+
+    &__section-title{
+        color: #aaa;
+        font-size: 2rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--1{
+            grid-area: title1;
+        }
+
+        &--2{
+            grid-area: title2;
+        }
+
+        &--3{
+            grid-area: title3;
+        }
+
+        @media (max-width: 800px) {
+            font-size: 1rem;
+        }
+    }
+}

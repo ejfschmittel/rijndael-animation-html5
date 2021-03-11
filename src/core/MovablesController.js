@@ -97,6 +97,7 @@ class MovablesController{
 
     // resets the elements moved in the creation of the timeline back to it's original parents
     resetMovedElement(){
+        console.log("reset moved")
         Object.keys(this.movedElements).map(key => {
             const movable = this.movedElements[key]
             const ogParent = document.getElementById(movable.dataset.ogParent)

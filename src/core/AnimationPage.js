@@ -17,8 +17,16 @@ class AnimationPage{
         this.FADE_OUT_DURATION = .00001;
         this.FADE_OUT_DELAY = 3;
 
+        this.autoLabelCounter = 0;
 
         this.initPage();
+
+      
+    }
+
+    getAutoLabel(){      
+        this.autoLabelCounter++;
+        return `${this.pageID}-label-${this.autoLabelCounter}`
     }
 
     initPage(){
@@ -54,12 +62,14 @@ class AnimationPage{
     createAnimationIn(){}
     createFadeIn(){
         const tl = gsap.timeline();
-        tl.to(this.page, {opacity: 1, duration: this.FADE_IN_DURATION})
+
+        tl.to(this.page, { opacity: 1, duration: this.FADE_IN_DURATION})
         return tl;
     }
     createFadeOut(){
         const tl = gsap.timeline();
-        tl.to(this.page, {opacity: 0, delay: this.FADE_OUT_DELAY, duration: this.FADE_OUT_DURATION})
+        tl.to(this.page, {opacity: 0,delay: this.FADE_OUT_DELAY, duration: this.FADE_OUT_DURATION})
+     
         return tl;
     }
 
@@ -90,7 +100,7 @@ class AnimationPage{
             copy.height = startPos.h;
           
 
-            console.log(movable.id)
+           
 
             copy.zIndex = 20;
 
@@ -181,7 +191,7 @@ moveGroup(movables, landings, settings={}, label="label"){
 
 
     hide(){
-        gsap.set(this.page, {opacity: 0})
+        gsap.set(this.page, {opacity: 0, })
     }
 
     addToPageElements(object){
