@@ -23,7 +23,20 @@ class AnimationController{
 
         const onResize = this.onResize.bind(this)
 
+
+      
+
         window.addEventListener("resize", onResize)
+
+        const playBtn = document.getElementById("rijndael-animation-play") 
+         playBtn.addEventListener("click", this.onPlayPause.bind(this))
+
+         if(this.tl.paused()){
+            playBtn.classList.add("rijndael-animation__play--paused")
+         }else{
+            playBtn.classList.remove("rijndael-animation__play--paused")
+         }
+
     }
 
 
@@ -39,8 +52,9 @@ class AnimationController{
 
     createTimeline(){
         this.tl.clear();
-    
+        
         this.pages.forEach((pageID, idx) => {
+           // this.pagesByID[pageID].hide();
            this.tl.add(this.pagesByID[pageID].createPreFadeIn(), `${pageID}-pre-fade-in`)
             this.tl.add(this.pagesByID[pageID].createFadeIn(), `${pageID}-fade-in`)
             this.tl.add(this.pagesByID[pageID].createAnimationIn(), `${pageID}-animation-in`)
@@ -51,17 +65,29 @@ class AnimationController{
             if(idx !== this.pages.length - 1){
                 this.tl.add(this.pagesByID[pageID].createFadeOut(), `${pageID}-fade-out`)
             }
+
+            this.pagesByID[pageID].hide();
         })
 
         MovablesController.resetMovedElement();
+
+        this.createMenu()
+        
     }
 
 
-    createMenu(desktopMenuContainerID, mobileMenuContainerID=null){
+    createMenu(desktopMenuContainerID="rijndael-animation-menu-desktop", mobileMenuContainerID="rijndael-animation-menu-mobile"){
+        
         const desktopMenuContainer = document.getElementById(desktopMenuContainerID)
         const mobileMenuContainer = document.getElementById(mobileMenuContainerID)
+        desktopMenuContainer.innerHTML = ""
+        mobileMenuContainer.innerHTML = ""
+        
         // create desktop menu
+        console.log("recreate desktop menu")
         this.pages.forEach(pageID => {
+
+            
             const menuItem = document.createElement("div")
             menuItem.classList.add("rijndael-animation__menu-item")
             menuItem.addEventListener("click", () => {
@@ -85,7 +111,7 @@ class AnimationController{
             this.goToPage(pageID)
         })
 
-        this.addPlayPauseButtonEventListener();
+      //  this.addPlayPauseButtonEventListener();
     }
 
 
@@ -93,10 +119,14 @@ class AnimationController{
         MovablesController.resetMovedElement();
         this.createTimeline();
         // play or not play timeline()
-  
+        this.tl.seek(this.resizeStore.resetTime, false)
         if(this.resizeStore && this.resizeStore.paused === false) {
-            this.tl.seek(this.resizeStore.resetTime, false)
-           // this.play();
+           
+            console.log("resume after resize")
+            this.resume();
+
+
+       
         }
         this.resizeStore = null;
         this.isResizing = false;
@@ -167,38 +197,41 @@ class AnimationController{
 
     goToPage(pageID){
         // seek
+        console.log("go to page")
+ 
         const paused = this.tl.paused();
         this.tl.pause();
+   
         this.tl.seek(`${pageID}-animation-main`, false)
         
         if(!paused) this.tl.play(null, false);
     }
 
-    addPlayPauseButtonEventListener(){
-         const playBtn = document.getElementById("rijndael-animation-play") 
-         playBtn.addEventListener("click", () => {
-             const paused = this.tl.paused()
-             if(paused){
-                 this.play(null, false);
-             }else{
-                 this.pause();           
-             }
-         })
+    onPlayPause(){
 
-         if(this.tl.paused()){
-            playBtn.classList.add("rijndael-animation__play--paused")
-         }else{
-            playBtn.classList.remove("rijndael-animation__play--paused")
-         }
+            const paused = this.tl.paused()
+            console.log(paused)
+            if(paused){
+                this.resume();
+            }else{
+                this.pause();           
+            }
      }
 
 
-    play(label=null){
+    playFrom(label=null){
         const playBtn = document.getElementById("rijndael-animation-play") 
         playBtn.classList.add("rijndael-animation__play--paused")
 
         this.tl.play(label, false)
        
+    }
+
+
+    resume(){
+        const playBtn = document.getElementById("rijndael-animation-play") 
+        playBtn.classList.add("rijndael-animation__play--paused")
+        this.tl.resume()
     }
 
     pause(){

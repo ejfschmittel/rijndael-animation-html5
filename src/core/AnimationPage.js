@@ -62,7 +62,8 @@ class AnimationPage{
     createAnimationIn(){}
     createFadeIn(){
         const tl = gsap.timeline();
-
+        //tl.set(this.page, {visibility: "hidden", opacity: 0})
+       
         tl.to(this.page, { opacity: 1, duration: this.FADE_IN_DURATION})
         return tl;
     }
@@ -191,6 +192,7 @@ moveGroup(movables, landings, settings={}, label="label"){
 
 
     hide(){
+    
         gsap.set(this.page, {opacity: 0, })
     }
 

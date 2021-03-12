@@ -31,6 +31,18 @@
         border: 1px solid #333;
         color: #333;
     }
+
+    &--blue{
+        background: #008FFF;
+        border: 1px solid #333;
+        color: #333;
+    }
+
+    &--grey{
+        background: #aaa;
+        border: 1px solid #333;
+        color: #333;
+    }
 }
 
 .rijndael-cell{
@@ -41,9 +53,31 @@
     width: 4rem;
     height: 3rem;
 
+    @media screen and (max-width: 800px) {
+        width: 2.4rem;
+        height: 1.8rem;
+    }
+
     &--big{
         width: 5rem;
         height: 3rem;
+
+        @media screen and (max-width: 800px) {
+            width: 2.4rem;
+            height: 1.8rem;
+        }
+    
+    }
+
+    &--tiny{
+        width: 1.6rem;
+        height: 1.3rem;
+        font-size: .5rem;
+
+        @media screen and (max-width: 800px) {
+            width: .8rem;
+            height: .5rem;
+        }
     }
 
    

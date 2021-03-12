@@ -61,6 +61,7 @@ class Page9 extends AnimationPage{
         const obj = {val: 0}
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
+        tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
         tl.set([page, body], {opacity: 0})
 

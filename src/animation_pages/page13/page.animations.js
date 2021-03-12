@@ -4,9 +4,9 @@ import {gsap} from "gsap"
 
 import "./page.styles.scss"
 
-class Page4 extends AnimationPage{
+class Page13 extends AnimationPage{
     constructor(){
-        super("page-4")
+        super("page-14")
     }
 
     init(){}
@@ -16,6 +16,7 @@ class Page4 extends AnimationPage{
         const obj = {val: 0}
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
+        tl.set(this.page, {opacity: 0})
         tl.set([circledChar, title, content], {opacity: 0})
 
         return tl;
@@ -33,4 +34,4 @@ class Page4 extends AnimationPage{
     }
 }
 
-export default Page4
+export default Page13

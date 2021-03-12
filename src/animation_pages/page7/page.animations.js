@@ -6,6 +6,9 @@ import Grid from "../../components/Grid"
 import LookupTable from "../../components/LookupTable"
 import DataController from "../../core/DataController"
 
+
+import {hexStringToInt} from "../../utils/conversions"
+
 import "./page.styles.scss"
 
 class Page7 extends AnimationPage{
@@ -19,16 +22,24 @@ class Page7 extends AnimationPage{
         const gridLandings = new Grid(grid.id, 4,4 ,["rijndael-cell"])
         const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
 
-        DataController.subscribe("shiftRowsGrid", gridMovables.movables)
+
+
+        const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--pink"])
+        DataController.subscribe("subBytesResult", gridResultsMovables.movables)
+        DataController.subscribe("subBytesInput", gridMovables.movables)
 
         const Sbox = new LookupTable(sbox.id)
         DataController.subscribe("sbox", Sbox.gridMovables.movables)
       
 
+
+
         this.addToPageElements({
             gridLandings,
             gridMovables,
             sbox,
+            SBoxController: Sbox,
+            gridResultsMovables
 
         })
     }
@@ -38,14 +49,16 @@ class Page7 extends AnimationPage{
             animatableBackground,
             body,
             page,
+            gridResultsMovables
         } = this.pageElements
 
     
         const obj = {val: 0}
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
+        tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
-        tl.set([page, body], {opacity: 0})
+        tl.set([page, body, ...gridResultsMovables.movables], {opacity: 0})
 
         return tl;
     }
@@ -87,9 +100,59 @@ class Page7 extends AnimationPage{
     }
 
     createAnimationMain(){
-        const {gridMovables, cellLanding} = this.pageElements
+
+
+
+        
+
+   
+        
+
+
+        const {gridMovables, cellLanding, SBoxController, gridResultsMovables, gridLandings} = this.pageElements
+
+        const firstCell = gridMovables.get(0, 0)
+        const firstCellHex = firstCell.innerHTML;
+        const sboxX = hexStringToInt(firstCellHex[0])
+        const sboxY = hexStringToInt(firstCellHex[1])
+
+        const row = SBoxController.gridMovables.getRow(sboxX)
+        const column = SBoxController.gridMovables.getCol(sboxY)
+        const landing = SBoxController.grid.getCell(sboxX, sboxY)
+
+
+   
+        
+
+
         const tl = gsap.timeline();
         tl.add(this.moveToLanding(gridMovables.get(0, 0), cellLanding, {duration: 1}))
+     
+
+        tl.add(this.moveToLanding(gridResultsMovables.movables[0], landing, {duration: .0001}))
+
+
+        tl.to(row, {background: "#f00"})
+        tl.to(column, {background: "#f00"})
+        tl.to(gridResultsMovables.movables[0], {opacity: 1})
+        tl.to([...row, ...column], {background: "#fff"})
+      
+        tl.add(this.moveToLanding(gridResultsMovables.movables[0], gridLandings.cells[0], {duration: 2}), "page-7-move-cell-back")
+       
+
+        for(let i = 1; i < gridResultsMovables.movables.length; i++){
+
+            const cell = gridMovables.movables[i]
+            const firstCellHex = cell.innerHTML;
+            const sboxX = hexStringToInt(firstCellHex[0])
+            const sboxY = hexStringToInt(firstCellHex[1])
+   
+            const movable = SBoxController.gridMovables.get(sboxX, sboxY)
+
+            tl.to(movable, {background: "red", duration: .02, delay: .5})
+            tl.to(gridResultsMovables.movables[i], {opacity: 1, duration: .02}, "<")
+            tl.to(movable, {background: "#fff", duration: .02, delay: .2})
+        }
 
         return tl;
     }

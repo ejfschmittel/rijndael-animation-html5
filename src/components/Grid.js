@@ -58,7 +58,8 @@ class Grid extends Component{
     }
 
     getCell(rowIndex, colIndex){
-
+        
+        return this.cells[rowIndex * this.cols + colIndex]
     }
 }
 

@@ -55,6 +55,7 @@ class Page8 extends AnimationPage{
         const obj = {val: 0}
         const tl = gsap.timeline()
         tl.to(obj,{val: 1, duration: .0001})
+        tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
         tl.set([page, body, textOne, textTwo, textThree], {opacity: 0})
 
@@ -124,7 +125,7 @@ class Page8 extends AnimationPage{
 
         const tl = gsap.timeline()
 
-        tl.to(textOne, {opacity: 1})
+        tl.to(textOne, {opacity: 1}, this.getAutoLabel())
         tl.add(this.shiftRow(gridMovables.getRow(1), gridLandings.getRow(1)))
 
 

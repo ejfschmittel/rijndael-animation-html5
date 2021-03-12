@@ -56,6 +56,14 @@ export class MovablesCollector{
         return this.movables[rowIndex * this.cols + colIndex];
     }
 
+    getAllByCol(){
+        let movables = []
+        for(let i = 0; i < this.cols; i++){
+            movables = [...movables, ...this.getCol(i)]
+        }
+        return movables
+    }
+
     getMovables(){
         return this.movables
     }

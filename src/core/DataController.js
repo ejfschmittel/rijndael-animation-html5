@@ -10,11 +10,23 @@
     
 */
 
+import {hexStringToInt} from "../utils/conversions"
+
 import {getRandomHexValueList} from "../utils/conversions"
 
 
 const INITIAL_DATA = {
+    "dummyGrid": getRandomHexValueList(16, 2),
+
+
     "shiftRowsGrid": getRandomHexValueList(16, 2),
+
+    "subBytesInput": getRandomHexValueList(16, 2),
+
+    "state": getRandomHexValueList(16, 2),
+
+    "cipherKey": getRandomHexValueList(16, 2),
+ 
     "sbox": getRandomHexValueList(16 * 16, 2),
     "galoisField": ["02", "03", "01", "01", "01", "02", "03", "01", "01", "01", "02", "03", "03", "01", "01", "02"]
 }
@@ -24,6 +36,27 @@ class DataController{
     constructor(){
         this.store = {...INITIAL_DATA}
         this.subscriptions = {}
+
+        const sBoxData = this.getData("sbox")
+        const subBytesInput = this.getData("subBytesInput")
+
+
+        const results = subBytesInput.map(vals => {
+            const hexX = hexStringToInt(vals[0])
+            const hexY = hexStringToInt(vals[1])
+
+            const cellIdx = hexX * 16 + hexY;
+
+            return  sBoxData[cellIdx];
+        })
+
+        console.log(results)
+        this.updateStore("subBytesResult", results)
+        
+
+
+
+       
     }
 
 
@@ -42,6 +75,9 @@ class DataController{
     callSubscribers(key){
         const data = this.getData(key)
         const subscribers = this.getSubscribers(key)
+
+
+        console.log(subscribers)
 
         subscribers.forEach(elements => {
             this.setSubscriberData(data, elements)
@@ -62,14 +98,17 @@ class DataController{
 
     updateStore(key, value){
         // update store & call subscribers 
-        this.store = {...this.state, [key]:value}
+        this.store = {...this.store, [key]:value}
+        
         this.callSubscribers(key)
     }
     
 
     getSubscribers(key){
-        if(!key in this.subscriptions) return []
-        return this.subscriptions[key]
+        if(this.subscriptions[key] !== undefined ){
+            return this.subscriptions[key]
+        }
+        return []
     }
 
     getData(key){
