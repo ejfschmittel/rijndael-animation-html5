@@ -3,19 +3,44 @@
 #rijndael-page-7-sbox{
     width: 30rem;
     height: 20rem;
+
+
+    @media (max-width: 800px){
+        width: 27;
+        height: 18; 
+    }
+
+    @media (max-width: 500px){
+        width: 24rem;
+        height: 16rem; 
+    }
+
+    @media (max-width: 400px){
+        width: 100%;
+        height: 12rem; 
+    }
+
+ 
+
+    
+    
 }
 
 #rijndael-page-7-cell-landing{
     width: 4rem;
     height: 3rem;
-    
-    
     margin: 2rem 0;
+
+    @media (max-width: 800px){
+        margin: 1rem 0;
+    }
 }
 
 .rijndael-page-7-layout{
     height: 100%;
     display: flex;
+
+ 
 
     &__left{
         flex: 2;
@@ -26,5 +51,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @media (max-width: 800px){
+            flex: 5;
+        }
+    }
+
+    @media (max-width: 800px){
+        flex-direction: column;  
     }
 }

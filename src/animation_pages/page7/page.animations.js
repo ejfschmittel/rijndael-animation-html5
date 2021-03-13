@@ -24,7 +24,7 @@ class Page7 extends AnimationPage{
 
 
 
-        const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--pink"])
+        const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow-dark"])
         DataController.subscribe("subBytesResult", gridResultsMovables.movables)
         DataController.subscribe("subBytesInput", gridMovables.movables)
 
@@ -132,12 +132,13 @@ class Page7 extends AnimationPage{
         tl.add(this.moveToLanding(gridResultsMovables.movables[0], landing, {duration: .0001}))
 
 
-        tl.to(row, {background: "#f00"})
-        tl.to(column, {background: "#f00"})
+        tl.to(row, {background: "#FFF997"})
+        tl.to(column, {background: "#FFF997"})
         tl.to(gridResultsMovables.movables[0], {opacity: 1})
         tl.to([...row, ...column], {background: "#fff"})
       
         tl.add(this.moveToLanding(gridResultsMovables.movables[0], gridLandings.cells[0], {duration: 2}), "page-7-move-cell-back")
+        tl.to(gridMovables.get(0, 0), {opacity: 0}, "<")
        
 
         for(let i = 1; i < gridResultsMovables.movables.length; i++){
@@ -149,9 +150,9 @@ class Page7 extends AnimationPage{
    
             const movable = SBoxController.gridMovables.get(sboxX, sboxY)
 
-            tl.to(movable, {background: "red", duration: .02, delay: .5})
+            tl.to(movable, {background: "#FFCA61", duration: .02, delay: .5})
             tl.to(gridResultsMovables.movables[i], {opacity: 1, duration: .02}, "<")
-            tl.to(movable, {background: "#fff", duration: .02, delay: .2})
+            tl.to(movable, {background: "#fff", duration: .02, delay: .4})
         }
 
         return tl;

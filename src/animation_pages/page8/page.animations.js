@@ -14,6 +14,8 @@ import "./page.styles.scss"
 class Page8 extends AnimationPage{
     constructor(){
         super("page-8");
+
+        this.FADE_OUT_DELAY = 0;
     }
 
     init(){
@@ -145,6 +147,18 @@ class Page8 extends AnimationPage{
         tl.to(textThree, {opacity: 0})
 
         
+        return tl;
+    }
+
+    createAnimationOut(){
+
+        const {gridMovables} = this.pageElements
+       
+        const tl = gsap.timeline()
+        tl.to(gridMovables.movables, {delay: 1,  opacity: 0, y: (idx, target) => {
+            const y = gsap.getProperty(target, "y")
+            return y + 100;
+        }})
         return tl;
     }
 }

@@ -9,15 +9,22 @@
 
     grid-template-columns: 2rem 1fr;
     grid-template-rows: 2rem 1fr;
+
     grid-template-areas: 
         "hex yLegend"
         "xLegend grid"
     ;
 
+    @media (max-width: 500px){
+        grid-template-columns: 1rem 1fr;
+        grid-template-rows: 1rem 1fr;
+    }
+
     &__title{
         display: flex;
         justify-content: center;
         align-items: center;
+        opacity: 0;
     }
 
     &__legend{
@@ -35,6 +42,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media (max-width: 500px){
+            display: none;
+        }
     }
 
     &__legend--x &__legend-label{
@@ -50,7 +61,11 @@
     &__legend-cells{
         display: flex;
         flex: 1;
+   
         background: #eee;
+        @media (max-width: 500px){
+            background: #aaa;;
+        }
         
     }
 
@@ -68,6 +83,10 @@
         justify-content: center;
         align-items: center;
         font-size: .7rem;
+
+        @media (max-width: 500px){
+           font-size: .6rem;
+        }
     }
 
     &__legend--x &__legend-cells{
@@ -76,11 +95,14 @@
 }
 
 .rijndael-sbox-cell{
-  
     border-top: 1px solid #333;
     border-left: 1px solid #333;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: .7rem;
+
+
+    
+    
 }

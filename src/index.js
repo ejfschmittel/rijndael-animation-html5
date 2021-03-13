@@ -93,7 +93,7 @@ window.addEventListener("load",function(){
 
 
 
-    animationController.tl.seek("page-3-animation-main")
+    animationController.tl.seek("page-7-animation-main")
 
     // create timeline
 
