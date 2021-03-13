@@ -1,36 +1,45 @@
 
 
-.rijndael-page-2-container{
-    width: 50%;
-    height: 40%;
-    min-height: 10rem;
- 
-    background: #666;
-    border: 5px solid #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-   
-    text-align: center;
-    position: relative;
-    box-sizing: border-box;
+.rijndael-page-2{
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    @media (max-width: 800px){
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 2fr 2rem;    
+    }
+
+    &__container{
+        grid-area: 2 / 2 / 2 / 2;
+
+  
+    
+        background: #666;
+        border: 5px solid #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    
+        text-align: center;
+        position: relative;
+        box-sizing: border-box;
+
+       
+    }
 
 }
 
 
-@media (max-width: 800px){
- #page-2{
-    justify-content: flex-end;
-    padding-right: 1rem;
- }       
-}
 
 .rijndael-page-2-arrow-container{
-    position: absolute;
-    width: 10rem;
-    height: 5rem;
-
+  
+   
     display: flex;
     flex-direction: column;
     font-size: 1rem;
@@ -38,51 +47,55 @@
     align-items: center;
 
 
+  
     &--top{
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -115%);
-        width: 5rem;
-        height: 10rem;
+        grid-area: 1 / 2 / 1 / 2;
 
-        @media (max-width: 800px){
-            width: 3rem;
-            height: 5rem;     
+
+        display: flex;
+        justify-content: flex-end;
+
+     
+        span{
+            margin-bottom: 1rem;
         }
+        
     }
 
     &--bottom{
-        bottom: 0;
-        transform: translate(-50%, 100%);
-        left: 50%;
+        grid-area: 3 / 2 / 3 / 2;
   
-        width: 5rem;
-        height: 10rem;
+ 
         color: yellow;
+        align-items: center;
 
-        @media (max-width: 800px){
-            width: 3rem;
-            height: 5rem;     
+        span{
+            margin-top: 1rem;
         }
      
     }
 
     &--left{
-        top: 50%;
-        left: 0;
-        transform: translate(-105%, -50%);
-        width: 10rem;
-        height: 5rem;
+        grid-area: 2/ 1 / 2 / 1;
+    
+        justify-content: center;
+        align-items: flex-end;
 
-        @media (max-width: 800px){
-            width: 5rem;
-            height: 3rem;     
+        span{
+            margin-right: 1rem;
+            margin-bottom: .5rem;
         }
     }
 }
 
 .rijndael-page-2-arrow{
-    flex: 1;
-    width: 100%;
+    max-width: 3rem;
+    max-height: 6rem;
+
+
+    &--horizontal{
+        max-width: 6rem;
+        max-height: 3rem;
+    }
    
 }

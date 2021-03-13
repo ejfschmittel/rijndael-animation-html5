@@ -38,10 +38,10 @@ window.addEventListener("load",function(){
     animationController.registerAnimationPage(new Page12(), "page-12", "Page 12 - Rounds 6 - 10")
     animationController.registerAnimationPage(new Page13(), "page-13", "Page 13 - B) Cipher Key")
     animationController.createTimeline();
-    //animationController.createMenu("rijndael-animation-menu-desktop", "rijndael-animation-menu-mobile");
 
 
-    animationController.tl.play("page-8-animation-main")
+
+    animationController.tl.seek("page-2-animation-main")
 
     // create timeline
 

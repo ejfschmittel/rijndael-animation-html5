@@ -6,6 +6,8 @@ import "./page.styles.scss"
 class Page2 extends AnimationPage{
     constructor(){
         super("page-2")
+
+        this.FADE_OUT_DELAY = 0;
     }
 
     init(){
@@ -25,6 +27,19 @@ class Page2 extends AnimationPage{
         
         return tl;
     }
+
+    createAnimationOut(){
+        const {container} = this.pageElements
+        const tl = gsap.timeline();
+
+        tl.to(container, { color: "#666", duration: .5})
+        tl.to(container, {scale: 5,  duration: 1.5}, "<")
+
+        return tl;
+    }
+
+
+    
 }
 
 export default Page2;

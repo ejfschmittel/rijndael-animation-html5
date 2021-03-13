@@ -157,7 +157,13 @@ class AnimationController{
             labelTimes = labelTimes.concat(...times)
         }
 
-        console.log(labelTimes)
+        // get label times of direct children
+        const directLabelTimes = Object.keys(this.tl.labels).map(key => {
+            return this.tl.labels[key];
+        })
+
+        labelTimes = labelTimes.concat(...directLabelTimes)
+     
 
         // get clostest labeled resetpoint
         let closestLabelTime = 0;
@@ -169,7 +175,7 @@ class AnimationController{
             }
             
         }
-        console.log(closestLabelTime)
+
 
 
 
@@ -197,7 +203,7 @@ class AnimationController{
 
     goToPage(pageID){
         // seek
-        console.log("go to page")
+
  
         const paused = this.tl.paused();
         this.tl.pause();
@@ -210,7 +216,7 @@ class AnimationController{
     onPlayPause(){
 
             const paused = this.tl.paused()
-            console.log(paused)
+
             if(paused){
                 this.resume();
             }else{
