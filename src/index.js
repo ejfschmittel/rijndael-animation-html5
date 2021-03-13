@@ -3,6 +3,7 @@ import {gsap} from "gsap"
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import {MotionPathPlugin} from 'gsap/MotionPathPlugin'
 import AnimationController from "./core/AnimationController"
+import DataController from "./core/DataController"
 import Page1 from "./animation_pages/page1/page.animations"
 import Page2 from "./animation_pages/page2/page.animations"
 import Page3 from "./animation_pages/page3/page.animations"
@@ -18,9 +19,60 @@ import Page12 from "./animation_pages/page12/page.animations"
 import Page13 from "./animation_pages/page13/page.animations"
 import "./main.scss"
 
+
+import { toHex } from "./utils/conversions"
+import JES from "./utils/jes"
+
+
+const prepareState = (state) => {
+
+    return Object.keys(state).reduce((s, key) => {
+        const val = state[key];
+
+
+        let newVal = null;
+
+        if(key == "key"){
+            newVal = []
+            for(let i = 0; i < val.length; i+=2){
+                newVal.push( val[i] + val[i+1])
+            }
+        }else if(Array.isArray(val) && val.length == 4){
+            // flatten array
+           
+            const temp  = [].concat.apply([], val);
+            newVal = temp.map(num => toHex(num))
+        }else if(Array.isArray(val) && val.length == 256){
+            // sBox
+            newVal = val.map(num => toHex(num))
+        }
+
+
+        return {...s, [key]: newVal}
+
+    }, {})
+}
+
+const calcAesAndUpdateStore = () => {
+    const res = JES.encrypt({
+        plaintext: "Attack at dawn!!",
+        key: "6162636465666768696a6b6c6d6e6f70",
+        iv: "7172737475767778797a7b7c7d7e7f80"
+    }, "hex/string");
+
+    const state = prepareState(JES.internalState)
+    
+    DataController.updateStoreByObject(state)
+}
+
+
+
+
 window.addEventListener("load",function(){
     gsap.registerPlugin(CSSPlugin)
     gsap.registerPlugin(MotionPathPlugin)
+
+    calcAesAndUpdateStore();
 
     // create controller & register page
     const animationController = new AnimationController("id");
@@ -41,7 +93,7 @@ window.addEventListener("load",function(){
 
 
 
-    animationController.tl.seek("page-2-animation-main")
+    animationController.tl.seek("page-3-animation-main")
 
     // create timeline
 

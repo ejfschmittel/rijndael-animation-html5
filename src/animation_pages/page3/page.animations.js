@@ -17,11 +17,11 @@ class Page3 extends AnimationPage{
 
         const gridYellowLandings = new Grid(gridYellow.id, 4,4, ["rijndael-cell"])
         const gridYellowMovables = gridYellowLandings.createMovables("rijndael-page-3-grid-yellow", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("state", gridYellowMovables.movables)
+        DataController.subscribe("block-1-input-state", gridYellowMovables.movables)
 
         const gridBlueLandings = new Grid(gridBlue.id, 4,4, ["rijndael-cell"])
         const gridBlueMovables = gridBlueLandings.createMovables("rijndael-page-3-grid-blue", ["rijndael-movable-cell", "rijndael-movable-cell--blue"])
-        DataController.subscribe("cipherKey", gridBlueMovables.movables)
+        DataController.subscribe("key", gridBlueMovables.movables)
 
         const arrowBlueSVG = new SVGArrow(arrowBlue.id, ARROW_DIRECTION.ARROW_BOT)
 
@@ -64,13 +64,28 @@ class Page3 extends AnimationPage{
         return tl;
     }
 
-    createAnimationMain(){
+
+    createAnimationIn(){
         const {
             title,
             subtitleYellow,
             subtitleBlue,
             gridYellow,
             gridBlue,
+        } = this.pageElements
+
+        const tl = gsap.timeline();
+        tl.to(title, {opacity: 1})
+        tl.to([subtitleBlue, subtitleYellow], {opacity: 1})
+        tl.to([gridYellow, gridBlue], {opacity: 1})
+ 
+
+
+       return tl;
+    }
+
+    createAnimationMain(){
+        const {
             charA,
             charB,
             arrowBlue,
@@ -82,9 +97,7 @@ class Page3 extends AnimationPage{
         } = this.pageElements
 
        const tl = gsap.timeline();
-        tl.to(title, {opacity: 1})
-        tl.to([subtitleBlue, subtitleYellow], {opacity: 1})
-        tl.to([gridYellow, gridBlue], {opacity: 1})
+    
 
         tl.to(gridYellowMovables.getAllByCol(), {color: "#333", duration: .002, stagger: .2})
         tl.to(gridBlueMovables.getAllByCol(), {color: "#333", duration: .002, stagger: .2})

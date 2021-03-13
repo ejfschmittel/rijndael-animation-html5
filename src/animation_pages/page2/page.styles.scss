@@ -3,7 +3,7 @@
 .rijndael-page-2{
     width: 100%;
     height: 100%;
-
+    padding: 2rem;
     display: grid;
 
     grid-template-rows: 1fr 3fr 1fr;
@@ -11,7 +11,7 @@
 
     @media (max-width: 800px){
         grid-template-rows: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 2fr 2rem;    
+        grid-template-columns: 1fr 2fr 1rem;    
     }
 
     &__container{
@@ -39,6 +39,7 @@
 
 .rijndael-page-2-arrow-container{
   
+
    
     display: flex;
     flex-direction: column;
@@ -46,6 +47,10 @@
     word-spacing: auto;
     align-items: center;
 
+
+    @media (max-width: 800px){
+        font-size: 1.2rem;   
+    }
 
   
     &--top{
@@ -96,6 +101,8 @@
     &--horizontal{
         max-width: 6rem;
         max-height: 3rem;
+
+        
     }
    
 }

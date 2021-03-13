@@ -3,6 +3,10 @@
 .page-10-layout{
     display: flex;
     height: 100%;
+    
+    @media (max-width: 800px){
+        flex-wrap: wrap;
+    }
     &__left{
         flex: 2;
         display: flex;
@@ -24,6 +28,13 @@
        display: flex;
        flex-direction: column;
        align-items: center;    
+
+       
+        @media (max-width: 800px){
+            flex: 100%;
+            order: -1;
+            justify-content: center;
+        }
     }
 }
 

@@ -20,6 +20,12 @@
     grid-template-columns: 1.5fr repeat(4, 1fr) 2rem 1fr 2rem;
     height: 100%;
 
+
+    @media screen and (max-width: 800px) {
+        grid-template-rows: 2rem repeat(6, 1fr);
+        grid-template-columns: 2rem repeat(4, 1fr) 1rem 1fr 1rem;
+    }
+
     &__title{
         font-size: 1.2rem;
         text-align: center;
@@ -27,6 +33,10 @@
         justify-content: center;
         align-items: center;
         font-weight: bold;
+
+        @media screen and (max-width: 800px) {
+            font-size: .8rem;
+        }
 
         &--1{
             grid-area: 1 / 2 / 1 / 2;
@@ -72,6 +82,11 @@
         align-items: center;
         font-size: 1.4rem;
         font-weight: bold;
+
+        @media screen and (max-width: 800px) {
+            font-size: .7rem;
+            text-align: center;
+        }
     }
 
     &__grid{

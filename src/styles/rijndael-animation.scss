@@ -1,5 +1,6 @@
 .rijndael-animation{
-    background: #eee;
+    background: #666;
+   
     width: 100%;
 
 
@@ -50,19 +51,11 @@
 
     &__controlls{
         min-height: 2rem;
-        display: grid;
+        display: flex;
         padding: 1rem;
-
-        grid-template-areas: 
-            "play menu options"
-        ;
-
-        @media screen and (max-width: 800px) {
-            grid-template-areas: 
-            "play options"
-            "menu menu"
-        ;
-        }
+        border-top: 1px solid #fff;
+        align-items: center;
+        
     }
 
     &__options{
@@ -77,6 +70,7 @@
     &__play{
         grid-area: play;   
         border: 0;
+       
         background: transparent;
         box-sizing: border-box;
         width: 0;
@@ -100,8 +94,10 @@
 
     &__menu{
         grid-area: menu;
+        flex: 1;
 
         &--mobile{
+            margin: 0rem 1rem;
             @media screen and (min-width: 800px) {
                display: none;
             }
@@ -110,6 +106,8 @@
         &--desktop{
             display: flex;
             align-items: center;
+     
+            justify-content: center;
 
             @media screen and (max-width: 800px) {
                 display: none;
@@ -119,7 +117,7 @@
         select{
             width: 100%;
             padding: .6rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     }
 
@@ -143,8 +141,12 @@
     &__info{
         min-height: 2rem;
         padding: 1rem;
-        @media screen and (max-width: 800px) {
-            min-height: 8rem; 
+        min-height: 4rem;
+        max-height: 8rem;
+        background: #fff;
+        margin: 0 1rem;
+
+        @media screen and (max-width: 800px) { 
             display: none;  
         }
     }

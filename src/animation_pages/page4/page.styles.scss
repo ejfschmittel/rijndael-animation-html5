@@ -23,6 +23,9 @@
         font-size: 1rem;
         color: #fff;
         
+        @media (max-width: 800px){
+            width: 80%;
+        }
     }
 }
 

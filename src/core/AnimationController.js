@@ -30,11 +30,12 @@ class AnimationController{
 
         const playBtn = document.getElementById("rijndael-animation-play") 
          playBtn.addEventListener("click", this.onPlayPause.bind(this))
-
+    
          if(this.tl.paused()){
-            playBtn.classList.add("rijndael-animation__play--paused")
-         }else{
+             
             playBtn.classList.remove("rijndael-animation__play--paused")
+         }else{
+            playBtn.classList.add("rijndael-animation__play--paused")
          }
 
     }

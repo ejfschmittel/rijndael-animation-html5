@@ -77,7 +77,7 @@ class DataController{
         const subscribers = this.getSubscribers(key)
 
 
-        console.log(subscribers)
+  
 
         subscribers.forEach(elements => {
             this.setSubscriberData(data, elements)
@@ -101,6 +101,16 @@ class DataController{
         this.store = {...this.store, [key]:value}
         
         this.callSubscribers(key)
+    }
+
+
+    updateStoreByObject(obj){
+        Object.keys(obj).forEach((key) => {
+            const value = obj[key]
+            this.updateStore(key, value)
+        })
+
+        console.log(this.store)
     }
     
 
