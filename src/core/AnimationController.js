@@ -7,9 +7,16 @@ import MovablesController from "./MovablesController"
 
 import {debounce} from "../utils/utils"
 
+
+const INFO_HEADLINE_ID = "rijndael-animation-info-headline"
+const INFO_CONTENT_ID = "rijndael-animation-info-content"
+const FULLSCREEN_BTN_ID = "rijndael-animation-fullscreen-btn";
+
+const ANIMATION_ID = "rijndael-animation"
+
 class AnimationController{
     constructor(){
-        this.tl = gsap.timeline({paused: true});
+        this.tl = gsap.timeline({paused: true, onComplete: () => this.pause()});
 
         this.pages = []
         this.pagesByID = {}
@@ -20,9 +27,8 @@ class AnimationController{
 
 
         this.isResizing = false;
-
+        this.currentPage = null;
         const onResize = this.onResize.bind(this)
-
 
       
 
@@ -38,8 +44,61 @@ class AnimationController{
             playBtn.classList.add("rijndael-animation__play--paused")
          }
 
+         const fullscreenBtn = document.getElementById(FULLSCREEN_BTN_ID)
+         fullscreenBtn.addEventListener("click", this.toggleFullscreen.bind(this))
+
     }
 
+
+    toggleFullscreen(){
+        // add classes
+        const container = document.getElementById(ANIMATION_ID)
+        if(container.classList.contains("rijndael-animation--fullscreen")){
+            container.classList.add("rijndael-animation--fullscreen")
+        }else{
+            container.classList.add("rijndael-animation--remove")
+        }
+
+        const onResize = this.onResize.bind(this)
+        onResize()
+        
+    }
+    
+    updateCurrentPage(pageID){
+        console.log("current page: " + pageID)
+        this.currentPage = pageID;
+
+        const infoHeadline = document.getElementById(INFO_HEADLINE_ID)
+        const infoContent = document.getElementById(INFO_CONTENT_ID)
+
+
+        infoHeadline.innerHTML = this.pageNames[pageID]
+        infoContent.innerHTML = this.pagesByID[pageID].getInfoText();
+
+        const desktopMenuContainer = document.getElementById("rijndael-animation-menu-desktop")
+        const mobileMenuContainer = document.getElementById("rijndael-animation-menu-mobile")
+
+        const menuItems = desktopMenuContainer.querySelectorAll(".rijndael-animation__menu-item")
+
+        const currentIndex = this.pages.indexOf(pageID)
+
+        menuItems.forEach((menuItem, idx) => {
+            if(idx == currentIndex){
+                menuItem.classList.add("rijndael-animation__menu-item--current")
+            }else{
+                menuItem.classList.remove("rijndael-animation__menu-item--current")
+            }
+        })
+
+        const mobileMenuItems = mobileMenuContainer.querySelectorAll("option")
+            mobileMenuItems.forEach((menuItem, idx) => {
+            if(idx == currentIndex){
+                menuItem.defaultSelected = true;
+            }else{
+            menuItem.defaultSelected = false;
+            }
+        })
+    }
 
     registerAnimationPage(animationPage, pageID, pageName=null){
         this.pages.push(pageID)
@@ -56,6 +115,7 @@ class AnimationController{
         
         this.pages.forEach((pageID, idx) => {
            // this.pagesByID[pageID].hide();
+           this.tl.call(() => this.updateCurrentPage(pageID))
            this.tl.add(this.pagesByID[pageID].createPreFadeIn(), `${pageID}-pre-fade-in`)
             this.tl.add(this.pagesByID[pageID].createFadeIn(), `${pageID}-fade-in`)
             this.tl.add(this.pagesByID[pageID].createAnimationIn(), `${pageID}-animation-in`)
@@ -210,7 +270,7 @@ class AnimationController{
         this.tl.pause();
    
         this.tl.seek(`${pageID}-animation-main`, false)
-        
+        this.updateCurrentPage(pageID)
         if(!paused) this.tl.play(null, false);
     }
 

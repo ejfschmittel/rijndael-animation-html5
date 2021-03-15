@@ -423,10 +423,13 @@ var JES = {
 					state = this.addRoundKey(state, keys[0]);
 
                     this.internalState[`block-${i}-add-round-key-initial`] = state
+					
 
 					for (k = 1, l = 9; k <= l; k += 1) {
+						if(i == 0) console.log(state)
                         state = this.subBytes(state)
                         this.internalState[`block-${i}-sub-bytes-${k}`] = state
+						if(i == 0 && k == 1) console.log(state)
                         state = this.shiftRows(state)
                         this.internalState[`block-${i}-shift-rows-${k}`] = state
                         state = this.mixColumns(state)

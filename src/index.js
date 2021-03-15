@@ -90,10 +90,10 @@ window.addEventListener("load",function(){
     animationController.registerAnimationPage(new Page12(), "page-12", "Page 12 - Rounds 6 - 10")
     animationController.registerAnimationPage(new Page13(), "page-13", "Page 13 - B) Cipher Key")
     animationController.createTimeline();
+    animationController.updateCurrentPage("page-1")
 
 
-
-    animationController.tl.seek("page-7-animation-main")
+    animationController.playFrom("page-5-animation-main")
 
     // create timeline
 

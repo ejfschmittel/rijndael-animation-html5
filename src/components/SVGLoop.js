@@ -1,29 +1,24 @@
 import Component from "./Component"
 
 
+
 class SVG extends Component{
     constructor(id){
         super(id)
 
         this.path = null;
         this.svg = null;
-        this.init();
+        this.redraw();
 
         window.addEventListener("resize", this.onResize.bind(this))
     }
 
     onResize(){
-        console.log("on resize")
-        const dim = this.getComponentDimensions()
-        // update svg width / height
-        this.svg.setAttribute("viewBox", `0 0 ${dim.width} ${dim.height}`);
-
-      
-
-        this.path.setAttribute("d", this.getSVGPath(dim.width, dim.height))
+        this.redraw();
     }
 
     getComponentDimensions(){
+        console.log(this.component)
         return this.component.getBoundingClientRect()
     }
 
@@ -37,22 +32,24 @@ class SVG extends Component{
 
 
         const d  = `
-        M 0 0 V ${firstSegmentHeight} V ${firstSegmentHeight + secondSegmentHeight} H ${width - 50}
+        M 0 0 V ${firstSegmentHeight} V ${firstSegmentHeight + secondSegmentHeight} H ${width}
         V ${firstSegmentHeight} H 0 V ${height}
         `;
 
         return d;
     }
 
-    init(){
+    redraw(){
       
+        if(this.svg)
+            this.component.removeChild(this.svg)
         const dim = this.getComponentDimensions()
   
 
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-        svg.setAttribute("viewBox", `-0.5 -0.5 ${dim.width} ${dim.height}`); 
-        svg.setAttribute("width", "100%" )
-        svg.setAttribute("height", "100%" )
+        svg.setAttribute("viewBox", `-0.5 -0.5 ${dim.width}  ${dim.height}`); 
+        svg.setAttribute("width", dim.width -1)
+        svg.setAttribute("height", dim.height -1)
 
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
 

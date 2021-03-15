@@ -21,15 +21,14 @@ class Page7 extends AnimationPage{
 
         const gridLandings = new Grid(grid.id, 4,4 ,["rijndael-cell"])
         const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-
-
+        DataController.subscribe("block-0-add-round-key-initial", gridMovables.movables)
 
         const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow-dark"])
-        DataController.subscribe("subBytesResult", gridResultsMovables.movables)
-        DataController.subscribe("subBytesInput", gridMovables.movables)
+        DataController.subscribe("block-0-sub-bytes-1", gridResultsMovables.movables)
+       
 
         const Sbox = new LookupTable(sbox.id)
-        DataController.subscribe("sbox", Sbox.gridMovables.movables)
+        DataController.subscribe("sBox", Sbox.gridMovables.movables)
       
 
 
@@ -101,18 +100,12 @@ class Page7 extends AnimationPage{
 
     createAnimationMain(){
 
-
-
-        
-
-   
-        
-
-
         const {gridMovables, cellLanding, SBoxController, gridResultsMovables, gridLandings} = this.pageElements
 
         const firstCell = gridMovables.get(0, 0)
         const firstCellHex = firstCell.innerHTML;
+
+     
         const sboxX = hexStringToInt(firstCellHex[0])
         const sboxY = hexStringToInt(firstCellHex[1])
 
@@ -121,17 +114,15 @@ class Page7 extends AnimationPage{
         const landing = SBoxController.grid.getCell(sboxX, sboxY)
 
 
-   
-        
-
-
         const tl = gsap.timeline();
+
+        // move first cell above s-box
         tl.add(this.moveToLanding(gridMovables.get(0, 0), cellLanding, {duration: 1}))
      
-
         tl.add(this.moveToLanding(gridResultsMovables.movables[0], landing, {duration: .0001}))
 
 
+        // highlight row / cols and move substitute to landing
         tl.to(row, {background: "#FFF997"})
         tl.to(column, {background: "#FFF997"})
         tl.to(gridResultsMovables.movables[0], {opacity: 1})
@@ -141,6 +132,7 @@ class Page7 extends AnimationPage{
         tl.to(gridMovables.get(0, 0), {opacity: 0}, "<")
        
 
+        // highlight s-box cells & reveal substituted table 
         for(let i = 1; i < gridResultsMovables.movables.length; i++){
 
             const cell = gridMovables.movables[i]

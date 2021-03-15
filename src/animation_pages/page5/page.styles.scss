@@ -3,9 +3,9 @@
 .rijndael-page-5{
 
     display: grid;
-
-
     height: 100%;
+
+    
     grid-template-columns: 3fr 2fr 2fr;
     grid-template-rows: 2fr 4fr 3fr;
     width: 80%;
@@ -18,22 +18,38 @@
     ;
 
     
+    @media (max-width: 800px){
+        width: 100%;
+        padding: 1rem;
+        font-size: .8rem;
+        grid-template-columns: 1fr 1fr 2fr;
+        grid-template-rows: 2fr 4fr 3fr;
+        grid-template-areas: 
+        "anim1 anim1 title1"
+        "anim2 anim2 title2"
+        "anim3 anim3 title3"
+    ;
+    }
+
+    
     &__path{
-        grid-area: anim1 / 1 / anim3/ 1;
+        grid-area: anim1 / 1 / anim3/ 2;
   
         display: flex;
         justify-content: center;
-        z-index: 5;
+        z-index: 1;
+
+        svg{
+            transform: translateX(50%);
+
+            @media (max-width: 800px){
+                transform: translateX(100%);
+            }
+        }
+
     }
 
-    &__svg{
-
-        height: 100%;
-        width: 200px;
-        transform: translateX(50%);
-
-        
-    }
+  
 
     &__labels{
         z-index: 6;

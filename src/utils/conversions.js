@@ -35,5 +35,6 @@ export function toHex(d) {
 }
 
 export const hexStringToInt = (hex) => {
+   if(!hex) return 0;
     return parseInt(hex.replace(/^#/, ''), 16);
 }
