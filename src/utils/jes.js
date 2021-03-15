@@ -355,7 +355,7 @@ var JES = {
 		encrypt: function (opts, output_type, decrypt) {
 
             // reset internal state
-			console.log(opts)
+	
             this.internalState = {
                 sBox: this.sbox.norm,
                 key: opts.key,
@@ -426,10 +426,10 @@ var JES = {
 					
 
 					for (k = 1, l = 9; k <= l; k += 1) {
-						if(i == 0) console.log(state)
+					
                         state = this.subBytes(state)
                         this.internalState[`block-${i}-sub-bytes-${k}`] = state
-						if(i == 0 && k == 1) console.log(state)
+				
                         state = this.shiftRows(state)
                         this.internalState[`block-${i}-shift-rows-${k}`] = state
                         state = this.mixColumns(state)

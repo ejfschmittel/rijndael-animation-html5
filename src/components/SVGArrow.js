@@ -55,7 +55,7 @@ class SVGArrow extends Component{
 
         const d = this.getArrowPath(width, height)
 
-        console.log(d)
+ 
 
         path.setAttribute('d', d)
         path.setAttribute('stroke-width', strokeWidth)

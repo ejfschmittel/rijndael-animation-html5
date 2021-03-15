@@ -65,7 +65,7 @@ class AnimationController{
     }
     
     updateCurrentPage(pageID){
-        console.log("current page: " + pageID)
+      
         this.currentPage = pageID;
 
         const infoHeadline = document.getElementById(INFO_HEADLINE_ID)
@@ -91,8 +91,11 @@ class AnimationController{
         })
 
         const mobileMenuItems = mobileMenuContainer.querySelectorAll("option")
+
+     
             mobileMenuItems.forEach((menuItem, idx) => {
             if(idx == currentIndex){
+                console.log(currentIndex)
                 menuItem.defaultSelected = true;
             }else{
             menuItem.defaultSelected = false;
@@ -144,8 +147,7 @@ class AnimationController{
         desktopMenuContainer.innerHTML = ""
         mobileMenuContainer.innerHTML = ""
         
-        // create desktop menu
-        console.log("recreate desktop menu")
+
         this.pages.forEach(pageID => {
 
             

@@ -110,7 +110,7 @@ class DataController{
             this.updateStore(key, value)
         })
 
-        console.log(this.store)
+   
     }
     
 
