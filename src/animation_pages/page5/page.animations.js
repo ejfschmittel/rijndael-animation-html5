@@ -92,92 +92,142 @@ class Page5 extends AnimationPage{
         return tl;
     }
 
-    createAnimationMain(){
+
+   getTLDuration(dist){
+        return dist * 10
+    }
+
+    middleTl( point1, point2, centerTimelineDuration){
         const {runner, svg, labelsLast, labelsMain, labelsInit} = this.pageElements
         const tl = gsap.timeline();
-       
-        const labelsMainGroup = labelsMain.querySelectorAll(".rijndael-rounded-label")
+       // const centerTimelineDuration = this.getTLDuration(point2-point1)
+       tl.to(runner, {duration: 1, ease: "none", duration: centerTimelineDuration , motionPath: {
+            path: svg.path,
+            alignOrigin: [0.5, 0.5],
+            align: svg.path,
+            start: point1,
+            end: point2,
+        }}, "rijndael-page-5-main-round")
 
-        tl.to(runner, {duration: 1, ease: "none", motionPath: {
+   
+       const labelsMainGroup = labelsMain.querySelectorAll(".rijndael-rounded-label")
+        const start1 = centerTimelineDuration/2 - (centerTimelineDuration / 100) * 25
+        tl.to(labelsMainGroup[0], {background: "#4b759c", duration: .001}, `rijndael-page-5-main-round+=${start1}`)
+        tl.to(labelsMainGroup[0], {background: "#B2D7F9", duration: .001}, `rijndael-page-5-main-round+=${start1+.1}`)
+
+        const start2 = centerTimelineDuration/2 - (centerTimelineDuration / 100) * 15
+        tl.to(labelsMainGroup[1], {background: "#b86158", duration: .001}, `rijndael-page-5-main-round+=${start2}`)
+        tl.to(labelsMainGroup[1], {background: "#FACCC7", duration: .001}, `rijndael-page-5-main-round+=${start2+.1}`)
+
+        const start3 = centerTimelineDuration/2 - (centerTimelineDuration / 100) * 0
+        tl.to(labelsMainGroup[2], {background: "#e6dd65", duration: .001}, `rijndael-page-5-main-round+=${start3}`)
+        tl.to(labelsMainGroup[2], {background: "#ECE9BF", duration: .001}, `rijndael-page-5-main-round+=${start3+.1}`)
+
+        const start4 = centerTimelineDuration/2 - (centerTimelineDuration / 100) * -15
+        tl.to(labelsMainGroup[3], {background: "#4f9c81", duration: .001}, `rijndael-page-5-main-round+=${start4}`)
+        tl.to(labelsMainGroup[3], {background: "#A3C0B6", duration: .001}, `rijndael-page-5-main-round+=${start4+.1}`)
+
+
+        return tl;
+    }
+
+    endTl(point4, endTLDuration){
+        const {runner, svg, labelsLast, labelsMain, labelsInit} = this.pageElements
+        const tl = gsap.timeline();
+
+       tl.to(runner, {duration: 1, ease: "none", duration: endTLDuration , motionPath: {
+            path: svg.path,
+            alignOrigin: [0.5, 0.5],
+            align: svg.path,
+            start: point4,
+            end: 1,
+        }}, "rijndael-page-5-final-round")
+
+   
+       const labelsMainGroup = labelsLast.querySelectorAll(".rijndael-rounded-label")
+     
+
+       const start1 = endTLDuration/2 - (endTLDuration / 100) * 25
+       tl.to(labelsMainGroup[0], {background: "#4b759c", duration: .001}, `rijndael-page-5-final-round+=${start1}`)
+       tl.to(labelsMainGroup[0], {background: "#B2D7F9", duration: .001}, `rijndael-page-5-final-round+=${start1+.1}`)
+
+       const start2 = endTLDuration/2 - (endTLDuration / 100) * 10
+       tl.to(labelsMainGroup[1], {background: "#b86158", duration: .001}, `rijndael-page-5-final-round+=${start2}`)
+       tl.to(labelsMainGroup[1], {background: "#FACCC7", duration: .001}, `rijndael-page-5-final-round+=${start2+.1}`)
+
+       const start4 = endTLDuration/2 - (endTLDuration / 100) * -15
+       tl.to(labelsMainGroup[2], {background: "#4f9c81", duration: .001}, `rijndael-page-5-final-round+=${start4}`)
+       tl.to(labelsMainGroup[2], {background: "#A3C0B6", duration: .001}, `rijndael-page-5-final-round+=${start4+.1}`)
+
+
+        return tl;
+    }
+
+    createAnimationMain(){
+        const {runner, svg, labelsLast, labelsMain, labelsInit, counter} = this.pageElements
+        const tl = gsap.timeline();
+       
+      
+
+        const {point1, point2, point3, point4} = svg.dimensions
+ 
+        console.log(counter)
+
+        this.currentCounter = 0;
+
+        counter.innerHTML = this.currentCounter;
+
+
+
+        // initial round
+        tl.to(runner, {duration: 1, ease: "none", duration: this.getTLDuration(point1), motionPath: {
             path: svg.path,
             alignOrigin: [0.5, 0.5],
             align: svg.path,
             start: 0,
-            end: .09
-        }})
+            end: point1,
+        }},)
 
-
-        tl.to(runner, {duration: 1, ease: "none", motionPath: {
-            path: svg.path,
-            alignOrigin: [0.5, 0.5],
-            align: svg.path,
-            start: .09,
-            end: .69
-        }})
-
-        tl.timeScale(.2)
-
-        const subTl = gsap.timeline({repeat: 6, onRepeat: () => {
-            console.log("repeat")
-            
-        }})
-
-        subTl.to(runner, {duration: 1, ease: "none", motionPath: {
-            path: svg.path,
-            alignOrigin: [0.5, 0.5],
-            align: svg.path,
-            start: .09,
-            end: .69
-        }}, "rijndael-page-5-main-round")
-
-        // rgb(234,228,130) yellow
-        // rgb(79,154,133) green
-        // rgb(243,137,124) red
-        // rgb(78,165,236) blue
-
-        // blue .12 => .14
-        // red .15 => .17
-        // yellow .18 => .20
-        // green  21 => 23
-
-        // .09 / 69 => 6
-        const mul = (t) => t / 60 * 2; 
-
-        const e = (start, end, progress, time) => (time / (end-start)) * (progress-start)  
         
-        subTl.to(labelsMainGroup[0], {background: "rgb(78,165,236,  1)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .12, 1)}`)
-        subTl.to(labelsMainGroup[0], {background: "rgb(78,165,236, .5)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .14, 1)}`)
+        // slow first main rounds
+        tl.call(() => {this.currentCounter++; counter.innerHTML = this.currentCounter})
+        tl.add(this.middleTl(point1, point2, this.getTLDuration(point2-point1)))
+        tl.to(runner, {duration: 1, ease: "none", duration: this.getTLDuration(point3-point2), motionPath: {
+            path: svg.path,
+            alignOrigin: [0.5, 0.5],
+            align: svg.path,
+            start: point2,
+            end: point3,
+        }})
 
-        subTl.to(labelsMainGroup[1], {background: "rgb(243,137,124,  1)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .15, 1)}`)
-        subTl.to(labelsMainGroup[1], {background: "rgb(243,137,124, .5)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .17, 1)}`)
-
-        subTl.to(labelsMainGroup[2], {background: "rgb(234,228,13,  1)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .18, 1)}`)
-        subTl.to(labelsMainGroup[2], {background: "rgb(234,228,13, .5)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .20, 1)}`)
-
-        subTl.to(labelsMainGroup[3], {background: "rgb(79,154,133,  1)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .21, 1)}`)
-        subTl.to(labelsMainGroup[3], {background: "rgb(79,154,133, .5)", duration: .001}, `rijndael-page-5-main-round+=${e(.09, .69, .23, 1)}`)
-     
+        // repeating faster rounds 2-8
+        const repeatingTL = gsap.timeline({
+            repeat: 6, 
+            onStart: () => {this.currentCounter++; counter.innerHTML = this.currentCounter},
+            onRepeat: () => {this.currentCounter++; counter.innerHTML = this.currentCounter}
+        });
+        repeatingTL.add(this.middleTl(point3, point4,this.getTLDuration(point4- point3) / 4))
+        repeatingTL.to(runner, {duration: 1, ease: "none", duration: this.getTLDuration(point3-point2) / 4, motionPath: {
+            path: svg.path,
+            alignOrigin: [0.5, 0.5],
+            align: svg.path,
+            start: point2,
+            end: point3,
+        }})
        
 
-   
-        
-        tl.add(subTl)
+        tl.add(repeatingTL)
+
+        // last main round
+        tl.call(() => {this.currentCounter++; counter.innerHTML = this.currentCounter})
+        tl.add(this.middleTl(point3, point4,this.getTLDuration(point4- point3)))
 
 
-        tl.to(runner, {duration: 3, ease: "none", motionPath: {
-            path: svg.path,
-            alignOrigin: [0.5, 0.5],
-            align: svg.path,
-            start: .69,
-            end: 1
-        }})
+        // final round
+        tl.call(() => {this.currentCounter++; counter.innerHTML = this.currentCounter})
+        tl.add(this.endTl(point4, this.getTLDuration(1-point4)))
 
 
-        /*gsap.to(runner, {duration: 1, motionPath: {
-            path: svg.path,
-            alignOrigin: [0.5, 0.5],
-            align: svg.path,
-        }})*/
         return tl;
     }
 }

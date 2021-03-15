@@ -31,6 +31,22 @@
     ;
     }
 
+
+    &__counter{
+        grid-area: anim3;
+
+        position: relative;
+       
+    }
+
+    &__counter-num{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: .5rem 2rem;
+        background: #000;
+        color: #fff;
+    }
     
     &__path{
         grid-area: anim1 / 1 / anim3/ 2;

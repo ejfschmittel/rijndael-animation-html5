@@ -8,6 +8,8 @@ class SVG extends Component{
 
         this.path = null;
         this.svg = null;
+
+        this.dimensions = {}
         this.redraw();
 
         window.addEventListener("resize", this.onResize.bind(this))
@@ -35,6 +37,14 @@ class SVG extends Component{
         M 0 0 V ${firstSegmentHeight} V ${firstSegmentHeight + secondSegmentHeight} H ${width}
         V ${firstSegmentHeight} H 0 V ${height}
         `;
+
+
+        const totalDistance = firstSegmentHeight + secondSegmentHeight * 3 + thirdSegmentHeight + width * 2;
+        const point1 = firstSegmentHeight / totalDistance;
+        const point2 =  (firstSegmentHeight + secondSegmentHeight) / totalDistance;
+        const point3 = (firstSegmentHeight + 2 * secondSegmentHeight + width * 2) / totalDistance;
+        const point4 = (firstSegmentHeight + 3 * secondSegmentHeight + width * 2) / totalDistance;
+        this.dimensions = {point1, point2, point3, point4}
 
         return d;
     }
