@@ -37,6 +37,22 @@
 
 
 
+.rijndael-page-2-arrow-text {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    color: #000;
+    transform: translate(-50%, -50%);
+    
+    font-size: 1.1rem;
+
+    &--vertical{
+        writing-mode: vertical-rl;
+        top: 40%;
+        left: 50%;
+    }
+}
+
 .rijndael-page-2-arrow-container{
   
 
@@ -94,13 +110,14 @@
 }
 
 .rijndael-page-2-arrow{
-    max-width: 3rem;
-    max-height: 6rem;
+    position: relative;
+    max-width: 4rem;
+    max-height: 8rem;
 
 
     &--horizontal{
-        max-width: 6rem;
-        max-height: 3rem;
+        max-width: 8rem;
+        max-height: 4rem;
 
         
     }

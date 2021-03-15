@@ -36,7 +36,11 @@
         grid-area: anim3;
 
         position: relative;
-       
+     
+        
+        @media (max-width: 800px){
+            grid-area: 3 / 3 / 3 / 3;
+        }
     }
 
     &__counter-num{
@@ -46,6 +50,13 @@
         padding: .5rem 2rem;
         background: #000;
         color: #fff;
+
+        @media (max-width: 800px){
+            top: auto;
+            left: auto;
+            bottom: 0;
+            right: 0
+        }
     }
     
     &__path{

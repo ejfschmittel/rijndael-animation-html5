@@ -50,6 +50,13 @@ class Page5 extends AnimationPage{
 
       
 
+        tl.to(runner, {duration: 1, ease: "none", duration: 0.001, motionPath: {
+            path: svg.path,
+            alignOrigin: [0.5, 0.5],
+            align: svg.path,
+            start: 0,
+            end: 0,
+        }},)
 
  
 

@@ -93,7 +93,7 @@ window.addEventListener("load",function(){
     animationController.updateCurrentPage("page-1")
 
 
-    animationController.playFrom("page-5-animation-main")
+    animationController.playFrom("page-2-animation-main")
 
     // create timeline
 
