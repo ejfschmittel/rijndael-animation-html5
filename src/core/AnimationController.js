@@ -13,6 +13,9 @@ const INFO_CONTENT_ID = "rijndael-animation-info-content"
 const FULLSCREEN_BTN_ID = "rijndael-animation-fullscreen-btn";
 
 
+const NAVIGATION_MOBILE_ID = "rijndael-animation-navigation-mobile"
+const NAVIGATION_DESKTOP_ID = "rijndael-animation-navigation-desktop"
+
 const PLAY_BTN_ID = "";
 const FORWARD_BTN_ID = "";
 const BACKWARDS_BNT_ID = "";
@@ -91,18 +94,18 @@ class AnimationController{
         infoHeadline.innerHTML = this.pageNames[pageID]
         infoContent.innerHTML = this.pagesByID[pageID].getInfoText();
 
-        const desktopMenuContainer = document.getElementById("rijndael-animation-menu-desktop")
-        const mobileMenuContainer = document.getElementById("rijndael-animation-menu-mobile")
+        const desktopMenuContainer = document.getElementById("rijndael-animation-navigation-desktop")
+        const mobileMenuContainer = document.getElementById("rijndael-animation-navigation-mobile")
 
-        const menuItems = desktopMenuContainer.querySelectorAll(".rijndael-animation__menu-item")
+        const menuItems = desktopMenuContainer.querySelectorAll(".rijndael-animation__navigation-item")
 
         const currentIndex = this.pages.indexOf(pageID)
 
         menuItems.forEach((menuItem, idx) => {
             if(idx == currentIndex){
-                menuItem.classList.add("rijndael-animation__menu-item--current")
+                menuItem.classList.add("rijndael-animation__navigation-item--current")
             }else{
-                menuItem.classList.remove("rijndael-animation__menu-item--current")
+                menuItem.classList.remove("rijndael-animation__navigation-item--current")
             }
         })
 
@@ -163,19 +166,20 @@ class AnimationController{
     }
 
 
-    createMenu(desktopMenuContainerID="rijndael-animation-menu-desktop", mobileMenuContainerID="rijndael-animation-menu-mobile"){
+    createMenu(){
         
-        const desktopMenuContainer = document.getElementById(desktopMenuContainerID)
-        const mobileMenuContainer = document.getElementById(mobileMenuContainerID)
+        const desktopMenuContainer = document.getElementById(NAVIGATION_DESKTOP_ID)
+        const mobileMenuContainer = document.getElementById(NAVIGATION_MOBILE_ID)
         desktopMenuContainer.innerHTML = ""
         mobileMenuContainer.innerHTML = ""
         
 
-        this.pages.forEach(pageID => {
+        this.pages.forEach((pageID, pageIndex) => {
 
             
             const menuItem = document.createElement("div")
-            menuItem.classList.add("rijndael-animation__menu-item")
+            menuItem.classList.add("rijndael-animation__navigation-item")
+            menuItem.innerHTML = pageIndex + 1;
             menuItem.addEventListener("click", () => {
                 this.goToPage(pageID)
             })
