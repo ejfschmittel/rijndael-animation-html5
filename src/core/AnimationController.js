@@ -16,9 +16,12 @@ const FULLSCREEN_BTN_ID = "rijndael-animation-fullscreen-btn";
 const NAVIGATION_MOBILE_ID = "rijndael-animation-navigation-mobile"
 const NAVIGATION_DESKTOP_ID = "rijndael-animation-navigation-desktop"
 
-const PLAY_BTN_ID = "";
-const FORWARD_BTN_ID = "";
-const BACKWARDS_BNT_ID = "";
+const PLAY_BTN_ID = "rijndael-animation-play-btn";
+const FORWARD_BTN_ID = "rijndael-animation-jump-forwards";
+const BACKWARDS_BTN_ID = "rijndael-animation-jump-backwards";
+
+
+const PLAY_BTN_PAUSED_CLASS = "rijndael-animation__play-btn--paused"
 
 const ANIMATION_ID = "rijndael-animation"
 
@@ -44,15 +47,21 @@ class AnimationController{
 
         window.addEventListener("resize", onResize)
 
-        const playBtn = document.getElementById("rijndael-animation-play") 
-         playBtn.addEventListener("click", this.onPlayPause.bind(this))
+  
+        this.playBtn = document.getElementById(PLAY_BTN_ID) 
+        this.playBtn.addEventListener("click", this.onPlayPause.bind(this))
     
          if(this.tl.paused()){
-             
-            playBtn.classList.remove("rijndael-animation__play--paused")
+            this.playBtn.classList.add(PLAY_BTN_PAUSED_CLASS)
          }else{
-            playBtn.classList.add("rijndael-animation__play--paused")
+            this.playBtn.classList.remove(PLAY_BTN_PAUSED_CLASS)
          }
+
+         const jumpForwardsButton = document.getElementById(FORWARD_BTN_ID)
+         jumpForwardsButton.addEventListener("click", this.jumpForwards.bind(this))
+ 
+         const jumpBackwardsButton = document.getElementById(BACKWARDS_BTN_ID)
+         jumpBackwardsButton.addEventListener("click", this.jumpBackwards.bind(this))
 
          const fullscreenBtn = document.getElementById(FULLSCREEN_BTN_ID)
          fullscreenBtn.addEventListener("click", this.toggleFullscreen.bind(this))
@@ -316,26 +325,35 @@ class AnimationController{
 
 
     playFrom(label=null){
-        const playBtn = document.getElementById("rijndael-animation-play") 
-        playBtn.classList.add("rijndael-animation__play--paused")
+       console.log("play from")
+        console.log(this.playBtn)
 
+        this.playBtn.classList.remove(PLAY_BTN_PAUSED_CLASS)
+        console.log(this.playBtn)
         this.tl.play(label, false)
        
     }
 
 
-    resume(){
-        const playBtn = document.getElementById("rijndael-animation-play") 
-        playBtn.classList.add("rijndael-animation__play--paused")
+    resume(){ 
+        this.playBtn.classList.remove(PLAY_BTN_PAUSED_CLASS)
         this.tl.resume()
     }
 
-    pause(){
-        const playBtn = document.getElementById("rijndael-animation-play") 
-        playBtn.classList.remove("rijndael-animation__play--paused")
+    pause(){     
+        this.playBtn.classList.add(PLAY_BTN_PAUSED_CLASS)
         this.tl.pause()
     }
   
+    jumpForwards(){
+        const currentTime = this.tl.totalTime();
+        this.tl.seek(currentTime + .5, false)       
+    }
+
+    jumpBackwards(){
+        const currentTime = this.tl.totalTime();
+        this.tl.seek(currentTime - .5, false)  
+    }
 
 
 }
