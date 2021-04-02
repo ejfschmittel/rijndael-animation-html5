@@ -7,11 +7,14 @@ import {dashedStringToCammelCase} from "../utils/utils"
 import MovablesController, {getDimensions}  from "../core/MovablesController"
 
 class AnimationPage{
-    constructor(pageID){
+    constructor(pageID, locale){
 
         this.pageID = pageID;
+        this.locale = locale;
       
         this.page = document.getElementById(pageID)
+
+        if(!this.page) throw new Error(`No page with id ${pageID} found.`)
 
         this.FADE_IN_DURATION = .0001;
         this.FADE_OUT_DURATION = .00001;
@@ -31,6 +34,12 @@ class AnimationPage{
         `;
     }
 
+    text(localeID){
+        return this.locale[localeID]
+    }
+
+
+    // creates a unique dummy label
     getAutoLabel(){      
         this.autoLabelCounter++;
         return `${this.pageID}-label-${this.autoLabelCounter}`
@@ -38,6 +47,7 @@ class AnimationPage{
 
     initPage(){
         this.collectPageElements();
+        this.setCorrectLanguageData()
         this.init();
     }
 
@@ -60,6 +70,17 @@ class AnimationPage{
 
         this.pageElements = obj;
         return obj;
+    }
+
+
+    setCorrectLanguageData(){
+        const languageNodes = this.page.querySelectorAll("[data-lang]")
+        languageNodes.forEach((element, idx) => {
+            const langDataKey = element.dataset["lang"]
+            if(langDataKey in this.locale){
+                element.innerHTML = this.locale[langDataKey]
+            }
+        })
     }
 
 

@@ -4,8 +4,8 @@ import {gsap} from "gsap"
 import "./page.styles.scss"
 
 class Page1 extends AnimationPage{
-    constructor(){
-        super("page-1")
+    constructor(id, locale){
+        super(id, locale)
     }
 
     init(){

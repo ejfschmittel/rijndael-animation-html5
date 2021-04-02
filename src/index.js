@@ -66,34 +66,47 @@ const calcAesAndUpdateStore = () => {
 }
 
 
-
-
-window.addEventListener("load",function(){
+const createRijndaelAnimation = (locale) => {
     gsap.registerPlugin(CSSPlugin)
     gsap.registerPlugin(MotionPathPlugin)
 
     calcAesAndUpdateStore();
 
     // create controller & register page
-    const animationController = new AnimationController("id");
-    animationController.registerAnimationPage(new Page1(), "page-1", "Page 1 - Rijndael Animation Intro")
-    animationController.registerAnimationPage(new Page2(), "page-2", "Page 2 - Encryption Overview")
-    animationController.registerAnimationPage(new Page3(), "page-3", "Page 3 - Encryption Process and Cipher Key")
-    animationController.registerAnimationPage(new Page4(), "page-4", "Page 4 - A) Encryption Process")
-    animationController.registerAnimationPage(new Page5(), "page-5", "Page 5 - Encryption Process Overview")
-    animationController.registerAnimationPage(new Page6(), "page-6", "Page 6 - Transformation Types")
-    animationController.registerAnimationPage(new Page7(), "page-7", "Page 7 - SubBytes")
-    animationController.registerAnimationPage(new Page8(), "page-8", "Page 8 - ShiftRows")
-    animationController.registerAnimationPage(new Page9(), "page-9", "Page 9 - MixColumns")
-    animationController.registerAnimationPage(new Page10(), "page-10", "Page 10 - AddRoundKey")
-    animationController.registerAnimationPage(new Page11(), "page-11", "Page 11 - Rounds 1 - 5")
-    animationController.registerAnimationPage(new Page12(), "page-12", "Page 12 - Rounds 6 - 10")
-    animationController.registerAnimationPage(new Page13(), "page-13", "Page 13 - B) Cipher Key")
+    const animationController = new AnimationController("id", locale);
+    animationController.registerAnimationPage(Page1, "page-1", "Page 1 - Rijndael Animation Intro")
+    animationController.registerAnimationPage(Page2, "page-2", "Page 2 - Encryption Overview")
+    animationController.registerAnimationPage(Page3, "page-3", "Page 3 - Encryption Process and Cipher Key")
+    animationController.registerAnimationPage(Page4, "page-4", "Page 4 - A) Encryption Process")
+    animationController.registerAnimationPage(Page5, "page-5", "Page 5 - Encryption Process Overview")
+    animationController.registerAnimationPage(Page6, "page-6", "Page 6 - Transformation Types")
+    animationController.registerAnimationPage(Page7, "page-7", "Page 7 - SubBytes")
+    animationController.registerAnimationPage(Page8, "page-8", "Page 8 - ShiftRows")
+    animationController.registerAnimationPage(Page9, "page-9", "Page 9 - MixColumns")
+    animationController.registerAnimationPage(Page10, "page-10", "Page 10 - AddRoundKey")
+    animationController.registerAnimationPage(Page11, "page-11", "Page 11 - Rounds 1 - 5")
+    animationController.registerAnimationPage(Page12, "page-12", "Page 12 - Rounds 6 - 10")
+    animationController.registerAnimationPage(Page13, "page-13", "Page 13 - B) Cipher Key")
     animationController.createTimeline();
     animationController.updateCurrentPage("page-1")
 
 
     animationController.playFrom("page-1-pre-fade-in")
+}
+
+
+
+
+
+window.addEventListener("load",function(){
+
+    const lang = document.documentElement.lang
+
+    import(`./languages/${lang}.locale.json`).then(locale => 
+        createRijndaelAnimation(locale.default)
+    );
+
+  
 
     // create timeline
 

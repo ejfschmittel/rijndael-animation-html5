@@ -12,15 +12,22 @@ const INFO_HEADLINE_ID = "rijndael-animation-info-headline"
 const INFO_CONTENT_ID = "rijndael-animation-info-content"
 const FULLSCREEN_BTN_ID = "rijndael-animation-fullscreen-btn";
 
+
+const PLAY_BTN_ID = "";
+const FORWARD_BTN_ID = "";
+const BACKWARDS_BNT_ID = "";
+
 const ANIMATION_ID = "rijndael-animation"
 
 class AnimationController{
-    constructor(){
-        this.tl = gsap.timeline({paused: true, onComplete: () => this.pause()});
+    constructor(id, locale){
+        this.tl = this.createEmptyTimeline();
 
         this.pages = []
         this.pagesByID = {}
         this.pageNames = {}
+
+        this.locale = locale;
 
         this.resizeStore = null; 
 
@@ -49,6 +56,10 @@ class AnimationController{
 
     }
 
+    createEmptyTimeline(){
+        return gsap.timeline({paused: true, onComplete: () => this.pause()});
+    }
+
 
     toggleFullscreen(){
         // add classes
@@ -68,6 +79,11 @@ class AnimationController{
       
         this.currentPage = pageID;
 
+        this.onAfterUpdateCurrentPage(pageID)
+    }
+
+
+    onAfterUpdateCurrentPage = debounce((pageID) => {
         const infoHeadline = document.getElementById(INFO_HEADLINE_ID)
         const infoContent = document.getElementById(INFO_CONTENT_ID)
 
@@ -94,16 +110,18 @@ class AnimationController{
 
      
             mobileMenuItems.forEach((menuItem, idx) => {
-            if(idx == currentIndex){
-                console.log(currentIndex)
+            if(idx == currentIndex){     
                 menuItem.defaultSelected = true;
             }else{
             menuItem.defaultSelected = false;
             }
         })
-    }
+    }, 100)
 
-    registerAnimationPage(animationPage, pageID, pageName=null){
+    registerAnimationPage(AnimationPageClass, pageID, pageName=null){
+
+        const animationPage = new AnimationPageClass(pageID, this.locale[pageID])
+
         this.pages.push(pageID)
         this.pagesByID[pageID] = animationPage;
         this.pageNames[pageID] = pageName ? pageName : pageID;
@@ -114,7 +132,12 @@ class AnimationController{
 
 
     createTimeline(){
-        this.tl.clear();
+        
+        if(this.tl)
+            this.tl.kill();
+
+        this.tl = null;
+        this.tl = this.createEmptyTimeline();
         
         this.pages.forEach((pageID, idx) => {
            // this.pagesByID[pageID].hide();
@@ -272,8 +295,8 @@ class AnimationController{
         this.tl.pause();
    
         this.tl.seek(`${pageID}-animation-main`, false)
-        this.updateCurrentPage(pageID)
-        if(!paused) this.tl.play(null, false);
+       
+       if(!paused) this.tl.play(null, false);
     }
 
     onPlayPause(){

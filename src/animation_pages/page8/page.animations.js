@@ -12,8 +12,8 @@ import DataController from "../../core/DataController"
 import "./page.styles.scss"
 
 class Page8 extends AnimationPage{
-    constructor(){
-        super("page-8");
+    constructor(id, locale){
+        super(id, locale)
 
         this.FADE_OUT_DELAY = 0;
     }

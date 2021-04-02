@@ -6,8 +6,8 @@ import {gsap} from "gsap"
 import "./page.styles.scss"
 
 class Page2 extends AnimationPage{
-    constructor(){
-        super("page-2")
+    constructor(id, locale){
+        super(id, locale)
 
         this.FADE_OUT_DELAY = 0;
     }

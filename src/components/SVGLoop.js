@@ -10,9 +10,10 @@ class SVG extends Component{
         this.svg = null;
 
         this.dimensions = {}
+        window.addEventListener("resize", this.onResize.bind(this))
         this.redraw();
 
-        window.addEventListener("resize", this.onResize.bind(this))
+      
     }
 
     onResize(){

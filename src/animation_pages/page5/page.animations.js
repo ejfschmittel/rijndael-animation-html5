@@ -13,8 +13,8 @@ import "./page.styles.scss"
 import SVG from "../../components/SVGLoop"
 
 class Page5 extends AnimationPage{
-    constructor(){
-        super("page-5");
+    constructor(id, locale){
+        super(id, locale)
     }
 
     init(){
@@ -105,7 +105,7 @@ class Page5 extends AnimationPage{
     }
 
     middleTl( point1, point2, centerTimelineDuration){
-        const {runner, svg, labelsLast, labelsMain, labelsInit} = this.pageElements
+    const {runner, svg, labelsLast, labelsMain, labelsInit} = this.pageElements
         const tl = gsap.timeline();
        // const centerTimelineDuration = this.getTLDuration(point2-point1)
        tl.to(runner, {duration: 1, ease: "none", duration: centerTimelineDuration , motionPath: {
@@ -170,13 +170,19 @@ class Page5 extends AnimationPage{
         return tl;
     }
 
-    createAnimationMain(){
+        createAnimationMain(){
         const {runner, svg, labelsLast, labelsMain, labelsInit, counter} = this.pageElements
         const tl = gsap.timeline();
        
       
 
-        const {point1, point2, point3, point4} = svg.dimensions
+        const {point1: p1, point2: p2, point3: p3, point4: p4} = svg.dimensions
+
+
+        const point1 = Math.round((p1 + Number.EPSILON) * 100) / 100
+        const point2 = Math.round((p2 + Number.EPSILON) * 100) / 100
+        const point3 = Math.round((p3 + Number.EPSILON) * 100) / 100
+        const point4 = Math.round((p4 + Number.EPSILON) * 100) / 100
  
         console.log(counter)
 

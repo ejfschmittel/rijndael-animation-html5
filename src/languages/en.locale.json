@@ -1,0 +1,131 @@
+{
+    "page-1": {
+        "titlePartOne": "Rijndael",
+        "titlePartTwo": "Cipher",
+        "text": "Animation using a 128 bit size for each the data block and the key"
+    },
+    "page-2": {
+        "boxText": "Rijndael Encryptor",
+        "textLeft": "Cipher key",
+        "textBottom": "Ciphertext",
+        "textTop": "Plaintext"
+    },
+    "page-3": {
+        "title": "Input",
+        "subtitleLeft": "State",
+        "subtitleRight": "Cipher key",
+        "explanationLeft": "This is a block from the plaintext message to be encrypted",
+        "explanationRight": "Hexadecimal notation (sample):",
+        "textLeft": "to Encryption Process",
+        "textRight": "to key Schedule"
+    },
+    "page-4": {
+        "title": "Encryption Process",
+        "text": "(Performing the encryption of the given plaintext block using 4 diffrent transformation in the initial round, the 9 main rounds and the final round)"
+    },
+    "page-5": {
+        "title": "Encryption Process",
+
+        "titleInitialRound": "initial round",
+        "titleMainRounds": "9 main rounds",
+        "titleFinalRound": "final round",
+        "labelInitial": "AddRoundKey",
+        "labelMrone": "1-SubBytes",
+        "labelMrTwo": "2-ShiftRows",
+        "labelMrThree": "3-MixColumns",
+        "labelMrFour": "4-addRoundKey",
+        "labelFrOne": "SubBytes",
+        "labelFrTwo": "ShiftRows",
+        "labelFrThree": "AddRoundKey",
+
+        "boxTitleOne": "CipherKey",
+        "boxTitleTwo": "Round key 0",
+        "boxTitleThree": "Round Key 10"
+    },
+    "page-6": {
+        "title": "The 4 types of transformations:",
+        "labelone": "1-SubBytes",
+        "labelTwo": "2-ShiftRows",
+        "labelThree": "3-MixColumns",
+        "labelFour": "4-addRoundKey"
+    },
+    "page-7": {
+        "title": "1 - SubBytes",
+        "round": "Round 1",
+        "sboxLabel": "S-Box",
+        "sboxExplanation": "byte substitution table"
+    },
+    "page-8": {
+        "title": "2 - ShiftRows",
+        "rotateTextOne": "rotate over 2 bytes",
+        "rotateTextTwo": "rotate over 2 bytes",
+        "rotateTextThree": "rotate over 2 bytes"
+    },
+    "page-9": {
+        "title": "3 - MixColumns",
+        "text": "The four numbers of one column are modulo multiplied in Rijndael's Galois Field by a given matrix.",
+        "text2": "The MixColumns step along wit hthe ShiftRows step is the primary source of diffusion in Rijndael."
+    },
+    "page-10": {
+        "title": "4 - AddRoundKey",
+        "roundKeyLabel": "Round key",
+        "roundKeyText": "(Produced as Round key 1 during the Key Schedule - see slide 14"
+    },
+    "page-11": {
+        "intoText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
+        "roundLabel": "round",
+        "subBytesLabel": "SubBytes",
+        "ShiftRowsLabel": "ShiftRows",
+        "MixColumnsLabel": "MixColumns",
+        "RoundKeyLabel": "Round key",
+        "inputLabel": "Input",
+        "roundOneLabel": "Round 1",
+        "roundTwoLabel": "Round 2",
+        "roundThreeLabel": "Round 3",
+        "roundFourLabel": "Round 4",
+        "roundFiveLabel": "Round 5"
+    },
+    "page-12": {
+        "intoText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
+        "roundLabel": "round",
+        "subBytesLabel": "SubBytes",
+        "ShiftRowsLabel": "ShiftRows",
+        "MixColumnsLabel": "MixColumns",
+        "RoundKeyLabel": "Round key",
+        "outputLabel": "Output",
+        "roundSixLabel": "Round 6",
+        "roundSevenLabel": "Round 7",
+        "roundEightLabel": "Round 8",
+        "roundNineLabel": "Round 9",
+        "roundTenLabel": "Round 10",
+        "cipherTextLabel": "Ciphertext"
+    },
+    "page-13": {
+        "title": "Key Schedule",
+        "text": "(Expansion of the given Cipher key into 11 partial keys, used in the initial round, the 9 main rounds and the final round)"
+    },
+    "page-14": {
+        "title": "Key Schedule",
+        "RotWordLabel": "RotWord",
+        "RconLabel": "Rcon",
+        "SubBytesLabel": "SubBytes",
+        "SBoxLabel": "S-Box",
+        "WOne": "Wi-4",
+        "WTwo": "Wi-1",
+        "WThree": "Wi",
+        "RconFourLabel": "Rcon(4)",
+
+
+        "textIntro": "The expanded key can be seen as an array of 32-bit words (columns), numbered from 0 to 43. The first four columns are filled with the given Cipher key",
+        "text": "Words in positions that are multiple of 4 (W4, W5, ..., W40) are calculated by:",
+        "textA": "a) applying the RotWord and SubBytes transformation to the previous word wi-1",
+        "textB": "b) Adding (XOR) this result to the word 4 positions earlier wi-4, plus a round constatn Rcon",
+        "textXOR": "The remaining 32-bit words wi, are calculated by adding (XOR) the previous word wi-1 with the word 4 positions earlier Wi-4",
+
+        "cipherKeyLabel": "cipher key",
+        "roundKeyOneLabel": "Round key 1",
+        "roundKeyTwoLabel": "Round key 2",
+        "roundKeyThreeLabel": "Round key 3",
+        "roundKeyTenLabel": "Round key 10"
+    }
+}

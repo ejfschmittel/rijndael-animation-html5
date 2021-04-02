@@ -12,8 +12,8 @@ import {hexStringToInt} from "../../utils/conversions"
 import "./page.styles.scss"
 
 class Page7 extends AnimationPage{
-    constructor(){
-        super("page-7");
+    constructor(id, locale){
+        super(id, locale)
     }
 
     init(){

@@ -4,8 +4,8 @@ import "./page.styles.scss"
 import{gsap} from "gsap"
 import GridOverview from "../../components/GridOverview"
 class Page11 extends AnimationPage{
-    constructor(){
-        super("page-11")
+    constructor(id, locale){
+        super(id, locale)
     }
 
     init(){

@@ -9,8 +9,8 @@ import DataController from "../../core/DataController"
 import "./page.styles.scss"
 
 class Page8 extends AnimationPage{
-    constructor(){
-        super("page-10");
+    constructor(id, locale){
+        super(id, locale)
     }
 
     init(){
