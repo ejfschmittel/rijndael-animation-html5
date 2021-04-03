@@ -13,7 +13,7 @@
 import {hexStringToInt} from "../utils/conversions"
 
 import {getRandomHexValueList} from "../utils/conversions"
-
+const zeros = [...new Array(30)].map(() => "00")
 
 const INITIAL_DATA = {
     "dummyGrid": getRandomHexValueList(16, 2),
@@ -28,6 +28,7 @@ const INITIAL_DATA = {
     "cipherKey": getRandomHexValueList(16, 2),
  
     "sbox": getRandomHexValueList(16 * 16, 2),
+    "rcon": ["01", "02", "04", "08", "10", "20", "40", "80", "1b", "36", ...zeros],
     "galoisField": ["02", "03", "01", "01", "01", "02", "03", "01", "01", "01", "02", "03", "03", "01", "01", "02"]
 }
 

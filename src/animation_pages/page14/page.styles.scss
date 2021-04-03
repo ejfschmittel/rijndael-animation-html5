@@ -1,0 +1,127 @@
+#page-14{
+    background: #aaa;
+}
+
+.page-14{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+
+    &__title-container{
+        display: flex;
+        width: 100%;
+        padding: 1rem 2rem;
+        justify-content: flex-end;
+    }
+
+    &__title{
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    &__bar{
+        background: #fff;
+        width: 100%;
+        height: 2rem;
+    }
+
+    &__body{
+        flex: 1;
+    }
+
+
+    // primary 
+
+    &__grid-row{
+        display: flex;
+    }
+
+    &__row-one{
+        margin: 1rem 2rem;
+        display: flex;
+
+    }
+
+    &__row-two{
+        margin: 1rem 2rem; 
+        display: flex;
+        margin-top: 3rem;
+    }
+
+    &__dots{
+        font-size: 3rem;
+        font-weight: bold;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__rcon-container{
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__add-symbol{
+        font-size: 2rem;
+        font-weight: bold;
+        width: 2.2rem;
+        height: 2.2rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-radius: 50%;
+        border: 2px solid #333;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
+
+    &__equals-symbol{
+        font-size: 2.4rem;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
+
+    &__text{
+        position: absolute;
+        width: 10rem;
+        top: 50%;
+        right: 1rem;
+        font-size: .9rem;
+    }
+    &__label{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 1.6rem;
+        color: #fff;
+        font-weight: bold;
+    }
+}
+
+
+#rijndael-page-14-sbox-container{
+    width: 20rem;
+    height: 16rem;
+    position: absolute;
+    right: 12rem;
+    bottom: 5rem;
+}
+
+#rijndael-page-14-rcon-label{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(110%, -50%);
+    color: #fff;
+    font-weight: bold;
+    font-size: 2rem;
+}

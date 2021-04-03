@@ -17,6 +17,7 @@ import Page10 from "./animation_pages/page10/page.animations"
 import Page11 from "./animation_pages/page11/page.animations"
 import Page12 from "./animation_pages/page12/page.animations"
 import Page13 from "./animation_pages/page13/page.animations"
+import Page14 from "./animation_pages/page14/page.animations"
 import "./main.scss"
 
 
@@ -62,6 +63,7 @@ const calcAesAndUpdateStore = () => {
 
     const state = prepareState(JES.internalState)
     
+    console.log(state)
     DataController.updateStoreByObject(state)
 }
 
@@ -87,11 +89,13 @@ const createRijndaelAnimation = (locale) => {
     animationController.registerAnimationPage(Page11, "page-11", "Page 11 - Rounds 1 - 5")
     animationController.registerAnimationPage(Page12, "page-12", "Page 12 - Rounds 6 - 10")
     animationController.registerAnimationPage(Page13, "page-13", "Page 13 - B) Cipher Key")
+    animationController.registerAnimationPage(Page14, "page-14", "Page 14 - Cipher Key")
     animationController.createTimeline();
     animationController.updateCurrentPage("page-1")
 
 
-    animationController.playFrom("page-1-pre-fade-in")
+    //animationController.playFrom("page-14-main-animation")
+    animationController.goToPage("page-14")
 }
 
 
