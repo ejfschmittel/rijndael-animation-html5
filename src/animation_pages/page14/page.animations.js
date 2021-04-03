@@ -54,7 +54,8 @@ class Page14 extends AnimationPage{
         const pgMovablesTransforms = [pgOneMovablesTransforms, pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgFourMovablesTransforms]
 
         const finalGridLandings = new Grid(finalGrid.id, 4,4, ["page-14-cell"])
-        DataController.subscribe("round-key-10", finalGridLandings.cells)
+        const finalGridMovables = finalGridLandings.createMovables("pg-four-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
+        DataController.subscribe("round-key-10", finalGridMovables.movables)
 
 
         const {secondaryGridsOne, secondaryGridsTwo, secondaryGridsThree, secondaryGridsFour} = this.pageElements
@@ -113,7 +114,8 @@ class Page14 extends AnimationPage{
             substitutionMovables,
             sbox,
             pgMovablesOg,
-            pgMovablesTransforms
+            pgMovablesTransforms,
+            finalGridMovables
           //  gridMovables
         })
 
@@ -159,6 +161,8 @@ class Page14 extends AnimationPage{
         const landingsAddRes = secondaryLandings[Math.floor(colThreeIdx / 4)].getCol(colThreeIdx % 4)
         const landingsReturn = primaryLandings[Math.floor(wi / 4)].getCol(wi % 4)
 
+        const landingReturnColTwo = primaryLandings[Math.floor(colTwoIdx / 4)].getCol(colTwoIdx % 4)
+
         const addCell = secondaryLandings[Math.floor((wi-2) / 4)].getCell(2, (wi-2) % 4)
         const addPos = this.getRelativeBounds(addCell)
 
@@ -186,7 +190,9 @@ class Page14 extends AnimationPage{
           tl.add(this.moveGroup(colResMovables, landingsReturn, {duration: 1}),)
 
           // hide equation + cleanup
+         
           tl.to( [...colOneMovables, ...colTwoMovables, equalsSymbol, addSymbolOne], {opacity: 0})
+          tl.add(this.moveGroup(colTwoMovables, landingReturnColTwo, {duration: .001}),)
           tl.set(ogMovables.getCol(wi % 4), {opacity: 1})
 
         return tl;
@@ -215,6 +221,9 @@ class Page14 extends AnimationPage{
             substitutionMovables,
             sbox,
             textRotWord,
+            pgMovablesOg,
+            pgMovablesTransforms,
+            finalGridMovables
         } = this.pageElements
         const obj = {val: 0};
 
@@ -226,6 +235,17 @@ class Page14 extends AnimationPage{
             ...substitutionMovables.movables,
             equalsSymbol,addSymbolOne,addSymbolTwo,
             textS,textA,textB, textInitial,textXor,], {opacity: 0})
+
+        for(let i = 1; i < 4; i++){
+            tl.set([...pgMovablesOg[i].getCol(0), ...pgMovablesTransforms[i].getCol(0)],{
+                background: "#888",
+            })
+            tl.set([...pgMovablesOg[i].movables, ...pgMovablesTransforms[i].movables], {opacity: 0})
+        }
+
+        tl.set(finalGridMovables.getCol(0),{ background: "#888"})
+        tl.set(finalGridMovables.movables, {opacity: 0})
+
         return tl;
     }
 
@@ -252,117 +272,21 @@ class Page14 extends AnimationPage{
         tl.add(this.addColumns(9,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
         tl.add(this.addColumns(10,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
         tl.add(this.addColumns(11,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
+
+        const {rconMovables, pgFourMovablesOg, finalGridMovables} = this.pageElements
+        tl.to(pgFourMovablesOg.movables, {opacity: 1})
+        tl.to(rconMovables.getCol(2), {opacity: 0}, "<")
+
+        for(let i = 3; i < 10; i++){
+            tl.to(rconMovables.getCol(i), {opacity: 0, duration: .2, delay: .3})
+        }
+
+        tl.to(finalGridMovables.movables, {opacity: 1})
        
 
         return tl;
     }
 
-
-    createSubTimelineOne(){
-
-
-        const {
-            primaryLandings,
-            secondaryLandings,
-            pgOneMovablesOg,
-            pgOneMovablesTransforms,
-            pgTwoMovablesTransforms,
-            pgTwoMovablesOg,
-            rconMovables,
-            addSymbolOne,
-            addSymbolTwo,
-            equalsSymbol,
-            textInitial,
-            textA,
-            textB,
-            textS,
-            substitutionMovables,
-            textRotWord
-        } = this.pageElements
-
-        // movables
-        const lastColMovables = pgOneMovablesTransforms.getCol(3);
-        const firstColMovables =  pgOneMovablesTransforms.getCol(0)
-        const rconColMovables = rconMovables.getCol(0)
-        const resultMovables = pgTwoMovablesTransforms.getCol(0)
-
-        // landings
-        const lastColOgLanding = primaryLandings[0].getCol(3);
-        const addOneLanding = secondaryLandings[0].getCol(0)
-        const addTwoLanding = secondaryLandings[0].getCol(3)
-        const addThreeLanding = secondaryLandings[1].getCol(2)
-        const resultLanding = secondaryLandings[2].getCol(1)
-        const resultDestinationLanding = primaryLandings[1].getCol(0)
-
-
-        const tl = gsap.timeline();
-
-
-        // hide + move result column to initial result position
-        tl.set(resultMovables, {opacity: 0})
-        tl.add(this.moveGroup(resultMovables, resultLanding, {duration: .001}))
-
-        // move symbols to positions (hidden)
-        tl.set(addSymbolOne, {...this.getSymbolPosition(2)})
-        tl.set(addSymbolTwo, {...this.getSymbolPosition(5)})
-        tl.set(equalsSymbol, {...this.getSymbolPosition(8)})
-
-        // reveal initial text
-        tl.to(textInitial, {opacity: 1})
-
-        // move down and shift col
-        //const bounds = addTwoLanding[0].getBounds();
-        const bounds = this.getRelativeBounds(addTwoLanding[0])
-        tl.to(textRotWord, {x: bounds.x + 50, y: bounds.y + 30 , duration: .001, delay: 2} )
-        tl.to(textInitial, {opacity: 0})
-        tl.add(this.moveGroup(lastColMovables, addTwoLanding, {duration: 1}))
-        tl.to([textRotWord, textA, textS], {opacity: 1})
-        tl.add(this.shiftColumn(lastColMovables, addTwoLanding, {}))
-        tl.to(textRotWord, {opacity: 0})
-
-        // add rotword text
-        // add subbytes 
-        tl.add(this.createSubstitutionTimeline(
-            lastColMovables,
-            substitutionMovables.getRow(0),
-            addTwoLanding,
-        ))
-
-  
-          
-
-        // move adds and reveal equation
-        tl.add(this.moveGroup(firstColMovables, addOneLanding, {duration: 1}))
-        tl.to(addSymbolOne, {opacity: 1})
-
-        // move rcon col up
-        tl.add(this.moveGroup(rconColMovables, addThreeLanding, {duration: 1}))
-
-        // reveal rest of equation 
-        tl.to(textB, {opacity: 1})
-        tl.to(addSymbolTwo, {opacity: 1})
-        tl.to(equalsSymbol,{opacity: 1})
-        tl.to(resultMovables, {opacity: 1})
-
-
-        // move back result
-        tl.add(this.moveGroup(resultMovables, resultDestinationLanding, {duration: 1}))
-
-        // hide / reset equation
-        // show column underneath result (for moving later)
-        tl.set(pgTwoMovablesOg.getCol(0), {opacity: 1})
-
-        // hide equation
-        tl.to([addSymbolOne, addSymbolTwo, equalsSymbol], {opacity: 0})
-        tl.to([textS, textA, textB], {opacity: 0})
-        tl.to([...lastColMovables, ...firstColMovables, ...rconColMovables, ...substitutionMovables.movables], {opacity: 0})
-
-        // move last col back
-        tl.add(this.moveGroup(lastColMovables, lastColOgLanding, {duration: .001}))
-        tl.set(lastColMovables, {opacity: 1})
-
-        return tl;        
-    }
 
 
     createSubTimeline(gridIndex=1, infoTexts=false){     
@@ -441,6 +365,7 @@ class Page14 extends AnimationPage{
 
   
         // move adds and reveal equation
+        tl.set(firstColMovables, {opacity: 1})
         tl.add(this.moveGroup(firstColMovables, addOneLanding, {duration: 1}))
         tl.to(addSymbolOne, {opacity: 1})
 
@@ -475,113 +400,7 @@ class Page14 extends AnimationPage{
         return tl;    
     }
 
-    createSubTimelineTwo(){
-
-
-        const {
-            primaryLandings,
-            secondaryLandings,
-            pgOneMovablesOg,
-            pgThreeMovablesOg,
-            pgThreeMovablesTransforms,
-            pgTwoMovablesTransforms,
-            pgTwoMovablesOg,
-            rconMovables,
-            addSymbolOne,
-            addSymbolTwo,
-            equalsSymbol,
-            textInitial,
-            textA,
-            textB,
-            textS,
-            substitutionMovables,
-            textRotWord
-        } = this.pageElements
-
-        // movables
-        const lastColMovables = pgTwoMovablesTransforms.getCol(3);
-        const firstColMovables =  pgTwoMovablesTransforms.getCol(0)
-        const rconColMovables = rconMovables.getCol(1)
-        const resultMovables = pgThreeMovablesTransforms.getCol(0)
-
-        // landings
-        const lastColOgLanding = primaryLandings[1].getCol(3);
-        const addOneLanding = secondaryLandings[1].getCol(0)
-        const addTwoLanding = secondaryLandings[1].getCol(3)
-        const addThreeLanding = secondaryLandings[2].getCol(2)
-        const resultLanding = secondaryLandings[3].getCol(1)
-        const resultDestinationLanding = primaryLandings[2].getCol(0)
-
-
-        const tl = gsap.timeline();
-
-
-        // hide + move result column to initial result position
-        tl.set(resultMovables, {opacity: 0})
-        tl.add(this.moveGroup(resultMovables, resultLanding, {duration: .001}))
-
-        // move symbols to positions (hidden)
-        tl.set(addSymbolOne, {...this.getSymbolPosition(6)})
-        tl.set(addSymbolTwo, {...this.getSymbolPosition(9)})
-        tl.set(equalsSymbol, {...this.getSymbolPosition(12)})
-
-        // reveal initial text
-     
-
-        // move down and shift col
-        //const bounds = addTwoLanding[0].getBounds();
-        const bounds = this.getRelativeBounds(addTwoLanding[0])
-        tl.to(textRotWord, {x: bounds.x + 50, y: bounds.y + 30 , duration: .001, delay: 2} )
-        
-        tl.add(this.moveGroup(lastColMovables, addTwoLanding, {duration: 1}))
-        tl.to([textRotWord], {opacity: 1})
-        tl.add(this.shiftColumn(lastColMovables, addTwoLanding, {}))
-        tl.to(textRotWord, {opacity: 0})
-
-        // add rotword text
-        // add subbytes 
-        tl.add(this.createSubstitutionTimeline(
-            lastColMovables,
-            substitutionMovables.getRow(0),
-            addTwoLanding,
-        ))
-
   
-          
-
-        // move adds and reveal equation
-        tl.add(this.moveGroup(firstColMovables, addOneLanding, {duration: 1}))
-        tl.to(addSymbolOne, {opacity: 1})
-
-        // move rcon col up
-        tl.add(this.moveGroup(rconColMovables, addThreeLanding, {duration: 1}))
-
-        // reveal rest of equation  
-        tl.to(addSymbolTwo, {opacity: 1})
-        tl.to(equalsSymbol,{opacity: 1})
-        tl.to(resultMovables, {opacity: 1})
-
-
-        // move back result
-        tl.add(this.moveGroup(resultMovables, resultDestinationLanding, {duration: 1}))
-
-        // hide / reset equation
-        // show column underneath result (for moving later)
-        tl.set(pgTwoMovablesOg.getCol(0), {opacity: 1})
-
-        // hide equation
-        tl.to([addSymbolOne, addSymbolTwo, equalsSymbol], {opacity: 0})
-    
-        tl.to([...lastColMovables, ...firstColMovables, ...rconColMovables, ...substitutionMovables.movables], {opacity: 0})
-
-        // move last col back
-        tl.add(this.moveGroup(lastColMovables, lastColOgLanding, {duration: .001}))
-        tl.set(lastColMovables, {opacity: 1})
-
-        return tl;        
-    }
-
-
     createSubstitutionTimeline(toSubCol, subbedCol, landings){
         const {sbox } = this.pageElements
         const tl = gsap.timeline();
