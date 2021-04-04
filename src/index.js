@@ -95,7 +95,7 @@ const createRijndaelAnimation = (locale) => {
 
 
     //animationController.playFrom("page-14-main-animation")
-    animationController.goToPage("page-11")
+    animationController.goToPage("page-14")
 }
 
 

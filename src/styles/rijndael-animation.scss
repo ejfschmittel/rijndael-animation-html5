@@ -75,6 +75,10 @@
         padding: 1rem;
         border-top: 1px solid #fff;
         align-items: center;
+
+        @media screen and (max-width: 800px) {
+            padding: .5rem;
+        }
     }
 
     &__controlls{
@@ -143,7 +147,8 @@
         flex: 1;
 
         &--mobile{
-            margin: 0rem 1rem;
+            margin-left: 1rem;
+            width: 100%;
             @media screen and (min-width: 800px) {
                display: none;
             }

@@ -13,11 +13,19 @@
         width: 100%;
         padding: 1rem 2rem;
         justify-content: flex-end;
+
+        @media screen and (max-width: 800px) {
+            padding: .7rem 1rem;
+        }
     }
 
     &__title{
         color: #fff;
         font-size: 2rem;
+
+        @media screen and (max-width: 800px) {
+           font-size: 1.6rem;
+        }
     }
 
     &__bar{
@@ -41,12 +49,21 @@
         margin: 1rem 2rem;
         display: flex;
 
+        @media screen and (max-width: 800px) {
+            margin: 1rem 1rem;
+        }
+
     }
 
     &__row-two{
         margin: 1rem 2rem; 
         display: flex;
         margin-top: 3rem;
+
+        
+        @media screen and (max-width: 800px) {
+            margin: 1rem 1rem;
+        }
     }
 
     &__dots{
@@ -56,6 +73,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media screen and (max-width: 800px) {
+          font-size: 1rem;
+        }
     }
 
     &__rcon-container{
@@ -79,6 +100,12 @@
         top: 0;
         left: 0;
         transform: translate(-50%, -50%);
+
+        @media screen and (max-width: 800px) {
+            font-size: 1.2rem;
+            width: 1.4rem;
+            height: 1.4rem;
+        }
     }
 
     &__equals-symbol{
@@ -88,6 +115,11 @@
         top: 0;
         left: 0;
         transform: translate(-50%, -50%);
+
+        
+        @media screen and (max-width: 800px) {
+            font-size: 1.4rem;
+        }
     }
 
     &__text{
@@ -104,16 +136,28 @@
         font-size: 1.6rem;
         color: #fff;
         font-weight: bold;
+
+        
+        @media screen and (max-width: 800px) {
+            font-size: 1rem;
+        }
     }
 }
 
 
 #rijndael-page-14-sbox-container{
-    width: 20rem;
-    height: 16rem;
+    width: 16rem;
+    height: 12rem;
     position: absolute;
     right: 12rem;
     bottom: 5rem;
+
+  
+    @media screen and (max-width: 800px) {
+        left: 1rem;
+        bottom: 5rem;
+        right: auto;
+    }
 }
 
 #rijndael-page-14-rcon-label{
@@ -124,4 +168,22 @@
     color: #fff;
     font-weight: bold;
     font-size: 2rem;
+
+    @media screen and (max-width: 800px) {
+        font-size: 1rem;
+
+    }
 }
+
+
+    @media screen and (max-width: 800px) {
+
+        #rijndael-page-14-primary-grids-four{
+            display: none;
+        }
+
+        #rijndael-page-14-primary-grids-three{
+            display: none;
+        }
+    }
+

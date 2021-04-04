@@ -223,13 +223,15 @@ class Page14 extends AnimationPage{
             textRotWord,
             pgMovablesOg,
             pgMovablesTransforms,
-            finalGridMovables
+            finalGridMovables,
+            textSubbytes
         } = this.pageElements
         const obj = {val: 0};
 
         const tl = gsap.timeline();
         tl.to(obj, {val: 1, duration: .001})
         tl.set([  
+            textSubbytes,
             textRotWord, 
             sbox.component,
             ...substitutionMovables.movables,
@@ -252,7 +254,7 @@ class Page14 extends AnimationPage{
     createAnimationMain(){
 
        
-
+        const isMobile = window.screen.width <= 800;
 
         const tl = gsap.timeline();
 
@@ -266,20 +268,29 @@ class Page14 extends AnimationPage{
         tl.add(this.addColumns(7,pgOneMovablesTransforms, pgTwoMovablesTransforms, pgTwoMovablesOg ))
         tl.to(textXor, {opacity: 0})
 
-        tl.add(this.createSubTimeline(2, false))
-
-        const {pgThreeMovablesTransforms, pgThreeMovablesOg} = this.pageElements
-        tl.add(this.addColumns(9,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
-        tl.add(this.addColumns(10,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
-        tl.add(this.addColumns(11,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
 
         const {rconMovables, pgFourMovablesOg, finalGridMovables} = this.pageElements
-        tl.to(pgFourMovablesOg.movables, {opacity: 1})
-        tl.to(rconMovables.getCol(2), {opacity: 0}, "<")
+        const {pgThreeMovablesTransforms, pgThreeMovablesOg, rconLabel} = this.pageElements
+        if(!isMobile){   
+            tl.add(this.createSubTimeline(2, false))
 
-        for(let i = 3; i < 10; i++){
+            
+            tl.add(this.addColumns(9,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
+            tl.add(this.addColumns(10,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
+            tl.add(this.addColumns(11,pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgThreeMovablesOg ))
+
+            
+            tl.to(pgFourMovablesOg.movables, {opacity: 1})
+            tl.to(rconMovables.getCol(2), {opacity: 0}, "<")
+        }
+
+        const rconStart = isMobile ?  1 : 3;
+        // disappear rcon
+        for(let i = rconStart; i < 10; i++){
             tl.to(rconMovables.getCol(i), {opacity: 0, duration: .2, delay: .3})
         }
+
+        tl.to(rconLabel, {opacity: 0}, "<")
 
         tl.to(finalGridMovables.movables, {opacity: 1})
        
@@ -428,7 +439,7 @@ class Page14 extends AnimationPage{
                 tl.add(this.moveToLanding(cellSub, landings[0], {duration: 1.5}))
             }else{
                 // highlight sbox cell + reveal cell landing
-                tl.to(cellLanding, {background: "#f00"})
+                tl.to(cellLanding, {background: "#FFCC61"})
                 tl.to(cellSub, {opacity: 1})
                 tl.to(cellLanding, {background: "#fff"})
             }

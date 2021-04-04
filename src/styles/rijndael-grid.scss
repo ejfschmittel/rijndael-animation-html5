@@ -19,6 +19,12 @@
     height: 1.6rem;
     border: 1px solid #333;
     
+
+    @media screen and (max-width: 800px) {
+        width: 1.4rem;
+        height: 1.2rem;
+        font-size: .7rem;
+    }
 }
 
 .page-5-runner-cell{
@@ -26,12 +32,23 @@
     height: .5rem;
     background: #FFF997;
     border: 1px solid #666;
+
+
+   
 }
 
 .page-14-rcon-cell{
     width: 1rem; 
     height: .8rem;
     font-size: .7rem;
+
+    @media screen and (max-width: 800px) {
+        width: .9rem;
+        height: .7rem;
+        font-size: .6rem;
+    }
+
+
 }
 
 
