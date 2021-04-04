@@ -345,12 +345,14 @@ class AnimationController{
         this.tl.pause()
     }
   
-    jumpForwards(){
+    jumpForwards(e){
+        e.stopPropagation();
         const currentTime = this.tl.totalTime();
         this.tl.seek(currentTime + .5, false)       
     }
 
-    jumpBackwards(){
+    jumpBackwards(e){
+        e.stopPropagation();
         const currentTime = this.tl.totalTime();
         this.tl.seek(currentTime - .5, false)  
     }

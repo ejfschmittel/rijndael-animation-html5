@@ -84,7 +84,7 @@ class Page11 extends AnimationPage{
 
         const tl = gsap.timeline();
 
-        tl.to(text, {opacity: 0})
+        tl.to(text, {opacity: 0, delay: 3})
         tl.to(titles, {opacity: 1})
         tl.to(gridOverview.rows[0], {opacity: 1})
         tl.to(gridOverview.rows[1], {opacity: 1})
