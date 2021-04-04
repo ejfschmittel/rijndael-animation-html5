@@ -40,7 +40,8 @@
 
         "boxTitleOne": "CipherKey",
         "boxTitleTwo": "Round key 0",
-        "boxTitleThree": "Round Key 10"
+        "boxTitleThree": "Round Key 10",
+        "round": "Round"
     },
     "page-6": {
         "title": "The 4 types of transformations:",
@@ -72,11 +73,11 @@
         "roundKeyText": "(Produced as Round key 1 during the Key Schedule - see slide 14"
     },
     "page-11": {
-        "intoText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
-        "roundLabel": "round",
-        "subBytesLabel": "SubBytes",
-        "ShiftRowsLabel": "ShiftRows",
-        "MixColumnsLabel": "MixColumns",
+        "introText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
+        "roundLabel": "Start of round",
+        "subBytesLabel": "After SubBytes",
+        "ShiftRowsLabel": "After ShiftRows",
+        "MixColumnsLabel": "After MixColumns",
         "RoundKeyLabel": "Round key",
         "inputLabel": "Input",
         "roundOneLabel": "Round 1",
@@ -86,8 +87,7 @@
         "roundFiveLabel": "Round 5"
     },
     "page-12": {
-        "intoText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
-        "roundLabel": "round",
+        "roundLabel": "Start of round",
         "subBytesLabel": "SubBytes",
         "ShiftRowsLabel": "ShiftRows",
         "MixColumnsLabel": "MixColumns",

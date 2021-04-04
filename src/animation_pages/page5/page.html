@@ -11,7 +11,7 @@
 
             <div class="animatable-background__page-header">
                 <div class="animatable-background__title-container">
-                    <div class="animatable-background__title" style="color: #666">
+                    <div class="animatable-background__title" style="color: #666" data-lang="title">
                         Encryption Process
                         <div class="animatable-background__title-mask" id="rijndael-page-5-title-mask" style="background: #fff"></div>
                     </div>
@@ -31,33 +31,33 @@
                         <div style="width: 2rem; height:2rem; background: red;position: absolute; top: 0; left: 0; z-index: 5;" id="rijndael-page-5-runner"></div>
                         
                         <div class="rijndael-page-5__labels rijndael-page-5__labels--1" id="rijndael-page-5-labels-init">
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green" data-lang="labelInitial">
                                 AddRoundKey
                             </div>
                         </div>
                         <div class="rijndael-page-5__labels rijndael-page-5__labels--2" id="rijndael-page-5-labels-main">
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--blue">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--blue"  data-lang="labelMrone">
                                 1-SubBytes
                             </div>
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--red">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--red"  data-lang="labelMrTwo">
                                 2-ShiftRows
                             </div>
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--yellow">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--yellow"  data-lang="labelMrThree">
                                 3-MixColumns
                             </div>
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green"  data-lang="labelMrFour">
                                 4-AddRoundKey
                             </div>
                         </div>
     
                         <div class="rijndael-page-5__labels rijndael-page-5__labels--3" id="rijndael-page-5-labels-last">
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--blue">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--blue" data-lang="labelFrOne">
                                 SubBytes
                             </div>
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--red">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--red" data-lang="labelFrTwo">
                                 ShiftRows
                             </div>
-                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green">
+                            <div class="rijndael-rounded-label rijndael-rounded-label--small rijndael-rounded-label--green" data-lang="labelFrThree">
                                 AddRoundKey
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                     <!-- counter -->
                     <div class="rijndael-page-5__counter-container">
                         <div class="rijndael-page-5__counter">
-                            <div class="rijndael-page-5__counter-title">Round</div>
+                            <div class="rijndael-page-5__counter-title" data-lang="round">Round</div>
                             <div class="rijndael-page-5__counter-num" id="rijndael-page-5-counter">0</div>
                         </div>
                     </div>
@@ -83,13 +83,13 @@
                     <div class="rijndael-page-5__container-1">
 
                     </div>
-                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--1">
+                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--1" data-lang="titleInitialRound">
                         initialRound
                     </div>
-                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--2">
+                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--2" data-lang="titleMainRounds">
                         9 main round
                     </div>
-                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--3">
+                    <div class="rijndael-page-5__section-title rijndael-page-5__section-title--3" data-lang="titleFinalRound">
                         finalRound
                     </div>
                     

@@ -15,35 +15,35 @@ class Page12 extends AnimationPage{
         const {overview, output, outputGrid: outputGridContainer} = this.pageElements
         const gridOverview = new GridOverview(overview.id)
 
-        gridOverview.addGridRow(2, "Round6", [{}, 
+        gridOverview.addGridRow(2, this.text("roundSixLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--blue"]},
         ])
 
-        gridOverview.addGridRow(3, "Round7", [{}, 
+        gridOverview.addGridRow(3, this.text("roundSevenLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(4, "Round8", [{}, 
+        gridOverview.addGridRow(4, this.text("roundEightLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(5, "Round9", [{}, 
+        gridOverview.addGridRow(5, this.text("roundNineLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(6, "Round10", [{}, 
+        gridOverview.addGridRow(6, this.text("roundTenLabel"), [{}, 
             {},
             {},
             {dataKey: null, classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},

@@ -5,7 +5,7 @@
         "text": "Animation mit einer Größe von jeweils 128 Bit für den Datenblock und den Schlüssel"
     },
     "page-2": {
-        "boxText": "Rijndael-\nVerschlüsseler",
+        "boxText": "Rijndael-Kodierer",
         "textLeft": "Chiffrierschlüssel",
         "textBottom": "Chiffretext",
         "textTop": "Klartext"
@@ -39,7 +39,9 @@
 
         "boxTitleOne": "Chiffrierschlüssel",
         "boxTitleTwo": "Round key 0",
-        "boxTitleThree": "Round Key 10"
+        "boxTitleThree": "Round Key 10",
+
+        "round": "Runde"
     },
     "page-6": {
         "title": "Die 4 Arten von Transformationen:",
@@ -71,7 +73,7 @@
         "roundKeyText": "(Erzeugt als Rundtaste 1 während des Tastenplans - siehe Folie 14)"
     },
     "page-11": {
-        "intoText": "Diese Transformationen werden für 9 weitere Runden auf den Zustand angewendet. Die letzte Runde beinhaltet nicht die MixColumns-Transformation.",
+        "introText": "Diese Transformationen werden für 9 weitere Runden auf den Zustand angewendet. Die letzte Runde beinhaltet nicht die MixColumns-Transformation.",
         "roundLabel": "Runde",
         "subBytesLabel": "SubBytes",
         "ShiftRowsLabel": "ShiftRows",
@@ -85,7 +87,6 @@
         "roundFiveLabel": "Runde 5"
     },
     "page-12": {
-        "intoText": "Diese Transformationen werden für 9 weitere Runden auf den Zustand angewendet. Die letzte Runde beinhaltet nicht die MixColumns-Transformation.",
         "roundLabel": "Runde",
         "subBytesLabel": "SubBytes",
         "ShiftRowsLabel": "ShiftRows",

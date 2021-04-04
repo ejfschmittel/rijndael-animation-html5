@@ -12,42 +12,42 @@ class Page11 extends AnimationPage{
         const {overview} = this.pageElements
         const gridOverview = new GridOverview(overview.id)
 
-        gridOverview.addGridRow(2, "Input", [{}, 
+        gridOverview.addGridRow(2, this.text("inputLabel"), [{}, 
             { dataKey: null, classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"] },
             { dataKey: null, classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"] },
             { dataKey: null, classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"] },
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--blue"]},
         ])
 
-        gridOverview.addGridRow(3, "Round1", [{}, 
+        gridOverview.addGridRow(3, this.text("roundOneLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(4, "Round2", [{}, 
+        gridOverview.addGridRow(4, this.text("roundTwoLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(5, "Round3", [{}, 
+        gridOverview.addGridRow(5, this.text("roundThreeLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(6, "Round4", [{}, 
+        gridOverview.addGridRow(6, this.text("roundFourLabel"), [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(7, "Round5", [{}, 
+        gridOverview.addGridRow(7, this.text("roundFiveLabel"), [{}, 
             {},
             {},
             {},
