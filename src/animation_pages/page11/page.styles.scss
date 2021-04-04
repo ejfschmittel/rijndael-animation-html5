@@ -22,8 +22,9 @@
 
 
     @media screen and (max-width: 800px) {
+        padding: 0rem;
         grid-template-rows: 2rem repeat(6, 1fr);
-        grid-template-columns: 2rem repeat(4, 1fr) 1rem 1fr 1rem;
+        grid-template-columns: 1.2rem repeat(4, 1fr) .6rem 1fr .6rem;
     }
 
     &__title{
@@ -35,7 +36,7 @@
         font-weight: bold;
 
         @media screen and (max-width: 800px) {
-            font-size: .8rem;
+            font-size: .7rem;
         }
 
         &--1{
@@ -67,13 +68,40 @@
         justify-content: center;
         align-items: center;
         font-size: 1.5rem;
+        font-weight: bold;
+
+        @media screen and (max-width: 800px) {
+            font-size: .8rem;
+        }
     }
 
-    &__add-symbol{
+    &__add-symbol-container{
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+      
+
+       
+        
+
+    }
+
+    &__add-symbol{
+        width: 1.5rem;
+        border-radius: 50%;
+        height: 1.5rem;
+        font-size: 1.5rem;  
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #333;
+        @media screen and (max-width: 800px) {
+            height: .7rem;
+            width: .7rem;
+            font-size: .7rem;
+            line-height: .7rem;
+        }
     }
 
     &__row-title{
@@ -84,8 +112,9 @@
         font-weight: bold;
 
         @media screen and (max-width: 800px) {
-            font-size: .7rem;
-            text-align: center;
+            font-size: .8rem;
+            transform: rotate(-90deg);
+
         }
     }
 

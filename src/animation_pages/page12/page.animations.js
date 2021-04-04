@@ -12,35 +12,35 @@ class Page12 extends AnimationPage{
         const {overview} = this.pageElements
         const gridOverview = new GridOverview(overview.id)
 
-        gridOverview.addGridRow(2, "Round 6", [{}, 
+        gridOverview.addGridRow(2, "Round6", [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--blue"]},
         ])
 
-        gridOverview.addGridRow(3, "Round 7", [{}, 
+        gridOverview.addGridRow(3, "Round7", [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(4, "Round 8", [{}, 
+        gridOverview.addGridRow(4, "Round8", [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(5, "Round 9", [{}, 
+        gridOverview.addGridRow(5, "Round9", [{}, 
             {},
             {},
             {},
             { classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},
         ])
 
-        gridOverview.addGridRow(6, "Round 10", [{}, 
+        gridOverview.addGridRow(6, "Round10", [{}, 
             {},
             {},
             {dataKey: null, classes: ["rijndael-movable-cell", "rijndael-movable-cell--grey"]},

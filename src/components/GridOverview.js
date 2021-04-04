@@ -54,11 +54,16 @@ class GridOverview extends Component{
 
         // create symbols
 
+        const addSymbolContainer = document.createElement("div")
+
         const addSymbol = document.createElement("div")
         addSymbol.innerHTML = "+"
         addSymbol.classList.add("rijndael-grid-overview__add-symbol")
-        addSymbol.style.gridArea = `${rowIndex} / 6 /  ${rowIndex} / 6 `;
-        this.component.appendChild(addSymbol)
+
+        addSymbolContainer.classList.add("rijndael-grid-overview__add-symbol-container")
+        addSymbolContainer.style.gridArea = `${rowIndex} / 6 /  ${rowIndex} / 6 `;
+        addSymbolContainer.appendChild(addSymbol)
+        this.component.appendChild(addSymbolContainer)
 
         const equalsSymbol = document.createElement("div")
         equalsSymbol.innerHTML = "="
