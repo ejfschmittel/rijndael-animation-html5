@@ -21,6 +21,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
 
     &__center{
@@ -36,16 +37,63 @@
             justify-content: center;
         }
     }
+
+
+    &__label{
+        font-size: 1.6rem;
+        color: #fff;
+
+        text-align: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    &__text{
+        color: #fff;
+
+        width: 14rem;
+    }
+}
+
+#rijndael-page-10-text{
+    position: absolute;
+    bottom: 0;
+    transform: translate(0, 100%);
+    width: 100%;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+}
+
+#rijndael-page-10-grid-round-key{
+    position: relative;
+   
 }
 
 .rijndael-equation{
     display: flex;
     margin-top: 2rem;
 
-    &__symbol{
+    &__add{
+        border-radius: 50%;
+        width: 2.2rem;
+        height: 2.2rem;
+        border: 2px solid #333;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    &__symbol-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__symbol{
         margin: 0 1rem;
+        font-size: 2rem;
+        font-weight: bold;
     }
 }

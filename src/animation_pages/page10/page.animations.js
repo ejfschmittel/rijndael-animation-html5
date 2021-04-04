@@ -11,6 +11,8 @@ import "./page.styles.scss"
 class Page8 extends AnimationPage{
     constructor(id, locale){
         super(id, locale)
+
+        this.FADE_OUT_DELAY = .5;
     }
 
     init(){
@@ -59,7 +61,10 @@ class Page8 extends AnimationPage{
             page,
             gridResultMovables,
             addSymbol,
-            equalsSymbol
+            equalsSymbol,
+            text,
+            gridYellowMovables,
+            gridRoundKeyMovables,
         } = this.pageElements
 
         const obj = {val: 0}
@@ -67,9 +72,9 @@ class Page8 extends AnimationPage{
         tl.to(obj,{val: 1, duration: .0001})
         tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
-        tl.set([page, body], {opacity: 0})
+        tl.set([page, body, text], {opacity: 0})
 
-
+        tl.set([...gridYellowMovables.movables, ...gridRoundKeyMovables.movables], {opacity: 0})
         tl.set([...gridResultMovables.movables, equalsSymbol, addSymbol], {opacity: 0})
         
 
@@ -85,6 +90,9 @@ class Page8 extends AnimationPage{
             titleMask,
             body,
             page,
+            gridYellowMovables,
+            gridRoundKeyMovables,
+            text
         } = this.pageElements
 
 
@@ -106,10 +114,29 @@ class Page8 extends AnimationPage{
         // reveal title
         tl.to(titleMask, {x: "100%"})
 
+        tl.set(gridYellowMovables.movables, {opacity: 0, y: (idx, target) => {
+            const y = gsap.getProperty(target, "y")
+            return y + 100;
+        }})
+
+        
+        tl.set(gridRoundKeyMovables.movables, {opacity: 0, x: (idx, target) => {
+            const x = gsap.getProperty(target, "x")
+            return x + 100;
+        }})
+
+
         // show body
         tl.to(body, {opacity: 1}, this.getAutoLabel())
 
+       
+        tl.to(gridYellowMovables.movables, {opacity: 1, y: 0})
+
+
+        tl.to(gridRoundKeyMovables.movables, {opacity: 1, x: 0})
         // animate grid up
+
+        tl.to(text, {opacity: 1})
 
         return tl;
     }
@@ -127,7 +154,8 @@ class Page8 extends AnimationPage{
             gridResultMovables,
             equalsSymbol,
             addSymbol,
-            equation
+            equation,
+            text,
         } = this.pageElements
 
         const tl = gsap.timeline()
@@ -157,6 +185,22 @@ class Page8 extends AnimationPage{
         tl.to(gridRoundKeyMovables.getCol(2), {opacity: 0}, "<")
         tl.to(gridResultMovables.getCol(3), {opacity: 1}, this.getAutoLabel())
         tl.to(gridRoundKeyMovables.getCol(3), {opacity: 0}, "<")
+        tl.to(text, {opacity: 0})
+        return tl;
+    }
+
+    createAnimationOut(){
+        const {gridResultMovables, gridYellowMovables} = this.pageElements
+        const tl = gsap.timeline();
+
+        tl.set(gridYellowMovables.movables, {opacity: 0});
+
+        tl.to(gridResultMovables.movables, {opacity: 0, y: (idx, target) => {
+            const y = gsap.getProperty(target, "y")
+            return y + 100;
+        }})
+
+
         return tl;
     }
 }
