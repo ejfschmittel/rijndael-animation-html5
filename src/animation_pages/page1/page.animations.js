@@ -21,10 +21,19 @@ class Page1 extends AnimationPage{
         })
     }
 
+    createPreFadeIn(){
+        const obj = {val: 0}
+        const {subtitle} = this.pageElements
+        const tl = gsap.timeline();
+        tl.to(obj, {val: 1, duration: .0001})
+        tl.set(subtitle, {opacity: 0})
+        return tl;
+    }
+
     createAnimationMain(){
         // create text animation
 
-        const {rijndaelText, cipherText} = this.pageElements
+        const {rijndaelText, cipherText, subtitle} = this.pageElements
 
         const tl = gsap.timeline();
         tl.fromTo(
@@ -37,6 +46,7 @@ class Page1 extends AnimationPage{
             {scaleX:2, scaleY:2, opacity: 0}, 
             {opacity: 1,scaleX: 1, scaleY: 1, duration: .5, stagger: .2}
         )
+        tl.to(subtitle, {opacity: 1})
         return tl;
     }
 }
