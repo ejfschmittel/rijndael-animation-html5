@@ -32,19 +32,47 @@
     }
 }
 .rijndael-page-9-equation{
-
+    margin-top: 6rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: relative;
+
+    @media screen and (max-width: 800px) {
+        margin-top: 1rem;
+    }
   
     &__symbol{    
         width: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 1.6rem;
+        font-weight: bold;
 
 
     }
+
+    &__multiplier{
+        width: .5rem;
+        height: .5rem;
+        border-radius: 50%;
+        background: #333;
+    }
+}
+
+#rijndael-page-9-multiplier-symbol{
+
+}
+
+.rijndael-page-9-text{
+    position: absolute;
+    bottom: -2rem;
+    left: 4rem;
+    transform: translateY(100%);
+    opacity: 0;
+  
+    max-width: 18rem;
 }
 
 .rijndael-brackets{
