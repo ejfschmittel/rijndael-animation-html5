@@ -1,0 +1,29 @@
+.rijndael-page-12-output{
+    position: relative;
+
+    grid-area: 7 / 2/ 7 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__grid{
+
+    }
+
+    &__text-output{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+        font-weight: bold;
+    }
+
+    &__text-ciphertext{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        font-weight: bold;
+    }
+
+}

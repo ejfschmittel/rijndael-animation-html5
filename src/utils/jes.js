@@ -461,6 +461,8 @@ var JES = {
 					state = this.blockXOR(state, (i === 0) ? iv : blocks[i - 1]);
 				}
 
+				this.internalState[`output`] = state
+
 				outputs.push(state);
 			}
 
