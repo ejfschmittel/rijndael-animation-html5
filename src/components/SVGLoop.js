@@ -9,6 +9,8 @@ class SVG extends Component{
         this.path = null;
         this.svg = null;
 
+        this.info = {}
+
         this.dimensions = {}
         window.addEventListener("resize", this.onResize.bind(this))
         this.redraw();
@@ -28,10 +30,12 @@ class SVG extends Component{
     getSVGPath(width, height){
         // based on width height
 
-        const segmentSize = height / 4.5;
-        const firstSegmentHeight = segmentSize;
-        const secondSegmentHeight = segmentSize * 2;
-        const thirdSegmentHeight = segmentSize * 1.5;
+        const hSegments = [2,4,4];
+        const yMul = height / hSegments.reduce((pv, cv) => pv + cv, 0);
+
+        const firstSegmentHeight = yMul * hSegments[0];
+        const secondSegmentHeight = yMul * hSegments[1];
+        const thirdSegmentHeight = yMul * hSegments[2];
 
 
         const d  = `
@@ -40,14 +44,54 @@ class SVG extends Component{
         `;
 
 
-        const totalDistance = firstSegmentHeight + secondSegmentHeight * 3 + thirdSegmentHeight + width * 2;
+        const totalLength = firstSegmentHeight + secondSegmentHeight * 3 + thirdSegmentHeight + width * 2;
+
+        const segments = []
+        const addToSegments = (y, length) => {
+            const prev = segments.length > 0 ? segments[segments.length-1] : null;
+            segments.push({
+                y,
+                length,
+                startDist: prev ? prev.startDist + prev.length : 0,
+                progress: prev ? this.round((prev.startDist + prev.length) / totalLength) : 0,
+            })
+        }
+
+        console.log(totalLength)
+        console.log(segments)
+        
+        // update info
+      
+        addToSegments(0, firstSegmentHeight)
+        addToSegments(firstSegmentHeight, secondSegmentHeight)
+        addToSegments(firstSegmentHeight + secondSegmentHeight, secondSegmentHeight + width * 2)
+        addToSegments(firstSegmentHeight, secondSegmentHeight),
+        addToSegments(firstSegmentHeight + secondSegmentHeight, thirdSegmentHeight)
+
+        
+        this.info = {
+            width,
+            height,
+            totalLength,
+            segments,
+        }
+
+     
+
+
+       /* const totalDistance = firstSegmentHeight + secondSegmentHeight * 3 + thirdSegmentHeight + width * 2;
         const point1 = firstSegmentHeight / totalDistance;
         const point2 =  (firstSegmentHeight + secondSegmentHeight) / totalDistance;
         const point3 = (firstSegmentHeight + 2 * secondSegmentHeight + width * 2) / totalDistance;
         const point4 = (firstSegmentHeight + 3 * secondSegmentHeight + width * 2) / totalDistance;
-        this.dimensions = {point1, point2, point3, point4}
+        this.dimensions = {point1, point2, point3, point4}*/
 
         return d;
+    }
+
+
+    round(num){
+       return Math.round((num + Number.EPSILON) * 1000) / 1000
     }
 
     redraw(){

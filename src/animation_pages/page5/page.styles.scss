@@ -22,8 +22,8 @@
         width: 100%;
         padding: 1rem;
         font-size: .8rem;
-        grid-template-columns: 1fr 1fr 2fr;
-        grid-template-rows: 2fr 4fr 3fr;
+        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-rows: 2fr 4fr 4fr;
         grid-template-areas: 
         "anim1 anim1 title1"
         "anim2 anim2 title2"
@@ -32,7 +32,7 @@
     }
 
 
-    &__counter{
+    &__counter-container{
         grid-area: anim3;
 
         position: relative;
@@ -43,13 +43,12 @@
         }
     }
 
-    &__counter-num{
+    &__counter{
         position: absolute;
         top: 0;
-        left: 0;
-        padding: .5rem 2rem;
-        background: #000;
-        color: #fff;
+        left: -50px;
+
+      
 
         @media (max-width: 800px){
             top: auto;
@@ -58,10 +57,22 @@
             right: 0
         }
     }
+
+    &__counter-title{
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    &__counter-num{
+        color: #fff;
+        padding: .5rem 2rem;
+        background: #000;
+    }
     
     &__path{
         grid-area: anim1 / 1 / anim3/ 2;
-  
+        position: relative;
+        max-width: 200px;
         display: flex;
         justify-content: center;
         z-index: 1;
@@ -76,24 +87,33 @@
 
     }
 
-  
+    .rijndael-page-5__container-1{
+        grid-area: grid1; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     &__labels{
+        position: absolute;
         z-index: 6;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         &--1{
-            grid-area: anim1;
+            top: 10%;
+            transform: translateY(-50%);
         }
 
         &--2{
-            grid-area: anim2;
+         top: 40%;
+         transform: (translateY(-50%));
         }
 
         &--3{
-            grid-area: anim3;
+           top: 80%;
+           transform: translateY(-50%);
         }
     }
 
@@ -120,5 +140,18 @@
         @media (max-width: 800px) {
             font-size: 1rem;
         }
+    }
+}
+
+
+.rijndael-add-key{
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #888;
+    &__title{
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #888;
     }
 }
