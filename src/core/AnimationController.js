@@ -157,6 +157,8 @@ class AnimationController{
         this.pages.forEach((pageID, idx) => {
            // this.pagesByID[pageID].hide();
 
+
+           const updatePage = this.pagesByID[pageID].createUpdatePage(this, pageID, idx == 0 ? null : this.pages[idx-1])
            const preFadeIn = this.pagesByID[pageID].createPreFadeIn()
            const fadeIn = this.pagesByID[pageID].createFadeIn()
            const animationIn = this.pagesByID[pageID].createAnimationIn()
@@ -166,6 +168,7 @@ class AnimationController{
 
 
            const createdNestedTimelines = {
+                [`${pageID}-update-page`]: updatePage,
                 [`${pageID}-pre-fade-in`]: preFadeIn,
                 [`${pageID}-fade-in`]: fadeIn,
                 [`${pageID}-animation-in`]: animationIn,
@@ -178,7 +181,7 @@ class AnimationController{
                 createdNestedTimelines[`${pageID}-fade-out`] =  this.pagesByID[pageID].createFadeOut();
             }
 
-          this.tl.call(() => this.updateCurrentPage(pageID))
+            // this.tl.call(() => this.updateCurrentPage(pageID))
             Object.keys(createdNestedTimelines).forEach(label => {
                 this.tl.add(createdNestedTimelines[label], label)
             })

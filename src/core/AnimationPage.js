@@ -84,6 +84,20 @@ class AnimationPage{
     }
 
 
+    createUpdatePage(controller, pageID, prevPageID){
+        const obj = {val:0};
+        const tl = gsap.timeline({
+            onStart: () => {
+                controller.updateCurrentPage(pageID)
+            },
+            onReverseComplete: () => {
+                if(prevPageID) controller.updateCurrentPage(prevPageID)
+            }
+        })
+        tl.to(obj, {val: 1, duration: .0001})
+        return tl;
+    }
+
     createPreFadeIn(){}
     createAnimationMain(){}
     createAnimationOut(){}
