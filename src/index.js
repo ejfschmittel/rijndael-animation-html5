@@ -91,11 +91,14 @@ const createRijndaelAnimation = (locale) => {
     animationController.registerAnimationPage(Page13, "page-13", "Page 13 - B) Cipher Key")
     animationController.registerAnimationPage(Page14, "page-14", "Page 14 - Cipher Key")
     animationController.createTimeline();
-    animationController.updateCurrentPage("page-1")
+    //animationController.updateCurrentPage("page-1")
 
 
     //animationController.playFrom("page-14-main-animation")
     animationController.goToPage("page-14")
+
+    console.log(animationController.tl.time())
+    console.log(animationController.tl)
 }
 
 

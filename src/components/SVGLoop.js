@@ -23,7 +23,6 @@ class SVG extends Component{
     }
 
     getComponentDimensions(){
-        console.log(this.component)
         return this.component.getBoundingClientRect()
     }
 
@@ -57,9 +56,6 @@ class SVG extends Component{
             })
         }
 
-        console.log(totalLength)
-        console.log(segments)
-        
         // update info
       
         addToSegments(0, firstSegmentHeight)
@@ -76,15 +72,6 @@ class SVG extends Component{
             segments,
         }
 
-     
-
-
-       /* const totalDistance = firstSegmentHeight + secondSegmentHeight * 3 + thirdSegmentHeight + width * 2;
-        const point1 = firstSegmentHeight / totalDistance;
-        const point2 =  (firstSegmentHeight + secondSegmentHeight) / totalDistance;
-        const point3 = (firstSegmentHeight + 2 * secondSegmentHeight + width * 2) / totalDistance;
-        const point4 = (firstSegmentHeight + 3 * secondSegmentHeight + width * 2) / totalDistance;
-        this.dimensions = {point1, point2, point3, point4}*/
 
         return d;
     }

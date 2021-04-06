@@ -38,6 +38,8 @@ class AnimationController{
         this.resizeStore = null; 
 
 
+        this.nestedTimelines = {}
+
 
         this.isResizing = false;
         this.currentPage = null;
@@ -90,7 +92,7 @@ class AnimationController{
     updateCurrentPage(pageID){
       
         this.currentPage = pageID;
-
+        
         this.onAfterUpdateCurrentPage(pageID)
     }
 
@@ -149,24 +151,58 @@ class AnimationController{
             this.tl.kill();
 
         this.tl = null;
+        this.nestedTimelines = {}
         this.tl = this.createEmptyTimeline();
         
         this.pages.forEach((pageID, idx) => {
            // this.pagesByID[pageID].hide();
-           this.tl.call(() => this.updateCurrentPage(pageID))
+
+           const preFadeIn = this.pagesByID[pageID].createPreFadeIn()
+           const fadeIn = this.pagesByID[pageID].createFadeIn()
+           const animationIn = this.pagesByID[pageID].createAnimationIn()
+           const animationMain = this.pagesByID[pageID].createAnimationMain()
+           const animationOut = this.pagesByID[pageID].createAnimationOut()
+           const fadeOut = this.pagesByID[pageID].createFadeOut()
+
+
+           const createdNestedTimelines = {
+                [`${pageID}-pre-fade-in`]: preFadeIn,
+                [`${pageID}-fade-in`]: fadeIn,
+                [`${pageID}-animation-in`]: animationIn,
+                [`${pageID}-animation-main`]: animationMain,
+                [`${pageID}-animation-out`]: animationOut,
+            }
+            
+            // don't add fade out to last page
+            if(idx !== this.pages.length - 1){
+                createdNestedTimelines[`${pageID}-fade-out`] = fadeOut;
+            }
+
+            this.tl.call(() => this.updateCurrentPage(pageID))
+            Object.keys(createdNestedTimelines).forEach(label => {
+                this.tl.add(createdNestedTimelines[label], label)
+            })
+
+
+
+            this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
+
+        /*   this.tl.call(() => this.updateCurrentPage(pageID))
            this.tl.add(this.pagesByID[pageID].createPreFadeIn(), `${pageID}-pre-fade-in`)
             this.tl.add(this.pagesByID[pageID].createFadeIn(), `${pageID}-fade-in`)
             this.tl.add(this.pagesByID[pageID].createAnimationIn(), `${pageID}-animation-in`)
             this.tl.add(this.pagesByID[pageID].createAnimationMain(), `${pageID}-animation-main`)
             this.tl.add(this.pagesByID[pageID].createAnimationOut(), `${pageID}-animation-out`)
-
+            
             // don't create fade out for last page
             if(idx !== this.pages.length - 1){
                 this.tl.add(this.pagesByID[pageID].createFadeOut(), `${pageID}-fade-out`)
-            }
+            }*/
 
             this.pagesByID[pageID].hide();
         })
+
+        console.log(this.tl.labels)
 
         MovablesController.resetMovedElement();
 
@@ -214,11 +250,24 @@ class AnimationController{
     }
 
 
+    resetTimelineToLabel({label, nestedLabel}){
+        console.log(label, nestedLabel)
+        const resetTime = nestedLabel ? this.tl.labels[label] : this.tl.labels[label];
+        this.tl.seek(resetTime, false)
+    }
+
     onAfterResize = debounce(() => {
         MovablesController.resetMovedElement();
         this.createTimeline();
-        // play or not play timeline()
-        this.tl.seek(this.resizeStore.resetTime, false)
+
+        const { reset } = this.resizeStore;
+
+
+   
+        
+      
+
+        this.resetTimelineToLabel(reset)
         if(this.resizeStore && this.resizeStore.paused === false) {
            
             console.log("resume after resize")
@@ -233,65 +282,76 @@ class AnimationController{
 
 
 
-    prepResize(){    
-        const time = this.tl.totalTime();
-        const children = this.tl.getChildren(true, false, true)
-        const paused = this.tl.paused();
-        this.isResizing = true;
 
-        this.pause();
-        let labelTimes = []
-
-        // get label times of nested children
-        for(let i = 0; i < children.length; i++){
-            const tl = children[i]
-
-
-          
-            let times = Object.keys(tl.labels).map(key => {
-                const totalTime = tl.startTime() + tl.labels[key] / tl.timeScale();
-                return totalTime;
-            })
-
-            labelTimes = labelTimes.concat(...times)
-        }
-
-        // get label times of direct children
-        const directLabelTimes = Object.keys(this.tl.labels).map(key => {
-            return this.tl.labels[key];
+    getClosestLabel(time, labels){
+        const sorted = labels.sort((a,b) => {
+            return a[1] - b[1] 
         })
 
-        labelTimes = labelTimes.concat(...directLabelTimes)
-     
+        let closestLabel = null;
+        let closestTime = null;
+        let shortestDist = 10000;
 
-        // get clostest labeled resetpoint
-        let closestLabelTime = 0;
-       
-        for(let i = 0; i < labelTimes.length; i++){
-            const dist = time - labelTimes[i]
-            if(dist >= 0 && dist < time - closestLabelTime){
-                closestLabelTime = labelTimes[i]
+        // 132 - 138
+
+        for(let i = sorted.length-1; i>=0; i--){
+            const label = sorted[i][0]
+            const labelTime = sorted[i][1]
+            const dist = time - labelTime;
+            if(dist >= 0 && dist < shortestDist){
+                closestTime = labelTime;
+                closestLabel = label
+                shortestDist = dist;
             }
-            
+
         }
 
+        return {label: closestLabel, time: closestTime}
+    }
+
+    prepResize(){    
+        const paused = this.tl.paused();
+        this.pause();
+        const time = this.tl.totalTime();
 
 
 
+        const directChildren = this.tl.getChildren(false, false, true)
 
-        // go to last safe reset point
-        this.tl.seek(closestLabelTime, false)
+        
+        // get direct label times
+        const test = Object.keys(this.tl.labels).map((label) => [label, this.tl.labels[label]])
+        const closestLabel = this.getClosestLabel(time, test)
 
-        // store data
+        // get nested labels
+        const nested = directChildren.reduce((prev, childTL) => [...prev, ...Object.keys(childTL.labels).map(label => {
+            return [label, childTL.startTime() + childTL.labels[label] / childTL.timeScale()];
+        })], [])
+        const closestNestedLabel = this.getClosestLabel(time, nested)
+
+        const currentLables = (time - closestNestedLabel.time <= time - closestLabel.time) ? 
+            {label: closestLabel.label, nestedLabel: closestNestedLabel.label, time: closestNestedLabel.time} :
+            {label: closestLabel.label, nestedLabel: null, time: closestLabel.time};
+ 
+
+ 
+        this.isResizing = true;
+
+
+
+        this.resetTimelineToLabel(currentLables)
+
         this.resizeStore = {
             time,
-            resetTime: closestLabelTime,
+            reset: currentLables, 
             paused,
         }
+       
+   
     }
 
     onResize(){
-  
+        
         if(!this.resizeStore){
             this.prepResize();
         }

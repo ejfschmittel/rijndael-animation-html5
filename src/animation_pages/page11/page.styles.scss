@@ -113,9 +113,9 @@
         font-weight: bold;
 
         @media screen and (max-width: 800px) {
-            font-size: .8rem;
+            font-size: .7rem;
             transform: rotate(-90deg);
-
+            white-space: nowrap;
         }
     }
 

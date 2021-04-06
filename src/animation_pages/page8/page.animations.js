@@ -22,7 +22,7 @@ class Page8 extends AnimationPage{
 
         const {grid} = this.pageElements
 
-        console.log(grid)
+
 
 
         // create a landing
@@ -79,7 +79,7 @@ class Page8 extends AnimationPage{
 
         const barBounds = bar.getBoundingClientRect()
 
-        console.log(barBounds)
+
         const tl = gsap.timeline()
 
         // move in background
@@ -126,6 +126,8 @@ class Page8 extends AnimationPage{
         const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
 
         const tl = gsap.timeline()
+
+        tl.set(gridMovables.movables, {opacity: 1, y:0}, this.getAutoLabel())
 
         tl.to(textOne, {opacity: 1}, this.getAutoLabel())
         tl.add(this.shiftRow(gridMovables.getRow(1), gridLandings.getRow(1)))

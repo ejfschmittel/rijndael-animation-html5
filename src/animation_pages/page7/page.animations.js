@@ -78,7 +78,7 @@ class Page7 extends AnimationPage{
 
         const barBounds = bar.getBoundingClientRect()
 
-        console.log(barBounds)
+ 
         const tl = gsap.timeline()
 
         // move in background
