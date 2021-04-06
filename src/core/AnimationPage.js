@@ -106,13 +106,14 @@ class AnimationPage{
         const tl = gsap.timeline();
         //tl.set(this.page, {visibility: "hidden", opacity: 0})
        
+        tl.set(this.page, {visibility: "visible"})
         tl.to(this.page, { opacity: 1, duration: this.FADE_IN_DURATION})
         return tl;
     }
     createFadeOut(){
         const tl = gsap.timeline();
         tl.to(this.page, {opacity: 0,delay: this.FADE_OUT_DELAY, duration: this.FADE_OUT_DURATION})
-     
+        tl.set(this.page, {visibility: "hidden"})
         return tl;
     }
 
@@ -235,7 +236,7 @@ moveGroup(movables, landings, settings={}, label="label"){
 
     hide(){
     
-        gsap.set(this.page, {opacity: 0, })
+        gsap.set(this.page, {opacity: 0, visibility: "hidden"})
     }
 
     addToPageElements(object){

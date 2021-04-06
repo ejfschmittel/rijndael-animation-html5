@@ -261,6 +261,8 @@ class AnimationController{
 
     onAfterResize = debounce(() => {
         MovablesController.resetMovedElement();
+
+
         this.createTimeline();
 
         const { reset } = this.resizeStore;
@@ -270,6 +272,10 @@ class AnimationController{
         
       
 
+        console.log("reset timeline (seek)")
+        //this.resetTimelineToLabel(reset)
+        // hide current page 
+        this.pagesByID[this.currentPage].hide();
         this.resetTimelineToLabel(reset)
         if(this.resizeStore && this.resizeStore.paused === false) {
            
