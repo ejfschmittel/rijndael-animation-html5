@@ -162,7 +162,7 @@ class AnimationController{
            const animationIn = this.pagesByID[pageID].createAnimationIn()
            const animationMain = this.pagesByID[pageID].createAnimationMain()
            const animationOut = this.pagesByID[pageID].createAnimationOut()
-           const fadeOut = this.pagesByID[pageID].createFadeOut()
+         
 
 
            const createdNestedTimelines = {
@@ -175,10 +175,10 @@ class AnimationController{
             
             // don't add fade out to last page
             if(idx !== this.pages.length - 1){
-                createdNestedTimelines[`${pageID}-fade-out`] = fadeOut;
+                createdNestedTimelines[`${pageID}-fade-out`] =  this.pagesByID[pageID].createFadeOut();
             }
 
-            this.tl.call(() => this.updateCurrentPage(pageID))
+          this.tl.call(() => this.updateCurrentPage(pageID))
             Object.keys(createdNestedTimelines).forEach(label => {
                 this.tl.add(createdNestedTimelines[label], label)
             })
@@ -187,7 +187,7 @@ class AnimationController{
 
             this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
 
-        /*   this.tl.call(() => this.updateCurrentPage(pageID))
+          /* this.tl.call(() => this.updateCurrentPage(pageID))
            this.tl.add(this.pagesByID[pageID].createPreFadeIn(), `${pageID}-pre-fade-in`)
             this.tl.add(this.pagesByID[pageID].createFadeIn(), `${pageID}-fade-in`)
             this.tl.add(this.pagesByID[pageID].createAnimationIn(), `${pageID}-animation-in`)
@@ -197,9 +197,9 @@ class AnimationController{
             // don't create fade out for last page
             if(idx !== this.pages.length - 1){
                 this.tl.add(this.pagesByID[pageID].createFadeOut(), `${pageID}-fade-out`)
-            }*/
+            }
 
-            this.pagesByID[pageID].hide();
+            this.pagesByID[pageID].hide();*/
         })
 
         console.log(this.tl.labels)
