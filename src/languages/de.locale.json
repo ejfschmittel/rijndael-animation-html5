@@ -1,33 +1,33 @@
 {
     "page-1": {
         "titlePartOne": "Rijndael",
-        "titlePartTwo": "Chiffre",
-        "text": "Animation mit einer Größe von jeweils 128 Bit für den Datenblock und den Schlüssel"
+        "titlePartTwo": "Cipher",
+        "text": "In der Animation wurde sowohl für den Datenblock als auch für den Schlüssel eine Länge von 128 Bit angenommen"
     },
     "page-2": {
-        "boxText": "Rijndael-Kodierer",
-        "textLeft": "Chiffrierschlüssel",
-        "textBottom": "Chiffretext",
+        "boxText": "Rijndael-Verschlüsseler",
+        "textLeft": "Hauptschlüssel",
+        "textBottom": "Geheimtext",
         "textTop": "Klartext"
     },
     "page-3": {
         "title": "Input",
-        "subtitleLeft": "Zustand",
-        "subtitleRight": "Chiffrierschlüssel",
-        "explanationLeft": "Dies ist ein Block aus der zu verschlüsselnden Klartextnachricht",
-        "explanationRight": "Hexadezimale Notation (Beispiel):",
-        "textLeft": "zum Verschlüsselungsprozess",
-        "textRight": "zum Key Schedule"
+        "subtitleLeft": "State",
+        "subtitleRight": "Hauptschlüssel",
+        "explanationLeft": "Dies ist ein Block vom Klartext, der verschlüsselt werden soll",
+        "explanationRight": "Hexadezimal-Darstellung (Beispiel):",
+        "textLeft": "zum Verschlüsselungs-Prozess",
+        "textRight": "zur Schlüsselgenerierung"
     },
     "page-4": {
-        "title": "Verschlüsselungs-\nprozess",
-        "text": "(Durchführen der Verschlüsselung des gegebenen Klartextblocks mit 4 verschiedenen Transformationen in der ersten Runde, den 9 Hauptrunden und der letzten Runde)"
+        "title": "Verschlüsselungs-Prozess",
+        "text": "(Durchführung der Verschlüsselung für den gegebenen Klartextblock mit Hilfe von 4 verschiedenen Transformationen in der Initial-Rounde, den 9 Haupt-Runden und in der Final-Runde)"
     },
     "page-5": {
         "title": "Verschlüsselungsprozess",
-        "titleInitialRound": "erste Runde",
+        "titleInitialRound": "Initial-Runde",
         "titleMainRounds": "9 Hauptrunden",
-        "titleFinalRound": "letzte Runde",
+        "titleFinalRound": "Final-Runde",
         "labelInitial": "AddRoundKey",
         "labelMrone": "1-SubBytes",
         "labelMrTwo": "2-ShiftRows",
@@ -37,14 +37,14 @@
         "labelFrTwo": "ShiftRows",
         "labelFrThree": "AddRoundKey",
 
-        "boxTitleOne": "Chiffrierschlüssel",
-        "boxTitleTwo": "Round key 0",
-        "boxTitleThree": "Round Key 10",
+        "boxTitleOne": "Hauptschlüssel",
+        "boxTitleTwo": "Rundenschlüssel 0",
+        "boxTitleThree": "Rundenschlüssel 10",
 
         "round": "Runde"
     },
     "page-6": {
-        "title": "Die 4 Arten von Transformationen:",
+        "title": "Die vier Arten der Verschlüsselungs-Transformationen:",
         "labelOne": "1-SubBytes",
         "labelTwo": "2-ShiftRows",
         "labelThree": "3-MixColumns",
@@ -54,31 +54,31 @@
         "title": "1 - SubBytes",
         "round": "Runde 1",
         "sboxLabel": "S-Box",
-        "sboxExplanation": "Byte-Substitutionstabelle"
+        "sboxExplanation": "Byte-Ersetzungstabelle"
     },
     "page-8": {
         "title": "2 - ShiftRows",
-        "rotateTextOne": "um 1 Byte drehen",
-        "rotateTextTwo": "um 2 Bytes drehen",
-        "rotateTextThree": "um 3 Bytes drehen"
+        "rotateTextOne": "Rotation um 1 Byte",
+        "rotateTextTwo": "Rotation um 2 Bytes",
+        "rotateTextThree": "Rotation um 3 Bytes"
     },
     "page-9": {
         "title": "3 - MixColumns",
-        "text": "Die vier Zahlen einer Spalte werden im Rijndael'schen Galoisfeld mit einer gegebenen Matrix modulo multipliziert.",
-        "text2": "Der Schritt 'MixColumns' ist zusammen mit dem Schritt 'ShiftRows' die Hauptquelle der Diffusion in Rijndael.."
+        "text": "Die 4 Zahlen einer Spalte werden mit einer gegebenen Matrix modulo multipliziert in einem Rijndael-Galois-Feld",
+        "text2": "Der MixColumns-Schritt ist zusammen mit dem ShiftRows-Schritt die Hauptursache für die Diffusion in der Rijndael-Chiffre."
     },
     "page-10": {
         "title": "4 - AddRoundKey",
-        "roundKeyLabel": "Round key",
-        "roundKeyText": "(Erzeugt als Rundtaste 1 während des Tastenplans - siehe Folie 14)"
+        "roundKeyLabel": "Rundenschlüssel",
+        "roundKeyText": "(hergeleitet als Rundenschlüssel 1 bei der Schlüsselgenerierung - siehe Seite 14)"
     },
     "page-11": {
-        "introText": "Diese Transformationen werden für 9 weitere Runden auf den Zustand angewendet. Die letzte Runde beinhaltet nicht die MixColumns-Transformation.",
-        "roundLabel": "Runde",
-        "subBytesLabel": "SubBytes",
-        "ShiftRowsLabel": "ShiftRows",
-        "MixColumnsLabel": "MixColumns",
-        "RoundKeyLabel": "Round key",
+        "introText": "Diese vier Transformationen werden in den 9 Hauptrunden auf den Klartextblock angewandt. Die MixColumns-Transformation wird in der Final-Runde nicht benutzt.",
+        "roundLabel": "Start der Runde",
+        "subBytesLabel": "Nach SubBytes",
+        "ShiftRowsLabel": "Nach ShiftRows",
+        "MixColumnsLabel": "Nach MixColumns",
+        "RoundKeyLabel": "Runden-Schlüssel",
         "inputLabel": "Input",
         "roundOneLabel": "Runde 1",
         "roundTwoLabel": "Runde 2",
@@ -87,25 +87,25 @@
         "roundFiveLabel": "Runde 5"
     },
     "page-12": {
-        "roundLabel": "Runde",
-        "subBytesLabel": "SubBytes",
-        "ShiftRowsLabel": "ShiftRows",
-        "MixColumnsLabel": "MixColumns",
-        "RoundKeyLabel": "Round key",
+        "roundLabel": "Start der Runde",
+        "subBytesLabel": "Nach SubBytes",
+        "ShiftRowsLabel": "Nach ShiftRows",
+        "MixColumnsLabel": "Nach MixColumns",
+        "RoundKeyLabel": "Runden-Schlüssel",
         "outputLabel": "Output",
         "roundSixLabel": "Runde 6",
         "roundSevenLabel": "Runde 7",
         "roundEightLabel": "Runde 8",
         "roundNineLabel": "Runde 9",
         "roundTenLabel": "Runde 10",
-        "cipherTextLabel": "Chiffretext"
+        "cipherTextLabel": "Geheimtext"
     },
     "page-13": {
-        "title": "Key Schedule",
-        "text": "(Zerlegung des gegebenen Chiffrierschlüssels in 11 Teilschlüssel, die in der Anfangsrunde, den 9 Hauptrunden und der Endrunde verwendet werden)"
+        "title": "Schlüsselgenerierung",
+        "text": "(Expandierung des gegebenen Hauptschlüssel in 11 Teilschlüssel, die in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde benutzt werden)"
     },
     "page-14": {
-        "title": "Key Schedule",
+        "title": "Schlüsselgenerierung",
         "RotWordLabel": "RotWord",
         "RconLabel": "Rcon",
         "SubBytesLabel": "SubBytes",
@@ -116,16 +116,16 @@
         "RconFourLabel": "Rcon(4)",
 
 
-        "textIntro": "Der erweiterte Schlüssel kann als ein Array von 32-Bit-Wörtern (Spalten) gesehen werden, die von 0 bis 43 nummeriert sind. Die ersten vier Spalten sind mit dem angegebenen Chiffrierschlüssel gefüllt",
-        "text": "Wörter an Positionen, die ein Vielfaches von 4 sind (W4, W5, ..., W40), werden berechnet durch:",
-        "textA": "a) Anwendung der RotWord- und SubBytes-Transformation auf das vorherige Wort wi-1",
-        "textB": "b) Addieren (XOR) dieses Ergebnisses zum Wort 4 Stellen vorher wi-4, plus eine Rundkonstante Rcon",
-        "textXOR": "Die verbleibenden 32-Bit-Worte wi, werden durch Addition (XOR) des vorherigen Wortes wi-1 mit dem Wort 4 Positionen früher Wi-4 berechnet",
+        "textIntro": "Der expandierte Schlüssel kann als Verktor von 32-Bit-Worten (Spalten) betrachtet werden. Die Indizes der Spalten wi laufen von 0 bis 43. Die ersten vier Spalten werden mit dem gegebenen Hauptschlüssel gefüllt.",
+        "text": "Die Worte auf durch 4 teilbaren Positionen (W4, W5, ..., W40) werden",
+        "textA": "a) Anwenden der Funktion RotWord",
+        "textB": "b) Mit der XOR-Funktion das erste Ergebnis mit dem Vorgängerwort Wi - 4. verknüüfen. Danach die XOR-Funktion auf das folgende Ergebnis und auf Elemente der Rundenkostante Rcon anwenden.",
+        "textXOR": "Die restlichen 32-Bit-Worte wi werden berechnet, indem das jeweilige Vorgängerwort wi-1 XOR-verknüpft wird mit dem Wort wi-4 vier Positionen vorher.",
 
-        "cipherKeyLabel": "Chiffrierschlüssel",
-        "roundKeyOneLabel": "Round key 1",
-        "roundKeyTwoLabel": "Round key 2",
-        "roundKeyThreeLabel": "Round key 3",
-        "roundKeyTenLabel": "Round key 10"
+        "cipherKeyLabel": "Hauptschlüssel",
+        "roundKeyOneLabel": "Rundenschlüssel 1",
+        "roundKeyTwoLabel": "Rundenschlüssel 2",
+        "roundKeyThreeLabel": "Rundenschlüssely 3",
+        "roundKeyTenLabel": "Rundenschlüssel 10"
     }
 }
