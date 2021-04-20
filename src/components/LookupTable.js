@@ -1,7 +1,7 @@
 
 import Component from "./Component"
 import Grid from "./Grid"
-
+import {toHexString} from "../utils/conversions"
 
 class LookupTable extends Component{
     constructor(id){
@@ -31,7 +31,7 @@ class LookupTable extends Component{
         this.component.appendChild(gridContainer)
 
         this.grid = new Grid(gridContainer.id, 16, 16, ["rijndael-hex-grid-cell"])
-        console.log("create movables")
+    
         this.gridMovables = this.grid.createMovables(`${this.id}-grid-movables`, ["rijndael-sbox-cell"])
     }
 
@@ -53,7 +53,7 @@ class LookupTable extends Component{
         for(let i = 0; i < 16; i++){
             const legendIndex = document.createElement("div")
             legendIndex.classList.add("rijndael-lookup-table__legend-cell")
-            legendIndex.innerHTML = i;
+            legendIndex.innerHTML = toHexString(i);
             indicesContainer.appendChild(legendIndex)
         }
 

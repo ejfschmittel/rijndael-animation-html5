@@ -1,31 +1,41 @@
 
+
+
 import {gsap} from "gsap"
 
 
 import {dashedStringToCammelCase} from "../utils/utils"
 
-import MovablesController, {getDimensions}  from "../core/MovablesController"
+import {getDimensions}  from "./MovablesController"
 
 class AnimationPage{
-    constructor(pageID, locale){
-
-        this.pageID = pageID;
-        this.locale = locale;
-      
-        this.page = document.getElementById(pageID)
-
-        if(!this.page) throw new Error(`No page with id ${pageID} found.`)
+    constructor(){
+        this.id = null;
+        this.page = null;
 
         this.FADE_IN_DURATION = .0001;
         this.FADE_OUT_DURATION = .00001;
         this.FADE_OUT_DELAY = 3;
-
         this.autoLabelCounter = 0;
 
-        this.initPage();
 
+        this.bodyReference = document.querySelector("body")
       
     }
+
+    initPage(pageID, controller){
+        this.page = document.getElementById(pageID)
+        if(!this.page) throw new Error(`No page with id ${pageID} found.`)
+        this.id = pageID;
+        this.controller = controller;
+     
+
+        this.collectPageElements();
+       
+        this.init();
+        this.updateLocaleLanguageTexts();
+    }
+
 
 
     getInfoText = () => {
@@ -34,28 +44,21 @@ class AnimationPage{
         `;
     }
 
-    text(localeID){
-        return this.locale[localeID]
-    }
+  
 
-
+    
     // creates a unique dummy label
     getAutoLabel(){      
         this.autoLabelCounter++;
         return `${this.pageID}-label-${this.autoLabelCounter}`
     }
 
-    initPage(){
-        this.collectPageElements();
-        this.setCorrectLanguageData()
-        this.init();
-    }
-
+ 
     init(){};
 
 
     collectPageElements(){
-        const prefix = `rijndael-${this.pageID}`
+        const prefix = `rijndael-${this.id}`
 
         // ge all elements on this page with id starting with prefix
         const elements = this.page.querySelectorAll(`[id^='${prefix}']`)  
@@ -73,25 +76,30 @@ class AnimationPage{
     }
 
 
-    setCorrectLanguageData(){
+    updateLocaleLanguageTexts(){
+
+        const locale = this.controller.getPageLocale(this.id)
+
         const languageNodes = this.page.querySelectorAll("[data-lang]")
         languageNodes.forEach((element, idx) => {
             const langDataKey = element.dataset["lang"]
-            if(langDataKey in this.locale){
-                element.innerHTML = this.locale[langDataKey]
+            if(langDataKey in locale){
+               
+                element.innerHTML = locale[langDataKey]
+          
             }
         })
     }
 
-
-    createUpdatePage(controller, pageID, prevPageID){
+    // timeline insert to update currentpage number in 
+    createUpdatePage(prevPageID){
         const obj = {val:0};
         const tl = gsap.timeline({
             onStart: () => {
-                controller.updateCurrentPage(pageID)
+                this.controller.setCurrentPage(this.id)
             },
             onReverseComplete: () => {
-                if(prevPageID) controller.updateCurrentPage(prevPageID)
+                if(prevPageID) this.controller.setCurrentPage(prevPageID)
             }
         })
         tl.to(obj, {val: 1, duration: .0001})
@@ -121,8 +129,6 @@ class AnimationPage{
 
 
     moveToLanding(movable, landing, settings={}){
-
-
             settings = {
                 duration: 1,
                 ...settings,
@@ -130,9 +136,8 @@ class AnimationPage{
 
             const currentParent = movable.parentNode;      
 
-            MovablesController.registerMovedElement(movable)
-
-           
+            this.controller.movablesController.registerMovedElement(movable)
+        
             const startPos = getDimensions(movable)
             landing.appendChild(movable)
             const endPos = getDimensions(movable)
@@ -143,9 +148,6 @@ class AnimationPage{
             copy.width = startPos.w;
             copy.height = startPos.h;
           
-
-           
-
             copy.zIndex = 20;
 
             const tl = gsap.timeline({
@@ -165,6 +167,7 @@ class AnimationPage{
            tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
            return tl;
     }
+    
     moveToLandingAdvanced(movable, landing, settings={}){
 
         settings = {
@@ -176,7 +179,7 @@ class AnimationPage{
 
         const currentParent = movable.parentNode;      
 
-        MovablesController.registerMovedElement(movable)
+        this.controller.movablesController.registerMovedElement(movable)
 
        
         const startPos = getDimensions(movable)
@@ -215,28 +218,36 @@ class AnimationPage{
        tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, duration: 1})
        tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
        return tl;
-}
-
-
-
-moveGroup(movables, landings, settings={}, label="label"){
-
- 
-    const tl = gsap.timeline()
-
-    tl.add(this.moveToLanding(movables[0], landings[0], settings), label)
-
-    for(let i = 1; i < movables.length; i++){
-        tl.add(this.moveToLanding(movables[i], landings[i], settings), `${label}+=0`)
     }
 
-    return tl;
-}
+
+    getColor(name){
+        var style = getComputedStyle(this.bodyReference)
+        return style.getPropertyValue(name)
+    }
 
 
-    hide(){
+    moveGroup(movables, landings, settings={}, label="label"){
+
     
+        const tl = gsap.timeline()
+
+        tl.add(this.moveToLanding(movables[0], landings[0], settings), label)
+
+        for(let i = 1; i < movables.length; i++){
+            tl.add(this.moveToLanding(movables[i], landings[i], settings), `${label}+=0`)
+        }
+
+        return tl;
+    }
+
+
+    hide(){  
         gsap.set(this.page, {opacity: 0, visibility: "hidden"})
+    }
+
+    subscribeTo(key, elements){
+        this.controller.dataController.subscribe(key, elements)
     }
 
     addToPageElements(object){

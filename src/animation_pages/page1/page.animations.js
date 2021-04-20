@@ -4,16 +4,32 @@ import {gsap} from "gsap"
 import "./page.styles.scss"
 
 class Page1 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){
         // create text
+    
+    }
+
+    updateLocaleLanguageTexts(){
+
+        const locale = this.controller.getPageLocale(this.id)
+
+        const languageNodes = this.page.querySelectorAll("[data-lang]")
+        languageNodes.forEach((element, idx) => {
+            const langDataKey = element.dataset["lang"]
+            if(langDataKey in locale){
+               
+                element.innerHTML = locale[langDataKey]
+          
+            }
+        })
+
+        
         const rijndaelText = new AnimatableText("rijndael-page-1-text-rijndael")
         const cipherText = new AnimatableText("rijndael-page-1-text-cipher")
-
-
 
         this.addToPageElements({
             rijndaelText,
@@ -21,9 +37,13 @@ class Page1 extends AnimationPage{
         })
     }
 
+
     createPreFadeIn(){
         const obj = {val: 0}
         const {subtitle} = this.pageElements
+
+
+    
         const tl = gsap.timeline();
         tl.to(obj, {val: 1, duration: .0001})
         tl.set(subtitle, {opacity: 0})
@@ -33,8 +53,8 @@ class Page1 extends AnimationPage{
     createAnimationMain(){
         // create text animation
 
-        const {rijndaelText, cipherText, subtitle} = this.pageElements
-
+    
+       const {rijndaelText, cipherText, subtitle} = this.pageElements
         const tl = gsap.timeline();
         tl.fromTo(
             rijndaelText.chars, 

@@ -3,14 +3,14 @@ import AnimationPage from "../../core/AnimationPage"
 import {gsap} from "gsap"
 
 import Grid from "../../components/Grid"
-import {} from "../../core/MovablesController"
-import DataController from "../../core/DataController"
+
+
 
 import "./page.styles.scss"
 
 class Page8 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
 
         this.FADE_OUT_DELAY = .5;
     }
@@ -21,17 +21,17 @@ class Page8 extends AnimationPage{
 
         // create working grid
         const gridYellowLandings = new Grid(gridYellow.id, 4, 4, ["rijndael-cell"])
-        const gridYellowMovables = gridYellowLandings.createMovables("page-10-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("shiftRowsGrid", gridYellowMovables.movables)
+        const gridYellowMovables = gridYellowLandings.createMovables("page-10-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("after-mix-columns-1", gridYellowMovables.movables)
 
         // create result movables 
-        const gridResultMovables = gridYellowLandings.createMovables("page-10-grid-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--pink"])
-        DataController.subscribe("shiftRowsGrid", gridResultMovables.movables)
+        const gridResultMovables = gridYellowLandings.createMovables("page-10-grid-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--delta"])
+        this.subscribeTo("after-add-round-key-1", gridResultMovables.movables)
 
         // create round key grid
         const gridRoundKeyLandings = new Grid(gridRoundKey.id, 4, 4, ["rijndael-cell"])
-        const gridRoundKeyMovables = gridRoundKeyLandings.createMovables("page-10-round-key-movables", ["rijndael-movable-cell", "rijndael-movable-cell--pink"])
-        DataController.subscribe("shiftRowsGrid", gridRoundKeyMovables.movables)
+        const gridRoundKeyMovables = gridRoundKeyLandings.createMovables("page-10-round-key-movables", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        this.subscribeTo("key-1", gridRoundKeyMovables.movables)
 
         // create landings 
         const equationLeftLandings = new Grid(equationLeft.id, 4, 1, ["rijndael-cell"])

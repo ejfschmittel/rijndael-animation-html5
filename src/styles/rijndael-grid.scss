@@ -17,7 +17,7 @@
 .page-14-cell{
     width: 2.2rem;
     height: 1.6rem;
-    border: 1px solid #333;
+  
     
 
     @media screen and (max-width: 800px) {
@@ -56,18 +56,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #333;
+    color: #333;
 
-    &--yellow{
-        background: #FFF997;
-        border: 1px solid #333;
-        color: #333;
+
+    &--alpha{
+        background: var(--grid-background-alpha);
     }
 
+    &--beta{
+        background: var(--grid-background-beta)
+    }
 
-    &--yellow-dark{
-        background: #FFCA61;
-        border: 1px solid #333;
-        color: #333;
+    &--gamma{
+        background: var(--grid-background-gamma);
+    }
+
+    &--delta{
+        background: var(--grid-background-delta);
+    }
+
+    &--eta{
+        background: var(--grid-background-eta);
     }
 
     &--pink{
@@ -76,17 +86,7 @@
         color: #333;
     }
 
-    &--blue{
-        background: #008FFF;
-        border: 1px solid #333;
-        color: #333;
-    }
-
-    &--grey{
-        background: #aaa;
-        border: 1px solid #333;
-        color: #333;
-    }
+    
 }
 
 .rijndael-cell{

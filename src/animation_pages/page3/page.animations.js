@@ -3,25 +3,27 @@ import {gsap} from "gsap"
 import Grid from "../../components/Grid"
 import SVGArrow, {ARROW_DIRECTION} from "../../components/SVGArrow"
 
-import DataController from "../../core/DataController"
+
 
 import "./page.styles.scss"
 
 class Page3 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){
         const {gridYellow, gridBlue, arrowBlue, arrowYellow} = this.pageElements
 
         const gridYellowLandings = new Grid(gridYellow.id, 4,4, ["rijndael-cell"])
-        const gridYellowMovables = gridYellowLandings.createMovables("rijndael-page-3-grid-yellow", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("block-1-input-state", gridYellowMovables.movables)
+        const gridYellowMovables = gridYellowLandings.createMovables("rijndael-page-3-grid-yellow", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("initial-state", gridYellowMovables.movables)
+ 
 
         const gridBlueLandings = new Grid(gridBlue.id, 4,4, ["rijndael-cell"])
-        const gridBlueMovables = gridBlueLandings.createMovables("rijndael-page-3-grid-blue", ["rijndael-movable-cell", "rijndael-movable-cell--blue"])
-        DataController.subscribe("key", gridBlueMovables.movables)
+        const gridBlueMovables = gridBlueLandings.createMovables("rijndael-page-3-grid-blue", ["rijndael-movable-cell", "rijndael-movable-cell--beta"])
+        this.subscribeTo("key-0", gridBlueMovables.movables)
+      
 
         const arrowBlueSVG = new SVGArrow(arrowBlue.id, ARROW_DIRECTION.ARROW_BOT)
 
@@ -53,13 +55,20 @@ class Page3 extends AnimationPage{
 
         const obj = {val: 0}
         const tl = gsap.timeline();
+
+        const gridYellowColor = this.getColor("--grid-background-alpha")
+        const gridBlueColor = this.getColor("--grid-background-beta")
+
         tl.to(obj, {val: 1, duration: .00001})
 
         tl.set([title, subtitleYellow, subtitleBlue, gridYellow, gridBlue, charA, charB, arrowBlue, arrowYellow, textBlue, textYellow], {
             opacity: 0
         })
-        tl.set(gridYellowMovables.movables, {color: "#FFF997"})
-        tl.set(gridBlueMovables.movables, {color: "#008FFF"})
+
+
+
+        tl.set(gridYellowMovables.movables, {color: gridYellowColor})
+        tl.set(gridBlueMovables.movables, {color: gridBlueColor})
 
         return tl;
     }

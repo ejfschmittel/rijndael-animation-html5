@@ -1,22 +1,25 @@
 
 import Component from "./Component"
 import Grid from "./Grid"
-import DataController from "../core/DataController"
+
 
 class GridOverview extends Component{
-    constructor(id){
+    constructor(id, page){
         super(id)
 
+        this.page = page;
         this.rows = []
     }
 
 
-    addGridRow(rowIndex,title, info=[]){
+    addGridRow(rowIndex,titleLangKey, info=[]){
 
         // create title
         const rowTitle = document.createElement("div")
         rowTitle.classList.add("rijndael-grid-overview__row-title")
-        rowTitle.innerHTML = title;
+    
+        rowTitle.dataset.lang = titleLangKey
+
         rowTitle.style.gridArea = `${rowIndex} / 1 / ${rowIndex} /  1`
         this.component.appendChild(rowTitle)
 
@@ -25,7 +28,7 @@ class GridOverview extends Component{
 
         const defaultInfo = {
             dataKey: "dummyGrid",
-            classes: ["rijndael-movable-cell", "rijndael-movable-cell--yellow"]
+            classes: ["rijndael-movable-cell", "rijndael-movable-cell--alpha"]
         }
 
         // create first 4 grids
@@ -46,7 +49,7 @@ class GridOverview extends Component{
             const grid = new Grid(gridContainer.id, 4, 4, ["rijndael-cell", "rijndael-cell--tiny"])
             const movables = grid.createMovables(`${grid.id}-movables`, classes)
             if(dataKey)
-                DataController.subscribe(dataKey, movables.movables)
+                this.page.subscribeTo(dataKey, movables.movables)
 
 
             rowGrids.push(gridContainerContainer)
@@ -89,7 +92,7 @@ class GridOverview extends Component{
         const grid = new Grid(gridContainer.id, 4, 4, ["rijndael-cell", "rijndael-cell--tiny"])
         const movables = grid.createMovables(`${grid.id}-movables`, classes)
         if(dataKey)
-                DataController.subscribe(dataKey, movables.movables)
+                this.page.subscribeTo(dataKey, movables.movables)
         rowGrids.push(gridContainerContainer)
 
 

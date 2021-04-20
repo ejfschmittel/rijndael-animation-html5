@@ -4,8 +4,8 @@ import {gsap} from "gsap"
 import "./page.styles.scss"
 
 class Page6 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){
@@ -22,7 +22,7 @@ class Page6 extends AnimationPage{
         const tl = gsap.timeline()
         tl.to(obj, {val: 1, duration: .00001})
         tl.set([labelContainer, title], {x: "-200", opacity: 1})
-        tl.set(labels, {scale: .5})
+        tl.set(labelContainer, {scale: .5})
         return tl;
     }
 
@@ -31,7 +31,7 @@ class Page6 extends AnimationPage{
 
         const tl = gsap.timeline({}) 
         tl.to([labelContainer, title], {x: 0, opacity: 1, duration: 1.5}, this.getAutoLabel())
-        tl.to(labels, {scale: 1, duration: 1.5},  "<", this.getAutoLabel())
+        tl.to(labelContainer, {scale: 1, duration: 1.5},  "<", this.getAutoLabel())
         return tl;
     }
 

@@ -31,7 +31,18 @@ export const getRandomHexVal = (length=2) => {
 }
 
 export function toHex(d) {
-    return  (Number(d).toString(16)).slice(-2).toUpperCase()
+    const hexString =  (Number(d).toString(16)).slice(-2).toUpperCase()
+    return hexString.length == 1 ? "0"+hexString : hexString;
+}
+
+
+export function toHexString(d) {
+    return (Number(d).toString(16)).slice(-2).toUpperCase()
+}
+
+
+export function intToHexStringArray(intArray){
+    return intArray.map(num => toHex(num))
 }
 
 export const hexStringToInt = (hex) => {

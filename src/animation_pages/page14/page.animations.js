@@ -2,7 +2,7 @@ import AnimationPage from "../../core/AnimationPage"
 import Grid from "../../components/Grid"
 import {gsap} from "gsap"
 
-import DataController from "../../core/DataController"
+
 import SBox from "../../components/LookupTable"
 
 import {shiftArray} from "../../utils/utils"
@@ -21,7 +21,6 @@ class Page14 extends AnimationPage{
       
         const { primaryGridsOne, primaryGridsTwo, primaryGridsThree, primaryGridsFour, finalGrid} = this.pageElements
 
-        console.log(this.pageElements)
 
         const primaryLandingsOne = new Grid(primaryGridsOne.id, 4,4, ["page-14-cell"])
         const primaryLandingsTwo = new Grid(primaryGridsTwo.id, 4,4, ["page-14-cell"])
@@ -30,32 +29,32 @@ class Page14 extends AnimationPage{
         const primaryLandings = [primaryLandingsOne, primaryLandingsTwo, primaryLandingsThree, primaryLandingsFour]
   
 
-        const pgOneMovablesOg = primaryLandingsOne.createMovables("pg-one-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--blue"])
-        const pgOneMovablesTransforms = primaryLandingsOne.createMovables("pg-one-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--blue"])
-        DataController.subscribe("key", pgOneMovablesOg.movables)
-        DataController.subscribe("key", pgOneMovablesTransforms.movables)
+        const pgOneMovablesOg = primaryLandingsOne.createMovables("pg-one-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--beta"])
+        const pgOneMovablesTransforms = primaryLandingsOne.createMovables("pg-one-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--beta"])
+        this.subscribeTo("key-0", pgOneMovablesOg.movables)
+        this.subscribeTo("key-0", pgOneMovablesTransforms.movables)
 
-        const pgTwoMovablesOg = primaryLandingsTwo.createMovables("pg-two-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        const pgTwoMovablesTransforms = primaryLandingsTwo.createMovables("pg-two-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        DataController.subscribe("round-key-1", pgTwoMovablesOg.movables)
-        DataController.subscribe("round-key-1", pgTwoMovablesTransforms.movables)
+        const pgTwoMovablesOg = primaryLandingsTwo.createMovables("pg-two-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        const pgTwoMovablesTransforms = primaryLandingsTwo.createMovables("pg-two-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        this.subscribeTo("key-1", pgTwoMovablesOg.movables)
+        this.subscribeTo("key-1", pgTwoMovablesTransforms.movables)
 
-        const pgThreeMovablesOg = primaryLandingsThree.createMovables("pg-three-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        const pgThreeMovablesTransforms = primaryLandingsThree.createMovables("pg-three-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        DataController.subscribe("round-key-2", pgThreeMovablesOg.movables)
-        DataController.subscribe("round-key-2", pgThreeMovablesTransforms.movables)
+        const pgThreeMovablesOg = primaryLandingsThree.createMovables("pg-three-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        const pgThreeMovablesTransforms = primaryLandingsThree.createMovables("pg-three-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        this.subscribeTo("key-2", pgThreeMovablesOg.movables)
+        this.subscribeTo("key-2", pgThreeMovablesTransforms.movables)
 
-        const pgFourMovablesOg = primaryLandingsFour.createMovables("pg-four-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        const pgFourMovablesTransforms = primaryLandingsFour.createMovables("pg-four-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        DataController.subscribe("round-key-3", pgFourMovablesOg.movables)
-        DataController.subscribe("round-key-3", pgFourMovablesTransforms.movables)
+        const pgFourMovablesOg = primaryLandingsFour.createMovables("pg-four-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        const pgFourMovablesTransforms = primaryLandingsFour.createMovables("pg-four-movables-transforms", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        this.subscribeTo("key-3", pgFourMovablesOg.movables)
+        this.subscribeTo("key-3", pgFourMovablesTransforms.movables)
 
         const pgMovablesOg = [pgOneMovablesOg, pgTwoMovablesOg, pgThreeMovablesOg, pgFourMovablesOg] 
         const pgMovablesTransforms = [pgOneMovablesTransforms, pgTwoMovablesTransforms, pgThreeMovablesTransforms, pgFourMovablesTransforms]
 
         const finalGridLandings = new Grid(finalGrid.id, 4,4, ["page-14-cell"])
-        const finalGridMovables = finalGridLandings.createMovables("pg-four-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--grey"])
-        DataController.subscribe("round-key-10", finalGridMovables.movables)
+        const finalGridMovables = finalGridLandings.createMovables("pg-four-movables-og", ["rijndael-movable-cell", "rijndael-movable-cell--eta"])
+        this.subscribeTo("key-10", finalGridMovables.movables)
 
 
         const {secondaryGridsOne, secondaryGridsTwo, secondaryGridsThree, secondaryGridsFour} = this.pageElements
@@ -72,16 +71,16 @@ class Page14 extends AnimationPage{
 
         const {rconContainer} = this.pageElements
         const rcon = new Grid(rconContainer.id, 4, 10, ["page-14-rcon-cell"])
-        const rconMovables = rcon.createMovables("rcon-container", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("rcon", rconMovables.movables)
+        const rconMovables = rcon.createMovables("rcon-container", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("rcon", rconMovables.movables)
 
 
         const {sboxContainer} = this.pageElements;
         const sbox = new SBox(sboxContainer.id)
-        DataController.subscribe("sBox", sbox.gridMovables.movables)
+        this.subscribeTo("sbox", sbox.gridMovables.movables)
 
-        const substitutionMovables = primaryLandingsOne.createMovables("subsitution-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("round-key-10", substitutionMovables.movables)
+        const substitutionMovables = primaryLandingsOne.createMovables("subsitution-movables", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("key-shedule-subbed-bytes", substitutionMovables.movables)
 
        
       

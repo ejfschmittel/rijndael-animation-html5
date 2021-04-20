@@ -1,34 +1,31 @@
-import AnimationPage from "../../core/AnimationPage"
-
 import {gsap} from "gsap"
-
+import AnimationPage from "../../core/AnimationPage"
 import Grid from "../../components/Grid"
 import LookupTable from "../../components/LookupTable"
-import DataController from "../../core/DataController"
-
-
 import {hexStringToInt} from "../../utils/conversions"
 
 import "./page.styles.scss"
 
 class Page7 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){
         const {grid, sbox} = this.pageElements
 
         const gridLandings = new Grid(grid.id, 4,4 ,["rijndael-cell"])
-        const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("block-0-add-round-key-initial", gridMovables.movables)
+        const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("after-initial-round", gridMovables.movables)
 
-        const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--yellow-dark"])
-        DataController.subscribe("block-0-sub-bytes-1", gridResultsMovables.movables)
+        const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--gamma"])
+        this.subscribeTo("after-sub-bytes-1", gridResultsMovables.movables)
        
 
         const Sbox = new LookupTable(sbox.id)
-        DataController.subscribe("sBox", Sbox.gridMovables.movables)
+
+    
+        this.subscribeTo("sbox", Sbox.gridMovables.movables)
       
 
 

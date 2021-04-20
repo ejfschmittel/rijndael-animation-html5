@@ -47,3 +47,15 @@ export const shiftArray = (array, places) =>{
     const arrayCopy = [...array];
     return arrayCopy.concat(arrayCopy.splice(0, places)) 
 }
+
+
+export const updateContainerLocale = (container, locale) => {
+    const languageNodes = container.querySelectorAll("[data-lang]")
+    languageNodes.forEach(element => {
+        const langDataKey = element.dataset["lang"]
+        if(langDataKey in locale){
+            element.innerHTML = locale[langDataKey]
+        }
+    })
+}
+

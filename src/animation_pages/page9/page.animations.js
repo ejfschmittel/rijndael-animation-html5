@@ -1,13 +1,13 @@
 import AnimationPage from "../../core/AnimationPage"
 import Grid from "../../components/Grid"
-import DataController from "../../core/DataController"
+
 import {gsap} from "gsap"
 
 import "./page.styles.scss"
 
 class Page9 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){
@@ -15,17 +15,17 @@ class Page9 extends AnimationPage{
 
         // create a landing
         const gridLandings = new Grid(grid.id, 4,4, ["rijndael-cell"])
-        const gridMovablesYellow = gridLandings.createMovables("grid-page-9-yellow", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        const gridMovablesPink = gridLandings.createMovables("grid-page-9-pink", ["rijndael-movable-cell", "rijndael-movable-cell--pink"])
-        DataController.subscribe("shiftRowsGrid", gridMovablesYellow.movables)
-        DataController.subscribe("shiftRowsGrid", gridMovablesPink.movables)
+        const gridMovablesYellow = gridLandings.createMovables("grid-page-9-yellow", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        const gridMovablesPink = gridLandings.createMovables("grid-page-9-pink", ["rijndael-movable-cell", "rijndael-movable-cell--delta"])
+        this.subscribeTo("after-shift-rows-1", gridMovablesYellow.movables)
+        this.subscribeTo("after-mix-columns-1", gridMovablesPink.movables)
 
 
         // create galois field
 
         const galoisLandings = new Grid(galoisField.id, 4, 4, ["rijndael-cell"])
         const galoisMovables = galoisLandings.createMovables("grid-page-9-galois", ["rijndael-movable-cell", ])
-        DataController.subscribe("galoisField", galoisMovables.movables)
+        this.subscribeTo("galois-field", galoisMovables.movables)
 
 
         // equation column landings

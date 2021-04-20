@@ -12,8 +12,8 @@ import "./page.styles.scss"
 
 
 class Page5 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
     }
 
     init(){

@@ -1,63 +1,16 @@
 
 
-/*
-    Manages Data displayed in the animation
-    works by subscribing to dat 
-
-    this.store: {key: [...data]}
-    this.subscriptions: {key: [...subscribedElements]}
-
-    
-*/
-
-import {hexStringToInt} from "../utils/conversions"
-
-import {getRandomHexValueList} from "../utils/conversions"
 const zeros = [...new Array(30)].map(() => "00")
-
 const INITIAL_DATA = {
-    "dummyGrid": getRandomHexValueList(16, 2),
-
-
-    "shiftRowsGrid": getRandomHexValueList(16, 2),
-
-    "subBytesInput": getRandomHexValueList(16, 2),
-
-    "state": getRandomHexValueList(16, 2),
-
-    "cipherKey": getRandomHexValueList(16, 2),
- 
-    "sbox": getRandomHexValueList(16 * 16, 2),
+    "galois-field": ["02", "03", "01", "01", "01", "02", "03", "01", "01", "01", "02", "03", "03", "01", "01", "02"],
     "rcon": ["01", "02", "04", "08", "10", "20", "40", "80", "1b", "36", ...zeros],
-    "galoisField": ["02", "03", "01", "01", "01", "02", "03", "01", "01", "01", "02", "03", "03", "01", "01", "02"]
 }
 
 class DataController{
 
     constructor(){
         this.store = {...INITIAL_DATA}
-        this.subscriptions = {}
-
-        const sBoxData = this.getData("sbox")
-        const subBytesInput = this.getData("subBytesInput")
-
-
-        const results = subBytesInput.map(vals => {
-            const hexX = hexStringToInt(vals[0])
-            const hexY = hexStringToInt(vals[1])
-
-            const cellIdx = hexX * 16 + hexY;
-
-            return  sBoxData[cellIdx];
-        })
-
-        console.log(results)
-        this.updateStore("subBytesResult", results)
-        
-
-
-
-       
+        this.subscriptions = {} 
     }
 
 
@@ -68,17 +21,13 @@ class DataController{
             ...this.subscriptions,
             [key]: [...oldSubscriptions, elements]
         }
-
-        // set data for just subscribed elements
+  
         this.setSubscriberData(this.getData(key), elements)
     }
 
     callSubscribers(key){
         const data = this.getData(key)
         const subscribers = this.getSubscribers(key)
-
-
-  
 
         subscribers.forEach(elements => {
             this.setSubscriberData(data, elements)
@@ -89,6 +38,8 @@ class DataController{
     setSubscriberData(data, elements){
         // transform to array
         elements = Array.isArray(elements) ? elements : [elements]
+
+
 
         elements.forEach((element, idx) => {
             const elementDisplayData = Array.isArray(data) ? data[idx] : data;
@@ -124,10 +75,10 @@ class DataController{
 
     getData(key){
         if(!key in this.store) throw new Error(`key '${key}' not found in data store.`)
-        return this.store[key]
+        return this.store[key] || 0
     }
 
 }
 
-// singelton data controller
-export default new DataController();
+
+export default DataController;

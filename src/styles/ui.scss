@@ -1,0 +1,420 @@
+
+
+.ui{
+
+    display: grid;
+    background: #888;
+
+    grid-template-rows: 600px 3rem 16rem 26rem;
+    grid-template-columns: 12rem 1fr 8rem;
+
+    grid-template-areas: 
+        "screen screen screen"
+        "menuleft menu menuright"
+        "info info info"
+        "form form form"
+    ; 
+
+    @include respond("tab-port"){
+        height: 100vh;
+
+
+        grid-template-rows: 1fr 3rem 3rem;
+        grid-template-columns: 1fr 1fr;
+    
+        
+        grid-template-areas: 
+            "screen screen"
+            "menutwo menutwo"
+            "menuleft menuright"
+        ;
+    }
+
+
+    &__page{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        overflow: hidden;
+    }
+    
+    &__screen{
+        background:  var(--screen-bg);
+        grid-area: screen;
+  
+        position: relative;
+
+        &::before{
+            content: "loading...";
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    &__settings{
+        grid-area: screen;
+        display: none;
+        z-index: 5;  
+        padding: 1rem;
+        background: rgba(85, 85, 85, 0.8);
+        
+    }
+    
+    &__settings-btn{
+        grid-area: menuright;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 1rem;
+        align-items: center;
+
+    }
+    
+    &__controlls{
+        padding: 0rem 1rem;
+        grid-area: menuleft;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    
+        
+    }
+
+    &__controlls .controlls__btn{
+        margin-right: .5rem;
+    }
+    
+    &__form{
+        grid-area: form;
+        padding: 1rem;
+        z-index: 5;
+
+
+        @include respond("tab-port"){
+            grid-area: screen;
+        }
+
+    }
+    
+    &__info{
+        background: #888;
+        grid-area: info;
+        padding: 1rem;
+
+        @include respond("tab-port"){
+            grid-area: screen;
+        }
+    }
+    
+    &__navigations{
+        z-index: 5;
+        grid-area: menu;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        @include respond("tab-port"){
+            padding: 1rem;
+            grid-area: screen;    
+            
+        }
+    }
+
+    &__mobile-btns{
+        grid-area: menutwo;
+        display: none;
+    
+
+        @include respond("tab-port"){
+            display: flex;
+            background: #f00;
+        }
+    }
+
+    &__btn{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #aaa;
+        background: #333;
+        color: #fff;
+        cursor: pointer;
+
+        &--selected{
+            background: #555;
+        }
+    }
+    
+    &--hidden{
+        display: block;
+
+        @include respond("tab-port"){
+            grid-area: screen;
+           
+        }
+    }
+}
+
+.info{
+    display: none;
+
+    padding: 1rem;
+
+    &__title{
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    &__body{
+        line-height: 1.6rem;
+        font-size: 1rem;
+    }
+}
+
+
+.navigation{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+
+
+    @include respond("tab-port"){
+        width: 100%;
+        display: block;
+        background: #fff;
+       
+      
+        position: absolute;
+       
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: none;
+    }
+
+}
+
+
+
+
+.ui-container{
+    @include respond("tab-port"){
+        width: 100%;
+        height: 100%;
+        background: rgba(85,85,85,.8);
+        z-index: 5;
+        display: none;
+       
+    }
+   
+
+    &--display{
+        display: flex;
+    }
+}
+ 
+
+
+ 
+
+
+.info-container{
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+.controlls{
+
+    display: flex;
+    width: 100%;
+
+
+    &__btn{
+        position: relative;
+        background: #333;
+        display: flex;
+        border-radius: 50%;
+        width: 2.4rem;
+        height: 2.4rem;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      
+        user-select: none;
+        border: none;
+        outline: none;
+
+    
+        & svg{
+            width: 1rem;
+            height: 1rem;
+            fill: #fff;
+          
+        }
+    }
+
+    &__play-icon{
+        display: none;
+    }
+
+    &__pause-icon{
+        display: block;
+    }
+
+
+    &__play-btn--paused &__play-icon{
+        display: block;
+    }
+
+    &__play-btn--paused &__pause-icon{
+        display: none;
+    }
+
+
+
+}
+
+
+.navigation-item{
+
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    margin: .1rem 0;
+    cursor: pointer;
+
+    @include respond("tab-port"){
+       width: 100%;
+       height: auto;
+      
+       
+       justify-content: flex-start;
+       height: auto;
+       padding: 1rem 2rem;
+     
+    }
+
+
+    &--current{
+        background: #555;
+    }
+
+    &__number{
+        @include respond("tab-port"){
+            display: none;
+           
+       
+         }
+    }
+
+    &__title{
+        display: none;
+
+        @include respond("tab-port"){
+            display: block;
+         }
+    }
+}
+
+
+.rijndael-form{
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+
+    &__form{
+
+    }
+
+    &__title{
+        font-size: 2rem;
+      
+    }
+
+    &__info{
+        margin: 1rem 0;
+    }
+
+    &__row{
+        display: flex;
+        flex-direction: column;
+        padding: .1rem;
+        margin-bottom: 1rem;
+
+        & > input{
+            padding: .5rem 1rem;
+        }
+
+        
+    }
+
+    &__button{
+        font-size: 1rem;
+        font-weight: bold;
+        padding: .3rem 1rem;
+        cursor: pointer;
+    }
+}
+
+
+.settings{
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    
+  
+
+    &__title{
+        font-size: 2.4rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #aaa;
+
+        max-width: 40rem;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    &__section{
+        width: 100%;
+        padding: 1rem;
+        margin: 1rem 0;
+        background: #eee;
+        border-bottom: 1px solid #aaa;
+       
+   
+        display: flex;
+        align-items: center;
+        max-width: 40rem;
+        margin: 1rem auto;
+    }
+
+    &__section-input{
+        padding: .5rem 2rem;
+        font-size: 1.2rem;
+        flex: 1;
+    }
+
+    &__section-label{
+        min-width: 14rem;
+        font-weight: bold;
+    }
+}

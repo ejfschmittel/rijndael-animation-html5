@@ -7,13 +7,12 @@ import {shiftArray} from "../../utils/utils"
 import Grid from "../../components/Grid"
 
 
-import DataController from "../../core/DataController"
 
 import "./page.styles.scss"
 
 class Page8 extends AnimationPage{
-    constructor(id, locale){
-        super(id, locale)
+    constructor(){
+        super()
 
         this.FADE_OUT_DELAY = 0;
     }
@@ -27,8 +26,8 @@ class Page8 extends AnimationPage{
 
         // create a landing
         const gridLandings = new Grid(grid.id, 4,4, ["rijndael-cell"])
-        const gridMovables = gridLandings.createMovables("grid-page-8", ["rijndael-movable-cell", "rijndael-movable-cell--yellow"])
-        DataController.subscribe("shiftRowsGrid", gridMovables.movables)
+        const gridMovables = gridLandings.createMovables("grid-page-8", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
+        this.subscribeTo("after-sub-bytes-1", gridMovables.movables)
 
 
         this.addToPageElements({
