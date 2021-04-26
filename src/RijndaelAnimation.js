@@ -31,6 +31,7 @@ class RijndaelAnimation extends AnimationController {
     constructor(){
         super(SETTINGS)
 
+        console.time("create")
         this.registerAnimationPage(Page1, "page-1")
         this.registerAnimationPage(Page2, "page-2")
         this.registerAnimationPage(Page3, "page-3")
@@ -50,15 +51,9 @@ class RijndaelAnimation extends AnimationController {
         this.buildTimeline()
 
         this.goToFirstPage();
-        this.timeline.goToPage("page-4")
-   
-  
-     
-        console.log(this.timeline.tl)
+        //this.timeline.goToPage("page-4")
+        console.timeEnd("create")
 
-
-
-        //this.timeline.tl.seek("page-1-animation-out",false)
     }
 }
 
