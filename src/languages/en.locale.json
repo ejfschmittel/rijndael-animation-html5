@@ -10,8 +10,8 @@
     "settingsJumpLabel": "Jump duration (seconds)",
     "settingsLanguageLabel": "Language",
 
-    "themeOptionStandard": "Default",
-    "themeOptionTest": "Test",
+    "themeOptionDefault": "Default",
+    "themeOptionNew": "Test",
     
     "languageOptionEN": "English",
     "languageOptionDE": "German",

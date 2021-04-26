@@ -69,6 +69,7 @@ class RijndaelFormController{
                     }
                     return;
 
+           
                 case "sbox":
                     temp[key] = intToHexStringArray(val)
            
@@ -137,7 +138,7 @@ class RijndaelFormController{
             // call data controller to update
             console.log("update datacontroller")
             console.log(preparedInfo)
-            this.controller.dataController.updateStoreByObject(preparedInfo)
+            this.controller.data.updateStoreByObject(preparedInfo)
         }
     }
 }

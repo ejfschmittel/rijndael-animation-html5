@@ -10,8 +10,8 @@
     "settingsJumpLabel": "Sprungweite (sekunden)",
     "settingsLanguageLabel": "Sprache",
 
-    "themeOptionStandard": "Standard",
-    "themeOptionTest": "Test",
+    "themeOptionDefault": "Default",
+    "themeOptionNew": "Test",
     
     "languageOptionEN": "Englisch",
     "languageOptionDE": "Deutsch",

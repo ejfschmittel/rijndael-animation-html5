@@ -149,7 +149,7 @@ class AnimationTimeline{
 
         if(this.tl.totalTime() == this.tl.totalDuration()) return;
 
-        this.controller.uiController.showPauseIcon();
+        this.controller.ui.showPauseIcon();
         this.tl.resume();
     }
 
@@ -163,7 +163,7 @@ class AnimationTimeline{
     }
 
     pause(){
-        this.controller.uiController.showPlayIcon();
+        this.controller.ui.showPlayIcon();
         this.tl.pause();
     }
 

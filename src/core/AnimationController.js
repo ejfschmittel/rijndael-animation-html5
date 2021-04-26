@@ -3,45 +3,37 @@ import AnimationTimeline from "./AnimationTimeline.js"
 import DataController from "./DataController.js"
 import MovablesController from "./MovablesController.js"
 import FormController from "./RijndaelFormController.js"
-
-import LOCALES from "../languages"
-
-
-
-const THEME_DEFAULT = "default";
-const THEME_TEST = "test"
-
-const THEME_LIST = [THEME_DEFAULT, THEME_TEST]
+import ThemeController from "./ThemeController.js"
+import LocaleController from "./LocaleController"
 
 
 
-const THEMES = {
-    [THEME_DEFAULT]: ["theme"],  
-    [THEME_TEST]: ["theme", "theme--test"],
-}
+
+
 
 class AnimationController{
 
-    constructor(){
+    constructor(settings){
+
+        this.settings = settings;
 
         this.pageIDs = [];
         this.pagesByID = {}
-       // this.pageNames = {}
         this.currentPage = null;
 
         this.isResizing = false;
-
-        this.currentLocaleCode = document.documentElement.lang;
-
-        this.currentTheme = THEME_DEFAULT;
-        this.themeElement = document.querySelector("body")
        
 
-        this.dataController = new DataController(this)
-        this.movablesController = new MovablesController(this);
-        this.timelineController = new AnimationTimeline(this); 
-        this.uiController = new AnimationPlayerUI(this);  
-        this.FormController = new FormController(this)
+      
+    
+        this.locale = new LocaleController(this, settings.locale)
+        this.theme = new ThemeController(this, settings.themes)
+        this.movables = new MovablesController(this);
+        this.data = new DataController(this)
+        this.timeline = new AnimationTimeline(this); 
+        this.ui = new AnimationPlayerUI(this);  
+        this.form = new FormController(this)
+
 
         // add resize event listener
         const onResize = this.onResize.bind(this)
@@ -54,7 +46,7 @@ class AnimationController{
 
     onResize(){
         this.isResizing = true;
-        this.timelineController.onResize();
+        this.timeline.onResize();
        
     }
 
@@ -66,11 +58,11 @@ class AnimationController{
 
     setCurrentPage(pageID){
         this.currentPage = pageID;
-        this.uiController.updateCurrentPageUI(pageID)
+        this.ui.updateCurrentPageUI(pageID)
     }
 
 
-    setLocale(localeCode){
+  /*  setLocale(localeCode){
         console.log("set localse")
         if(this.currentLocaleCode === localeCode) return;
         if(!Object.keys(LOCALES).includes(localeCode)) throw new Error(`locale code ${localeCode} not supported`)
@@ -113,47 +105,46 @@ class AnimationController{
 
     getLocale(){
         return LOCALES[this.currentLocaleCode]
-    }
+    }*/
 
 
     play(){
-        this.timelineController.play()
+        this.timeline.play()
     }
 
     pause(){
-        this.timelineController.pause();
+        this.timeline.pause();
     }
 
     goToFirstPage(){
-        this.timelineController.tl.seek(`${this.pageIDs[0]}-animation-main`, false)
+        this.timeline.tl.seek(`${this.pageIDs[0]}-animation-main`, false)
     }
 
 
-    registerAnimationPage(AnimationPageClass, pageID, pageName=null){
+    registerAnimationPage(AnimationPageClass, pageID){
         const animationPage = new AnimationPageClass() 
       
         animationPage.initPage(pageID, this)
         this.pageIDs.push(pageID)
         this.pagesByID[pageID] = animationPage;
-        //this.pageNames[pageID] = pageName ? pageName : pageID;
 
         // hide pages
         animationPage.hide();
 
-        this.uiController.addInfoText(pageID, pageName, animationPage.getInfoText());
+        this.ui.addInfoText(pageID);
 
     }
 
 
     buildTimeline(){
   
-        this.movablesController.resetMovedElement();
+        this.movables.resetMovedElement();
         // create timline
-        this.timelineController.createTimeline();
+        this.timeline.createTimeline();
 
-        this.movablesController.resetMovedElement();
+        this.movables.resetMovedElement();
         // update menu 
-        this.uiController.recreateNavigation()
+        this.ui.recreateNavigation()
  
     }
 

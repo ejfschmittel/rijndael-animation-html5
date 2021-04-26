@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = merge(common, {
     mode: "development",
     output: {
-        filename: "test.bundle.js",
+        filename: "rijndael.bundle.js",
         path: path.resolve(__dirname, "dist")
     },
     devServer: {

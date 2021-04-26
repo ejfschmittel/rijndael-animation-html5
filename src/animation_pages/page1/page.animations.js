@@ -15,7 +15,7 @@ class Page1 extends AnimationPage{
 
     updateLocaleLanguageTexts(){
 
-        const locale = this.controller.getPageLocale(this.id)
+        const locale = this.controller.locale.getPageLocale(this.id)
 
         const languageNodes = this.page.querySelectorAll("[data-lang]")
         languageNodes.forEach((element, idx) => {

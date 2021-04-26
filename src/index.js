@@ -1,5 +1,5 @@
 
-import {gsap} from "gsap"
+/*import {gsap} from "gsap"
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import {MotionPathPlugin} from 'gsap/MotionPathPlugin'
 
@@ -53,5 +53,25 @@ window.addEventListener("load",  () => {
 
     // start animaton
 
+},false); */
+
+
+
+import { CSSPlugin } from 'gsap/CSSPlugin'
+import {MotionPathPlugin} from 'gsap/MotionPathPlugin'
+import {gsap} from "gsap"
+
+import RijndaelAnimation from "./RijndaelAnimation";
+import "./styles/main.scss"
+
+
+
+window.addEventListener("load",function(){
+    gsap.registerPlugin(CSSPlugin)
+    gsap.registerPlugin(MotionPathPlugin)
+
+    
+    const rijndaelAnimation = new RijndaelAnimation();
+   
 },false);
 

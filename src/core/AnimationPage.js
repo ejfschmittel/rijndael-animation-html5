@@ -36,16 +36,6 @@ class AnimationPage{
         this.updateLocaleLanguageTexts();
     }
 
-
-
-    getInfoText = () => {
-        return `
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-        `;
-    }
-
-  
-
     
     // creates a unique dummy label
     getAutoLabel(){      
@@ -78,7 +68,7 @@ class AnimationPage{
 
     updateLocaleLanguageTexts(){
 
-        const locale = this.controller.getPageLocale(this.id)
+        const locale = this.controller.locale.getPageLocale(this.id)
 
         const languageNodes = this.page.querySelectorAll("[data-lang]")
         languageNodes.forEach((element, idx) => {
@@ -136,7 +126,7 @@ class AnimationPage{
 
             const currentParent = movable.parentNode;      
 
-            this.controller.movablesController.registerMovedElement(movable)
+            this.controller.movables.registerMovedElement(movable)
         
             const startPos = getDimensions(movable)
             landing.appendChild(movable)
@@ -179,7 +169,7 @@ class AnimationPage{
 
         const currentParent = movable.parentNode;      
 
-        this.controller.movablesController.registerMovedElement(movable)
+        this.controller.movables.registerMovedElement(movable)
 
        
         const startPos = getDimensions(movable)
@@ -247,7 +237,7 @@ class AnimationPage{
     }
 
     subscribeTo(key, elements){
-        this.controller.dataController.subscribe(key, elements)
+        this.controller.data.subscribe(key, elements)
     }
 
     addToPageElements(object){

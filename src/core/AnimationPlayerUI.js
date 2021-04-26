@@ -22,8 +22,8 @@ const INFO_TEXT_CONTAINER_ID ="rijndael-animation-info"
 
 
 // form
-const LANG_SELECT_INPUT_ID = "rijndael-animation-lang-select";
-const THEME_SELECT_INPUT_ID = "rijndael-animation-theme-select";
+//const LANG_SELECT_INPUT_ID = "rijndael-animation-lang-select";
+//const THEME_SELECT_INPUT_ID = "rijndael-animation-theme-select";
 const JUMP_STEP_INPUT_ID = "rijndael-animation-jump-step-input";
 
 
@@ -54,8 +54,8 @@ class AnimationPlayerUI{
         this.navigationContainer = document.getElementById(NAVIGATION_CONTAINER_ID)
         this.infoContainer = document.getElementById(INFO_TEXT_CONTAINER_ID)
 
-        this.themeSelect = document.getElementById(THEME_SELECT_INPUT_ID)
-        this.langSelect = document.getElementById(LANG_SELECT_INPUT_ID)
+        //this.themeSelect = document.getElementById(THEME_SELECT_INPUT_ID)
+       // this.langSelect = document.getElementById(LANG_SELECT_INPUT_ID)
         this.jumpStepInput = document.getElementById(JUMP_STEP_INPUT_ID)
         
         this.pageInfoTexts = []
@@ -70,7 +70,7 @@ class AnimationPlayerUI{
             this.hideAllOverlays();
             this.higlightButton()
             
-            if(this.controller.timelineController.isPaused()){
+            if(this.controller.timeline.isPaused()){
                 this.controller.play();
             }else{
                 this.controller.pause();
@@ -80,13 +80,13 @@ class AnimationPlayerUI{
         this.forwardsBtn.addEventListener("click", () => {
             this.hideAllOverlays();
             this.higlightButton()
-            this.controller.timelineController.jumpForwards()
+            this.controller.timeline.jumpForwards()
         })
 
         this.backwardsBtn.addEventListener("click", () => {
             this.hideAllOverlays();
             this.higlightButton()
-            this.controller.timelineController.jumpBackwards()
+            this.controller.timeline.jumpBackwards()
         })
 
         this.infoBtn.addEventListener("click", () => {
@@ -113,28 +113,28 @@ class AnimationPlayerUI{
         });
 
 
-        this.themeSelect.addEventListener("change", (e) => {
+       /* this.themeSelect.addEventListener("change", (e) => {
             const theme = e.target.value;
             this.controller.setTheme(theme)
-        })
+        })*/
 
 
-        this.langSelect.value = this.controller.currentLocaleCode;
+        /*this.langSelect.value = this.controller.currentLocaleCode;
         this.langSelect.addEventListener("change", (e) => {
             const localeCode = e.target.value;
             this.controller.setLocale(localeCode)
-        })
+        })*/
 
         this.jumpStepInput.addEventListener("input", (e) => {
 
-            const oldVal = this.controller.timelineController.JUMP_STEP;
+            const oldVal = this.controller.timeline.JUMP_STEP;
             var regexp = /^\d(?:[.,]\d)?$/;
             // returns true
 
             let newVal = e.target.value
 
             if(newVal == ""){
-                this.controller.timelineController.setJumpStep(0.5)
+                this.controller.timeline.setJumpStep(0.5)
                 return;
             }
 
@@ -143,22 +143,14 @@ class AnimationPlayerUI{
             if(newVal != 0 && !regexp.test(newVal)){
                 e.target.value = oldVal
             }else{
-                this.controller.timelineController.setJumpStep(newVal)
+                this.controller.timeline.setJumpStep(newVal)
             }
         })
 
        
     }
 
-    updatePlayerLocale(){
-        const containers = document.querySelectorAll(".ui > div")
-        for(let i = 1; i < containers.length; i++){
-            const container = containers[i]
-            updateContainerLocale(container, this.controller.getLocale())
-        }   
-    }
 
- 
 
 
     getMenuItemTemplate = (index) => {
@@ -198,7 +190,9 @@ class AnimationPlayerUI{
                 
             firstChild.addEventListener("click", () => {
                // this.goToPage(pageID)
-               this.controller.timelineController.goToPage(pageID)
+               this.controller.timeline.goToPage(pageID)
+               this.hideAllOverlays();
+               this.higlightButton()
             })   
           
             this.navigationContainer.appendChild(firstChild)
@@ -219,13 +213,12 @@ class AnimationPlayerUI{
     getInfoLangKey = (pageID) =>  `${pageID}-info`;
 
     addLocaleToElement(key, element){
-        const locale = this.controller.getLocale();
-        const text = locale[key]
+        const text = this.controller.locale.getLocaleText(key);
         element.innerHTML = text;
         element.dataset.lang = key
     }
 
-    addInfoText(pageID, title, text){
+    addInfoText(pageID){
         const pageInfo = document.createElement("div")
 
         pageInfo.innerHTML = this.getInfoTextTemplate(pageID).trim();

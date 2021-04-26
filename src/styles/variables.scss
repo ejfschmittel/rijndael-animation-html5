@@ -45,8 +45,6 @@ $breakpoint-big-desktop: 112.5em; // 1800 px
 }
 
 .theme{
-
-
     --text-light: var(--white);
     --text-dark: var(--black);
 
@@ -63,7 +61,7 @@ $breakpoint-big-desktop: 112.5em; // 1800 px
     /* text */
     --text-color: var(--black);
     --text-color-inverted: var(--white);
-    --text-color-alpha: var(--yellow-dark-3);
+    --text-color-alpha: var(--yellow-3);
     --text-color-beta: var(--);
 
     /* colored labels*/
@@ -78,11 +76,8 @@ $breakpoint-big-desktop: 112.5em; // 1800 px
     --label-bg-highlight-gamma: var(--yellow-7);
     --label-bg-highlight-delta: var(--green-2);
 
-
     /* sbox */
     --sbox-background: var(--white);
-
-    
 
     /* grids */
     --grid-background-alpha: var(--yellow-1);
@@ -94,9 +89,8 @@ $breakpoint-big-desktop: 112.5em; // 1800 px
 
 }
 
-.theme--test{
-    --text-light: var(--dark-grey-3);
-
+.theme--new{
+    --text-color-alpha: var(--red-1);
     --grid-background-alpha: var(--light-grey);
     --grid-background-beta: var(--light-grey);
 }

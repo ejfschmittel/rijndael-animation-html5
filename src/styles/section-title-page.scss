@@ -1,6 +1,4 @@
-
-
-/*.rijndael-section-title-page{
+.rijndael-section-title-page{
     display: flex;
     flex-direction: column;
 
@@ -15,28 +13,26 @@
         &--yellow{
             color: var(--text-color-alpha);
         }
-        &--blue{}
+        &--blue{
+            color: var(--text-color-beta);
+        }
     }
 
     &__content{
         max-width: 20rem;
         font-size: 1rem;
-        color: #fff;
-        
-        @media (max-width: 800px){
-            width: 80%;
-        }
+        color: var(--text-light);   
     }
 }
 
 .rijndael-circled-char{
     font-size: 2rem;
     border-radius: 50%;
-    color: #fff;
-    border: 2px solid #fff;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 4rem;
     height: 4rem;
-}*/
+}
