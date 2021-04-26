@@ -67,6 +67,7 @@ import "./styles/main.scss"
 
 
 window.addEventListener("load",function(){
+    document.body.style.visibility='visible';
     gsap.registerPlugin(CSSPlugin)
     gsap.registerPlugin(MotionPathPlugin)
 
