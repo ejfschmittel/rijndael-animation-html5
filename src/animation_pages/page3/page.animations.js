@@ -5,8 +5,6 @@ import SVGArrow, {ARROW_DIRECTION} from "../../components/SVGArrow"
 
 
 
-import "./page.styles.scss"
-
 class Page3 extends AnimationPage{
     constructor(){
         super()

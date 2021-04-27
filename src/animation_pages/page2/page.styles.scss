@@ -10,9 +10,10 @@
     grid-template-rows: 1fr 3fr 1fr;
     grid-template-columns: 1fr 2fr 1fr;
 
-    @media (max-width: 800px){
+    @include respond("tab-port"){
         grid-template-rows: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 2fr 1rem;    
+        grid-template-columns: 1fr 2fr 1rem; 
+        padding: .3rem;   
     }
 
     &__container{
@@ -31,6 +32,9 @@
         position: relative;
         box-sizing: border-box;
 
+        @include respond("tab-port"){
+            font-size: 1.4rem;
+        }
        
     }
 
@@ -46,6 +50,10 @@
     transform: translate(-50%, -50%);
     
     font-size: 1.1rem;
+
+    @include respond("tab-port"){
+        font-size: .9rem;
+    }
 
     &--vertical{
         writing-mode: vertical-rl;
@@ -65,8 +73,8 @@
     align-items: center;
 
 
-    @media (max-width: 800px){
-        font-size: 1.2rem;   
+    @include respond("tab-port"){
+        font-size: .9rem;   
     }
 
   
@@ -88,7 +96,7 @@
         grid-area: 3 / 2 / 3 / 2;
   
  
-        color: yellow;
+        color: var(--text-color-alpha);
         align-items: center;
 
         span{
@@ -115,12 +123,21 @@
     max-width: 4rem;
     max-height: 8rem;
 
+    @include respond("tab-port"){
+        max-width: 3rem;
+        max-height: 6rem;
+    }
+
 
     &--horizontal{
         max-width: 8rem;
         max-height: 4rem;
 
         
+        @include respond("tab-port"){
+            max-width: 6rem;
+            max-height: 3rem;
+        }
     }
    
 }

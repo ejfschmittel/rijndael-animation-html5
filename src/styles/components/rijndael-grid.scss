@@ -118,10 +118,19 @@
         height: 1.3rem;
         font-size: .5rem;
 
-        @media screen and (max-width: 800px) {
+
+        @include respond("tab-port"){
+            width: 1.4rem;
+            height: 1.2rem;
+        }
+
+        @include respond("phone"){
             width: .9rem;
             height: 1rem;
         }
+
+        
+     
     }
 
    

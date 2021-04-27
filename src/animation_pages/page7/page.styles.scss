@@ -5,19 +5,16 @@
     height: 20rem;
 
 
-    @media (max-width: 800px){
-        width: 27;
-        height: 18; 
+  
+   
+    @include respond("tab-port"){
+
     }
 
-    @media (max-width: 500px){
-        width: 24rem;
-        height: 16rem; 
-    }
-
-    @media (max-width: 400px){
-        width: 100%;
+    @include respond("phone"){
+        width: 98%;
         height: 14rem; 
+        margin: 0 auto;
     }
 
  
@@ -26,12 +23,14 @@
     
 }
 
+
+
 #rijndael-page-7-cell-landing{
     width: 4rem;
     height: 3rem;
     margin: 2rem 0;
 
-    @media (max-width: 800px){
+    @include respond("tab-port"){
         margin: 1rem 0;
     }
 }
@@ -44,6 +43,10 @@
 
     &__left{
         flex: 2;
+
+        @include respond("phone"){
+            flex: auto;
+        }
     }
 
     &__right{
@@ -52,9 +55,11 @@
         flex-direction: column;
         align-items: center;
 
-        @media (max-width: 800px){
+        @include respond("tab-port"){
             flex: 5;
         }
+
+        
     }
 
     @media (max-width: 800px){

@@ -221,6 +221,7 @@ class Rijndael {
       info[`after-add-round-key-${round}`] = state.slice();
     }
   
+    info[`round-10-initial`] = state.slice();
     // Final Round
     this.SubBytes(state);
     info[`after-sub-bytes-10`] = state.slice();

@@ -6,7 +6,7 @@ import {gsap} from "gsap"
 
 import {dashedStringToCammelCase} from "../utils/utils"
 
-import {getDimensions}  from "./MovablesController"
+import {getDimensions, getDimensionsLight}  from "./MovablesController"
 
 class AnimationPage{
     constructor(){
@@ -117,6 +117,51 @@ class AnimationPage{
 
 
 
+    moveToLanding2(movable, landingStart, landingEnd, settings={}){
+        settings = {
+            duration: 1,
+            ...settings,
+        }
+
+      
+        const currentParent = movable.parentNode; 
+      
+        this.controller.movables.registerMovedElement(movable)
+      
+      
+        const startPos = getDimensionsLight(landingStart)
+        const endPos = getDimensionsLight(landingEnd)
+
+     
+ 
+
+    
+        const copy = {}          
+        copy.x =  (startPos.l - endPos.l);
+        copy.y =  (startPos.t - endPos.t);
+        copy.width = startPos.w;
+        copy.height = startPos.h;
+      
+        copy.zIndex = 20;
+
+        const tl = gsap.timeline({
+            onStart: () => {          
+                landingEnd.appendChild(movable)
+            },
+            onReverseComplete: () => {
+                currentParent.appendChild(movable)
+               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
+            }
+        })
+      
+       
+
+       tl.set(movable, copy)           
+       tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, ...settings})
+       tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
+       return tl;
+}
+
 
     moveToLanding(movable, landing, settings={}){
             settings = {
@@ -124,14 +169,21 @@ class AnimationPage{
                 ...settings,
             }
 
-            const currentParent = movable.parentNode;      
-
+          
+            const currentParent = movable.parentNode; 
+          
             this.controller.movables.registerMovedElement(movable)
-        
+          
+            //if(this.id == "page-7") console.time("section-1")
             const startPos = getDimensions(movable)
+          
             landing.appendChild(movable)
+        
             const endPos = getDimensions(movable)
+            //if(this.id == "page-7") console.timeEnd("section-1")
+     
 
+        
             const copy = {}          
             copy.x = endPos.x + (startPos.l - endPos.l);
             copy.y = endPos.y + (startPos.t - endPos.t);
@@ -141,8 +193,7 @@ class AnimationPage{
             copy.zIndex = 20;
 
             const tl = gsap.timeline({
-                onStart: () => {
-                    
+                onStart: () => {          
                     landing.appendChild(movable)
                 },
                 onReverseComplete: () => {
@@ -150,6 +201,7 @@ class AnimationPage{
                    gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
                 }
             })
+          
            
  
            tl.set(movable, copy)           

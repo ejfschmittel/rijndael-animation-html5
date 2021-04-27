@@ -90,6 +90,30 @@ export const getDimensions = (el) => {
 }
 
 
+export const getDimensionsLight = (el) => {
+    let b = el.getBoundingClientRect();
+    //getProp = gsap.getProperty(el);
+
+    return {
+       // sx: getProp("scaleX"),
+        //sy: getProp("scaleY"),
+       // x: getProp("x"),
+        //y: getProp("y"),
+        x: b.left,
+        y: b.top,
+        l: b.left,
+        t: b.top,
+        //w: parseFloat(getProp("width", "px")),
+        //h: parseFloat(getProp("height", "px")),
+        w: b.width,
+        h: b.height,
+      //  css: el.style.cssText,
+        //origin: getComputedStyle(el).transformOrigin.split(" ").map(parseFloat)
+    }
+}
+
+
+
 // main controller for all movables (need to be registered)
 class MovablesController{
     constructor(controller){

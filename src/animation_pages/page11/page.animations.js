@@ -3,7 +3,7 @@ import{gsap} from "gsap"
 import AnimationPage from "../../core/AnimationPage"
 import GridOverview from "../../components/GridOverview"
 
-import "./page.styles.scss"
+
 
 class Page11 extends AnimationPage{
     constructor(){

@@ -18,46 +18,61 @@
 
         .test-container{
             margin-top: 30px;
-            width: 100%;
+           
+          
             max-width: 1080px;
             margin: 0 auto;
+
+            position: relative;
         }
 
-    
+     
         .rijndael-animation-iframe{
+      
             border: none;
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
+            overflow: none;
+            background: #000;
+            z-index: 2;
         }
+
+ 
+    
 
         .rijndael-animation-frame-container{
             width: 100%;
+            height: 500px; 
+            background: #000;
+            position: relative;
         }
 
+
     </style>
+
 
 </head>
 <body>
     <div class="test-container">
 
         <!-- copy over to embedd-->
+
+       
         <div class="rijndael-animation-frame-container" id="test-container">
-            <iframe src="./frame.html" class="rijndael-animation-iframe" onload="onFrameLoad()" id="iframe"></iframe>
+           <iframe src="./frame.html" class="rijndael-animation-iframe" id="iframe" height="600px"></iframe>
         </div>
 
 
         <script>
-            const rijndaelFrameContainer = document.getElementById("test-container")
+             /*const rijndaelFrameContainer = document.getElementById("test-container")
             const iframe = document.getElementById("iframe");
-            rijndaelFrameContainer.style.height =  window.innerHeight + "px";
+            console.log("parent")
+            //rijndaelFrameContainer.style.height =  window.innerHeight + "px";
 
-            const onFrameLoad = () => {
-                resizeContainer();
-            }
-
-            const resizeContainer = () => {
+           const resizeContainer = () => {
+                console.log("resize parent triggered")
                 const width = rijndaelFrameContainer.getBoundingClientRect().width;
                 if(width <= 900){
                     rijndaelFrameContainer.style.height = window.innerHeight + "px";
@@ -68,7 +83,7 @@
 
             window.addEventListener("resize", () => {
                 resizeContainer();
-            })
+            })*/
         </script>
 
     </div>

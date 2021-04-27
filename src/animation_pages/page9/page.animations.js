@@ -3,8 +3,6 @@ import Grid from "../../components/Grid"
 
 import {gsap} from "gsap"
 
-import "./page.styles.scss"
-
 class Page9 extends AnimationPage{
     constructor(){
         super()

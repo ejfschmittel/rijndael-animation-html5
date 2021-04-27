@@ -36,7 +36,7 @@ class RijndaelFormController{
         // add event listener
         this.formButton.addEventListener("click", (e) => {
             e.preventDefault();
-            this.onEcryptClick();
+            this.onEcryptClick(true);
         })
 
         // prime store
@@ -45,7 +45,7 @@ class RijndaelFormController{
 
 
     excuteRijndaelAES({plaintext, key}){
-        const cipher = new Rijndael(key, 'ecb');
+        const cipher = new Rijndael(key, 'ecb'); 
         const [ciphertext, info] = cipher.encrypt(plaintext, 128);
         return [ciphertext, info]
     }
@@ -120,7 +120,7 @@ class RijndaelFormController{
 
     
 
-    onEcryptClick(){
+    onEcryptClick(shouldUpdate=false){
         const formData = this.gatherFormData();
 
         if(this.validateFormData(formData)){
@@ -139,6 +139,8 @@ class RijndaelFormController{
             console.log("update datacontroller")
             console.log(preparedInfo)
             this.controller.data.updateStoreByObject(preparedInfo)
+            if(shouldUpdate)
+                this.controller.timeline.saveAndRebuildTimeline();
         }
     }
 }

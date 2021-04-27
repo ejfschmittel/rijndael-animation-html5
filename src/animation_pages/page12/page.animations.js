@@ -1,6 +1,6 @@
 import AnimationPage from "../../core/AnimationPage"
 
-import "./page.styles.scss"
+
 import{gsap} from "gsap"
 import GridOverview from "../../components/GridOverview"
 import Grid from "../../components/Grid"
@@ -106,7 +106,7 @@ class Page12 extends AnimationPage{
 
         const tl = gsap.timeline();
 
-        tl.to(text, {opacity: 0})
+      
         tl.to(titles, {opacity: 1})
         tl.to(gridOverview.rows[0], {opacity: 1})
         tl.to(gridOverview.rows[1], {opacity: 1})

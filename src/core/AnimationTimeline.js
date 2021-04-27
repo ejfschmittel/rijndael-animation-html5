@@ -23,6 +23,7 @@ class AnimationTimeline{
     }
 
     onResize(){
+        console.log("on resize ")
         if(!this.tlStateBeforeResize){
             this.saveTimelineState();
         }
@@ -48,11 +49,14 @@ class AnimationTimeline{
 
         // record total time on pause
         const time = this.tl.totalTime();
-        const currentLabels = this.getLabelsByTime(time)
 
-        // update to include nested lables
-        this.resetTimelineToLabel(currentLabels.label)
+        let currentLabels = {label: `${this.controller.pageIDs[0]}-animation-main`, nestedLabel: null, time: 0}
+        if(time !== 0){
+            currentLabels = this.getLabelsByTime(time)
 
+            // update to include nested lables
+            this.resetTimelineToLabel(currentLabels.label)
+        }
          this.tlStateBeforeResize = {
             time,
             lastActiveLabels: currentLabels,
@@ -112,26 +116,30 @@ class AnimationTimeline{
     onAfterResize = debounce(() => {
         console.log("onafter resize")
         this.rebuildTimline();
-    }, 500)
+    }, 200)
 
     rebuildTimline(){
       // recreate timeline completely
+      console.time("buildTimeline")
       this.controller.buildTimeline();
+      console.timeEnd("buildTimeline")
 
       // rehide last active page
-      this.controller.hideCurrentPage();
+      this.controller.hideAllPages();
 
       // go to last timeline state
       const { lastActiveLabels } = this.tlStateBeforeResize;
 
+      console.time("resetToLabel")
       this.resetTimelineToLabel(lastActiveLabels.label)
-
+      console.timeEnd("resetToLabel")
       // autoplay 
       if(this.tlStateBeforeResize && this.tlStateBeforeResize.paused === false) {         
           this.play();
       }
 
       this.tlStateBeforeResize = null;
+      this.controller.ui.onResizeEnd()
       this.controller.isResizing = false;
     }
 
@@ -167,10 +175,8 @@ class AnimationTimeline{
         this.tl.pause();
     }
 
-    jumpForwards(){
-      
+    jumpForwards(){     
         const currentTime = this.tl.totalTime();
-        console.log(currentTime)
         this.tl.seek(currentTime + this.JUMP_STEP, false)  
     }
 
@@ -190,12 +196,14 @@ class AnimationTimeline{
 
         this.controller.pageIDs.forEach((pageID, idx) => {
       
+           // console.time(`createTimeline-${pageID}`);
             const page = this.controller.pagesByID[pageID]
  
  
+         
             const updatePage = page.createUpdatePage(idx == 0 ? null : this.controller.pageIDs[idx-1])
-            const preFadeIn = page.createPreFadeIn()
-            const fadeIn = page.createFadeIn()
+            const preFadeIn = page.createPreFadeIn()       
+            const fadeIn = page.createFadeIn()     
             const animationIn = page.createAnimationIn()
             const animationMain = page.createAnimationMain()
             const animationOut = page.createAnimationOut()
@@ -224,7 +232,7 @@ class AnimationTimeline{
  
  
              this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
-
+            // console.timeEnd(`createTimeline-${pageID}`);
          })
     }
 

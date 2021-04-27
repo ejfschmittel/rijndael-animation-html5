@@ -22,10 +22,14 @@
 
     &__subtitle{
         font-size: 1.2rem;
-        color: #FCA730;
+        color: var(--text-color-alpha);
         max-width: 24rem;
         text-align: center;
         margin-top: 2rem;
+
+        @include respond("tab-port"){
+            font-size: 1.1rem;
+        }
     }
 }
 

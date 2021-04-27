@@ -8,7 +8,7 @@ import SBox from "../../components/LookupTable"
 import {shiftArray} from "../../utils/utils"
 import {hexStringToInt} from "../../utils/conversions"
 
-import "./page.styles.scss"
+
 
 class Page14 extends AnimationPage{
     constructor(id, locale){

@@ -3,7 +3,7 @@ import SVGArrow, {ARROW_DIRECTION} from "../../components/SVGArrow"
 
 import {generateRandomBinaryStrings} from "../../utils/utils"
 import {gsap} from "gsap"
-import "./page.styles.scss"
+
 
 class Page2 extends AnimationPage{
     constructor(){

@@ -16,6 +16,15 @@
         left: 0;
         transform: translate(-100%, -50%);
         font-weight: bold;
+
+        @include respond("tab-port"){
+           
+            left: auto;
+            right: -.5rem;
+            transform-origin: center center;
+            transform:translate(0%,0%) rotate(-90deg);
+            font-size: .8rem;
+        }
     }
 
     &__text-ciphertext{
@@ -24,6 +33,12 @@
         left: 50%;
         transform: translate(-50%, 100%);
         font-weight: bold;
+
+        @include respond("tab-port"){
+            font-size: .8rem;
+            transform-origin: center center;
+            transform: translate(-50%, -50%);
+        }
     }
 
 }

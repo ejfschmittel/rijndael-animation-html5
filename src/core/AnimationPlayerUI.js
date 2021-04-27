@@ -63,6 +63,18 @@ class AnimationPlayerUI{
         this.createEventListeners()
     }
 
+    onResizeStart(){
+        this.playBtn.classList.add("controlls__btn--disabled")   
+        this.forwardsBtn.classList.add("controlls__btn--disabled")  
+        this.backwardsBtn.classList.add("controlls__btn--disabled")  
+    }
+
+    onResizeEnd(){
+        this.playBtn.classList.remove("controlls__btn--disabled")   
+        this.forwardsBtn.classList.remove("controlls__btn--disabled")  
+        this.backwardsBtn.classList.remove("controlls__btn--disabled")  
+    }
+
 
     createEventListeners(){
      

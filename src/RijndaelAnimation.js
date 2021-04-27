@@ -22,7 +22,8 @@ const SETTINGS = {
     themes: [
         {name: "default", className: "theme--default", localeKey: "themeOptionDefault"},
         {name: "new", className: "theme--new", localeKey: "themeOptionNew"},
-    ]
+    ],
+    iframeContainerID: "test-container"
 }
 
 
@@ -30,6 +31,10 @@ const SETTINGS = {
 class RijndaelAnimation extends AnimationController {
     constructor(){
         super(SETTINGS)
+
+        
+
+
 
         console.time("create")
         this.registerAnimationPage(Page1, "page-1")
@@ -47,11 +52,12 @@ class RijndaelAnimation extends AnimationController {
         this.registerAnimationPage(Page13, "page-13")
         this.registerAnimationPage(Page14, "page-14")
    
+        this.init()
  
-        this.buildTimeline()
+        //this.buildTimeline()
 
-        this.goToFirstPage();
-        //this.timeline.goToPage("page-4")
+       // this.goToFirstPage();
+        //this.timeline.goToPage("page-12")
         console.timeEnd("create")
 
     }

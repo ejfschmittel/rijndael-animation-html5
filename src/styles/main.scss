@@ -1,9 +1,29 @@
 
-@import "./mixins.scss";
-@import "./variables.scss";
-@import "./base.scss";
-@import "./ui.scss";
-@import "./rijndael-grid.scss";
-@import "./sbox.scss";
-@import "./animatable-background.scss";
-@import "./section-title-page.scss";
+
+
+@import "./abstracts/mixins.scss";
+@import "./abstracts/variables.scss";
+@import "./base/_base.scss";
+@import "./base/_root.scss";
+@import "./layout/ui.scss";
+@import "./components/rijndael-grid.scss";
+@import "./components/sbox.scss";
+@import "./components/animatable-background.scss";
+@import "./components/section-title-page.scss";
+
+
+
+@import "../animation_pages/page1/page.styles.scss"; 
+@import "../animation_pages/page2/page.styles.scss"; 
+@import "../animation_pages/page3/page.styles.scss"; 
+@import "../animation_pages/page4/page.styles.scss"; 
+@import "../animation_pages/page5/page.styles.scss"; 
+@import "../animation_pages/page6/page.styles.scss"; 
+@import "../animation_pages/page7/page.styles.scss"; 
+@import "../animation_pages/page8/page.styles.scss"; 
+@import "../animation_pages/page9/page.styles.scss"; 
+@import "../animation_pages/page10/page.styles.scss"; 
+@import "../animation_pages/page11/page.styles.scss"; 
+@import "../animation_pages/page12/page.styles.scss";
+@import "../animation_pages/page13/page.styles.scss";
+@import "../animation_pages/page14/page.styles.scss";

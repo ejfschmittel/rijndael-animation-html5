@@ -267,6 +267,11 @@
         border: none;
         outline: none;
 
+        &--disabled{
+            cursor: not-allowed;
+            opacity: .8;
+        }
+
     
         & svg{
             width: 1rem;

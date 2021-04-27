@@ -8,7 +8,7 @@ import Grid from "../../components/Grid"
 
 import SVGLoop from "../../components/SVGLoop"
 
-import "./page.styles.scss"
+
 
 
 class Page5 extends AnimationPage{

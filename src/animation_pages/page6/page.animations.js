@@ -1,7 +1,6 @@
 import AnimationPage from "../../core/AnimationPage"
 
 import {gsap} from "gsap"
-import "./page.styles.scss"
 
 class Page6 extends AnimationPage{
     constructor(){

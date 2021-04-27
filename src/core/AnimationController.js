@@ -35,25 +35,70 @@ class AnimationController{
         this.form = new FormController(this)
 
 
+        this.iframeContainer = window.parent.document.getElementById(this.settings.iframeContainerID);
+      
+
         // add resize event listener
         const onResize = this.onResize.bind(this)
         window.addEventListener("resize", onResize)
 
     }
 
+    init(pageID=null){
+        if(this.pagesByID.length <= 0) throw new Error("can't init without at least registering one animation page")
+        pageID = pageID ? pageID : this.pageIDs[0];
+
+       
+
+        this.setCurrentPage(pageID)
+        console.log(this.pagesByID)
+        console.log(this.currentPage)
+        this.resizeIFrameContainer();
+    }
+
+    resizeIFrameContainer(){
+        const width = this.iframeContainer.getBoundingClientRect().width;
+        if(width <= 900){
+            this.iframeContainer.style.height = window.parent.innerHeight + "px";
+        }else{
+            this.iframeContainer.style.height = document.body.scrollHeight + "px"
+        }
+    }
+
 
 
 
     onResize(){
+        this.ui.onResizeStart()
+        this.resizeIFrameContainer();
+        /*
+            onREsize () = > 
+                update iframe height (according to contetn)
+                update timeline
+
+            - update height of iframe (once)
+
+
+
+            // create timeline because of innitial resize?
+        */
         this.isResizing = true;
-        this.timeline.onResize();
-       
+        this.timeline.onResize();      
     }
 
     hideCurrentPage(){
      
         this.pagesByID[this.currentPage].hide();
     }
+
+    hideAllPages(){
+        this.pageIDs.map(pageID => {
+            const page = this.pagesByID[pageID];
+            page.hide();
+        })
+    }
+   
+
    
 
     setCurrentPage(pageID){
@@ -62,50 +107,7 @@ class AnimationController{
     }
 
 
-  /*  setLocale(localeCode){
-        console.log("set localse")
-        if(this.currentLocaleCode === localeCode) return;
-        if(!Object.keys(LOCALES).includes(localeCode)) throw new Error(`locale code ${localeCode} not supported`)
 
-        this.currentLocaleCode = localeCode
-
-        // update pages text
-        this.pageIDs.forEach(pageID => {
-            const page = this.pagesByID[pageID];
-            page.updateLocaleLanguageTexts()
-        })
-
-
-        console.log("update ui")
-        // update ui text
-        this.uiController.updatePlayerLocale();
-
-
-        // redo timeline (because of into animation)
-        this.timelineController.saveAndRebuildTimeline();
-
-    }
-
-
-    setTheme(newTheme){
-        if(this.currentTheme == newTheme) return;
-        if(!THEME_LIST.includes(newTheme)) throw new Error(`invalid theme ${newTheme}`);
-
-        this.currentTheme = newTheme;
-        this.themeElement.className = "";
-        this.themeElement.classList.add(...THEMES[this.currentTheme])
-
-        // update timeline
-        this.timelineController.saveAndRebuildTimeline();
-    }
-
-    getPageLocale(pageID){
-        return LOCALES[this.currentLocaleCode][pageID];
-    }
-
-    getLocale(){
-        return LOCALES[this.currentLocaleCode]
-    }*/
 
 
     play(){
@@ -138,13 +140,19 @@ class AnimationController{
 
     buildTimeline(){
   
+        console.time("resetMovables")
         this.movables.resetMovedElement();
+        console.timeEnd("resetMovables")
         // create timline
         this.timeline.createTimeline();
-
+        console.time("resetMovables2")
         this.movables.resetMovedElement();
+        console.timeEnd("resetMovables2")
         // update menu 
+
+        console.time("recreateNavigation")
         this.ui.recreateNavigation()
+        console.time("recreateNavigation")
  
     }
 

@@ -6,8 +6,6 @@ import Grid from "../../components/Grid"
 
 
 
-import "./page.styles.scss"
-
 class Page8 extends AnimationPage{
     constructor(){
         super()
