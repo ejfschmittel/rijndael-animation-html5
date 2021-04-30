@@ -134,6 +134,26 @@ html,body{
 
 }
 
+.tooltip--right .tooltiptext{
+    left: 0%;
+    transform: translateX(0%);
+}
+
+.tooltip--right .tooltiptext::after {
+    left: 1.2rem;
+}
+
+.tooltip--left .tooltiptext{
+    right: 0;
+    left: auto;
+    transform: translateX(0%);
+}
+
+.tooltip--left .tooltiptext::after {
+    left: auto;
+    right: .9rem;
+}
+
 
 .rijndael-layout{
     display: flex;
