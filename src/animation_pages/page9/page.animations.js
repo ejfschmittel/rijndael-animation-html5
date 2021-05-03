@@ -89,7 +89,9 @@ class Page9 extends AnimationPage{
             titleMask,
             body,
             page,
-            gridMovablesYellow
+            gridMovablesYellow,
+            gridMovablesPink,
+            gridLandings
         } = this.pageElements
 
         const barBounds = bar.getBoundingClientRect()
@@ -110,13 +112,14 @@ class Page9 extends AnimationPage{
 
         // show body
         tl.set(gridMovablesYellow.movables, { y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridLandings.cells[idx]
+            const y = gsap.getProperty(landing, "y")
             return y - 100;
         }})
         tl.to(body, {opacity: 1})
 
         tl.to(gridMovablesYellow.movables, {opacity: 1, y:0})
-     
+        tl.to(gridMovablesPink.movables, { y:0})
 
 
       
@@ -128,16 +131,16 @@ class Page9 extends AnimationPage{
 
     createAnimationMain(){
 
-        const {textOne, textTwo, gridMovablesPink, gridMovablesYellow, equationResultLandings, equationMultiplierLandings, equation, gridLandings, galoisField,equalsSymbol, multiplierSymbol} = this.pageElements
+        const {textOne, textTwo, gridMovablesPink, gridMovablesYellow, equationResultLandings, equationMultiplierLandings, gridLandings, galoisField,equalsSymbol, multiplierSymbol} = this.pageElements
 
 
 
         const tl = gsap.timeline()
 
       
-        
-        tl.add(this.moveGroup(gridMovablesPink.getCol(0), equationResultLandings.cells, {duration: .0001}))
-        tl.add(this.moveGroup(gridMovablesYellow.getCol(0), equationMultiplierLandings.cells, {duration: 1}))
+        tl.set(gridMovablesPink.movables, {opacity: 0})
+        tl.add(this.moveGroup2(gridMovablesPink.getCol(0), gridLandings.getCol(0), equationResultLandings.cells, {duration: .0001}))
+        tl.add(this.moveGroup2(gridMovablesYellow.getCol(0), gridLandings.getCol(0), equationMultiplierLandings.cells, {duration: 1}))
 
         // reveal galois field + multiplier
         tl.to([galoisField, multiplierSymbol], {opacity: 1})
@@ -147,7 +150,7 @@ class Page9 extends AnimationPage{
         tl.to(equalsSymbol, {opacity: 1, delay: 3})
         // reveal result col and move back to start point
         tl.to(gridMovablesPink.getCol(0), {opacity: 1, duration: .5})
-        tl.add(this.moveGroup(gridMovablesPink.getCol(0), gridLandings.getCol(0), {duration: 1}))
+        tl.add(this.moveGroup2(gridMovablesPink.getCol(0),equationResultLandings.cells, gridLandings.getCol(0), {duration: 1}))
         tl.to([textOne, galoisField, equalsSymbol, multiplierSymbol, ...gridMovablesYellow.getCol(0)], {opacity: 0}, "<")
 
         tl.to(textTwo, {opacity: 1})
@@ -167,14 +170,15 @@ class Page9 extends AnimationPage{
 
 
     createAnimationOut(){
-        const {gridMovablesPink, gridMovablesYellow, textTwo} = this.pageElements
+        const {gridMovablesPink, gridMovablesYellow, textTwo, gridLandings} = this.pageElements
         const tl = gsap.timeline();
 
         tl.set(gridMovablesYellow.movables, {opacity: 0})
         tl.to(textTwo, {opacity: 0})
         
          tl.to(gridMovablesPink.movables, { opacity: 0, y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridLandings.cells[idx]
+            const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
 
