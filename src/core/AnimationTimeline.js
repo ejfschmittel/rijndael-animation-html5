@@ -204,7 +204,7 @@ class AnimationTimeline{
 
         this.controller.pageIDs.forEach((pageID, idx) => {
       
-           // console.time(`createTimeline-${pageID}`);
+            console.time(`createTimeline-${pageID}`);
             const page = this.controller.pagesByID[pageID]
  
  
@@ -240,7 +240,7 @@ class AnimationTimeline{
  
  
              this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
-            // console.timeEnd(`createTimeline-${pageID}`);
+             console.timeEnd(`createTimeline-${pageID}`);
          })
     }
 

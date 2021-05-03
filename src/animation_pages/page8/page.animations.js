@@ -1,12 +1,8 @@
 import AnimationPage from "../../core/AnimationPage"
 
 import {gsap} from "gsap"
-
-import {shiftArray} from "../../utils/utils"
-
 import Grid from "../../components/Grid"
-
-
+import {shiftArray} from "../../utils/utils"
 
 class Page8 extends AnimationPage{
     constructor(){
@@ -16,13 +12,9 @@ class Page8 extends AnimationPage{
     }
 
     init(){
-
         const {grid} = this.pageElements
 
-
-
-
-        // create a landing
+        // create grid landings + movables
         const gridLandings = new Grid(grid.id, 4,4, ["rijndael-cell"])
         const gridMovables = gridLandings.createMovables("grid-page-8", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
         this.subscribeTo("after-sub-bytes-1", gridMovables.movables)
@@ -35,13 +27,8 @@ class Page8 extends AnimationPage{
     }
 
     createPreFadeIn(){
-
-
         const {
             animatableBackground,
-            animatableBackgroundBar,
-            bar,
-            titleMask,
             body,
             page,
             textOne,
@@ -58,7 +45,6 @@ class Page8 extends AnimationPage{
     }
 
     createAnimationIn(){
-
         const {
             animatableBackground,
             animatableBackgroundBar,
@@ -70,10 +56,7 @@ class Page8 extends AnimationPage{
             gridLandings
         } = this.pageElements
 
-
         const barBounds = bar.getBoundingClientRect()
-
-
         const tl = gsap.timeline()
 
         // move in background
@@ -99,25 +82,13 @@ class Page8 extends AnimationPage{
 
         // other page intro
 
-
-
         return tl;
     }
 
 
+
+    // helper function for the row rotaion animation
     shiftRow(movablesRow, landingsRow){
-
-        const tl = gsap.timeline();
-        tl.add(this.moveToLandingAdvanced(movablesRow[0], landingsRow[3], {offsetY: -100}), "shift")
-        tl.add(this.moveToLanding(movablesRow[1], landingsRow[0]), "shift+=.5")
-        tl.add(this.moveToLanding(movablesRow[2], landingsRow[1]), "shift+=.5")
-        tl.add(this.moveToLanding(movablesRow[3], landingsRow[2]), "shift+=.5")
-       
-        return tl;
-    }
-
-    shiftRow2(movablesRow, landingsRow){
-
         const tl = gsap.timeline();
         tl.add(this.moveToLandingAdvanced2(movablesRow[0],landingsRow[0], landingsRow[3], {offsetY: -100}), "shift")
 
@@ -129,77 +100,45 @@ class Page8 extends AnimationPage{
     }
 
 
-    createAnimationMain2(){
+
+    createAnimationMain(){
+
         const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
 
         const tl = gsap.timeline()
 
+        // fade in grid
         tl.set(gridMovables.movables, {opacity: 1, y:0}, this.getAutoLabel())
 
-        tl.to(textOne, {opacity: 1}, this.getAutoLabel())
-        tl.add(this.shiftRow2(gridMovables.getRow(1), gridLandings.getRow(1)))
-
-         tl.to(textOne, {opacity: 0})
-        tl.to(textTwo, {opacity: 1}, "<")
-
-        tl.add(this.shiftRow2(gridMovables.getRow(2), gridLandings.getRow(2)))
-        tl.add(this.shiftRow2(shiftArray(gridMovables.getRow(2), 1), gridLandings.getRow(2)))
-
-        tl.to(textTwo, {opacity: 0})
-        tl.to(textThree, {opacity: 1}, "<")
-
-        tl.add(this.shiftRow2(gridMovables.getRow(3), gridLandings.getRow(3)))
-        tl.add(this.shiftRow2(shiftArray(gridMovables.getRow(3),1), gridLandings.getRow(3)))
-        tl.add(this.shiftRow2(shiftArray(gridMovables.getRow(3),2), gridLandings.getRow(3)))
-
-        tl.to(textThree, {opacity: 0})
-
-        return tl;
-    }
-
-    createAnimationMain(){
-
-        console.time("create-animation-8")
-        const tl = this.createAnimationMain2();
-     
-       /* const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
-
-        const tl = gsap.timeline()
-
-        tl.set(gridMovables.movables, {opacity: 1, y:0}, this.getAutoLabel())
-
+        // row one
         tl.to(textOne, {opacity: 1}, this.getAutoLabel())
         tl.add(this.shiftRow(gridMovables.getRow(1), gridLandings.getRow(1)))
 
-
         tl.to(textOne, {opacity: 0})
-        tl.to(textTwo, {opacity: 1}, "<")
 
+        // row two
+        tl.to(textTwo, {opacity: 1}, "<")
         tl.add(this.shiftRow(gridMovables.getRow(2), gridLandings.getRow(2)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(2), 1), gridLandings.getRow(2)))
-
         tl.to(textTwo, {opacity: 0})
-        tl.to(textThree, {opacity: 1}, "<")
 
+        // row three
+        tl.to(textThree, {opacity: 1}, "<")
         tl.add(this.shiftRow(gridMovables.getRow(3), gridLandings.getRow(3)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(3),1), gridLandings.getRow(3)))
         tl.add(this.shiftRow(shiftArray(gridMovables.getRow(3),2), gridLandings.getRow(3)))
 
         tl.to(textThree, {opacity: 0})
 
-  
-        console.timeEnd("create-animation-8")*/
-   
-
-        
         return tl;
     }
 
     createAnimationOut(){
-
         const {gridMovables, gridLandings} = this.pageElements
-       
+
         const tl = gsap.timeline()
+
+        // fade out grid
         tl.to(gridMovables.movables, {delay: 1,  opacity: 0, y: (idx, target) => {
             const landing = gridLandings.cells[idx]
             const y = gsap.getProperty(landing, "y")
