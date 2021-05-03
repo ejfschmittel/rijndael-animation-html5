@@ -129,8 +129,8 @@ class RijndaelFormController{
 
 
             // update output field
-            const cipherTextAscii =Utils.intArrayToAsciiString(ciphertext)
-            this.outputField.value = cipherTextAscii;
+           // const cipherTextAscii =Utils.intArrayToAsciiString(ciphertext)
+            this.outputField.value = ciphertext;
 
 
             // prepare data for animation

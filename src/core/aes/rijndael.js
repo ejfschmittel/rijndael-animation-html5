@@ -236,41 +236,6 @@ class Rijndael {
    
     return [state,info];
   }
-
-  decrypt(_block) {
-    const block = Utils.toArray(_block);
-
-    const blockSize = block.length;
-    const keySize = this.keySize;
-    const roundCount = ROUNDS[blockSize][keySize];
-
-    if (!SIZES.includes(blockSize))
-    throw new Error(`Unsupported block size: ${blockSize * 8}bit`);
-
-    // Calculations are made to this state
-    const state = block.slice();
-
-    // Key Expansion
-    const expandedKey = this.ExpandKey(blockSize);
-
-    // Final Round (Reversed)
-    this.AddRoundKey(state, expandedKey, roundCount);
-    this.ShiftRowsReversed(state);
-    this.SubBytesReversed(state);
-
-    // Rounds (Reversed)
-    for (let round = roundCount - 1; 1 <= round; round--) {
-      this.AddRoundKey(state, expandedKey, round);
-      this.MixColumnsReversed(state);
-      this.ShiftRowsReversed(state);
-      this.SubBytesReversed(state);
-    }
-
-    // Initial Round (Reversed)
-    this.AddRoundKey(state, expandedKey, 0);
-
-    return state;
-  }
 }
 
 export default Rijndael

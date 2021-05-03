@@ -6,6 +6,30 @@ const root = (
   
   const has = type => typeof root[type] !== 'undefined';
   const is = (value, type) => has(type) && value instanceof root[type];
+
+
+const hexStringToArray = (string) => {
+  console.log("hexstringtoarray")
+  console.log(string)
+  let intArray = [];
+  for(let i = 0; i < string.length; i+=2){
+    const hexStringNum = string.substring(i, i+2);
+    intArray.push(hexToInt(hexStringNum))
+  }
+  return intArray;
+}
+
+const hexToInt = (hex) => {
+  if(!hex) return 0;
+   return parseInt(hex.replace(/^#/, ''), 16);
+}
+
+const intToHex = (int) => {
+  const hexString =  (Number(int).toString(16)).slice(-2).toUpperCase()
+  return hexString.length == 1 ? "0"+hexString : hexString;
+}
+
+
   
 const toArray = data => {
     // if Buffer exists in global context, use Buffer
@@ -40,8 +64,20 @@ const toArray = data => {
   };
 
 
+const intArrayToHex = (intArray) => {
+  const hexArray = [];
+  for(let i = 0; i < intArray.length; i++){
+    hexArray.push(intToHex(intArray[i]));
+  } 
+  return hexArray
+} 
+
+const intArrayToHexString = (intArray) => {
+  return intArrayToHex(intArray).join("")
+}
+
 const intArrayToAsciiString = (arr) => {
   return String.fromCharCode(...arr)
 }
 
-export default {toArray, intArrayToAsciiString}
+export default {toArray, intArrayToAsciiString, hexStringToArray, intArrayToHexString}

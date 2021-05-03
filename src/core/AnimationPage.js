@@ -123,18 +123,12 @@ class AnimationPage{
             ...settings,
         }
 
-      
         const currentParent = movable.parentNode; 
       
         this.controller.movables.registerMovedElement(movable)
-      
-      
-        const startPos = getDimensionsLight(landingStart)
-        const endPos = getDimensionsLight(landingEnd)
 
-     
- 
-
+        const startPos = getDimensions(landingStart)
+        const endPos = getDimensions(landingEnd)
     
         const copy = {}          
         copy.x =  (startPos.l - endPos.l);
@@ -209,6 +203,58 @@ class AnimationPage{
            tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
            return tl;
     }
+
+    moveToLandingAdvanced2(movable,landingStart, landingEnd, settings={}){
+
+        settings = {
+            offsetX: 0,
+            offsetY: 0,
+            ...settings
+        }
+
+
+
+        const currentParent = movable.parentNode; 
+      
+        this.controller.movables.registerMovedElement(movable)
+
+        const startPos = getDimensions(landingStart)
+        const endPos = getDimensions(landingEnd)
+        
+
+        const copy = {}          
+        copy.x =  (startPos.l - endPos.l);
+        copy.y =  (startPos.t - endPos.t);
+        copy.width = startPos.w;
+        copy.height = startPos.h;
+      
+        copy.zIndex = 20;
+      
+
+       
+
+        const tl = gsap.timeline({
+            onStart: () => {          
+                landingEnd.appendChild(movable)
+            },
+            onReverseComplete: () => {
+                currentParent.appendChild(movable)
+               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
+            }
+        })
+
+       tl.set(movable, copy)    
+       tl.to(movable, {
+        x: copy.x / 2 + settings.offsetX, 
+        y: copy.y / 2 + settings.offsetY, 
+        width: endPos.w - (endPos.w - startPos.w) / 2, 
+        height: endPos.h - (endPos.h - startPos.h) / 2})   
+       tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, duration: 1})
+       tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
+       return tl;
+    }
+
+
     
     moveToLandingAdvanced(movable, landing, settings={}){
 
@@ -270,8 +316,6 @@ class AnimationPage{
 
 
     moveGroup(movables, landings, settings={}, label="label"){
-
-    
         const tl = gsap.timeline()
 
         tl.add(this.moveToLanding(movables[0], landings[0], settings), label)
@@ -283,6 +327,17 @@ class AnimationPage{
         return tl;
     }
 
+
+    moveGroup2(movables, landingsStart,landingsEnd, settings={}, label="label"){
+        const tl = gsap.timeline()
+        tl.add(this.moveToLanding2(movables[0], landingsStart[0], landingsEnd[0], settings), label)
+
+        for(let i = 1; i < movables.length; i++){
+            tl.add(this.moveToLanding2(movables[i], landingsStart[i], landingsEnd[i], settings), `${label}+=0`)
+        }
+
+        return tl;
+    }
 
     hide(){  
         gsap.set(this.page, {opacity: 0, visibility: "hidden"})
@@ -297,6 +352,13 @@ class AnimationPage{
             ...this.pageElements,
             ...object
         }
+    }
+
+    getPreFadeInTimeline(){
+        const obj = {val: 0}
+        const tl = gsap.timeline();
+        tl.to(obj, {val: 1, duration: .0001})
+        return tl;
     }
 }
 

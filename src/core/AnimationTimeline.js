@@ -165,9 +165,17 @@ class AnimationTimeline{
         const paused = this.tl.paused();
         this.tl.pause();
    
-        this.tl.seek(`${pageID}-animation-main`, false)
+        this.controller.movables.resetMovedElement();
+        //this.tl.seek(`${pageID}-animation-main`, false)
        
-       if(!paused) this.tl.play(null, false);
+       if(!paused){
+        this.tl.play(`${pageID}-animation-main`, false);
+       }else{
+        this.tl.seek(`${pageID}-animation-main`, false)
+       }
+     
+       
+     
     }
 
     pause(){

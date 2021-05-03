@@ -49,11 +49,7 @@ class Page8 extends AnimationPage{
             textThree
         } = this.pageElements
 
-      
-
-        const obj = {val: 0}
-        const tl = gsap.timeline()
-        tl.to(obj,{val: 1, duration: .0001})
+        const tl = this.getPreFadeInTimeline();
         tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
         tl.set([page, body, textOne, textTwo, textThree], {opacity: 0})
@@ -71,6 +67,7 @@ class Page8 extends AnimationPage{
             body,
             page,
             gridMovables,
+            gridLandings
         } = this.pageElements
 
 
@@ -92,7 +89,8 @@ class Page8 extends AnimationPage{
 
         // show body
         tl.set(gridMovables.movables, {opacity: 0, y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridLandings.cells[idx]
+            const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
         tl.to(body, {opacity: 1}, this.getAutoLabel())
@@ -121,7 +119,7 @@ class Page8 extends AnimationPage{
     shiftRow2(movablesRow, landingsRow){
 
         const tl = gsap.timeline();
-        tl.add(this.moveToLandingAdvanced(movablesRow[0], landingsRow[3], {offsetY: -100}), "shift")
+        tl.add(this.moveToLandingAdvanced2(movablesRow[0],landingsRow[0], landingsRow[3], {offsetY: -100}), "shift")
 
         tl.add(this.moveToLanding2(movablesRow[1], landingsRow[1], landingsRow[0]), "shift+=.5")
         tl.add(this.moveToLanding2(movablesRow[2], landingsRow[2], landingsRow[1]), "shift+=.5")
@@ -154,15 +152,17 @@ class Page8 extends AnimationPage{
         tl.add(this.shiftRow2(shiftArray(gridMovables.getRow(3),1), gridLandings.getRow(3)))
         tl.add(this.shiftRow2(shiftArray(gridMovables.getRow(3),2), gridLandings.getRow(3)))
 
+        tl.to(textThree, {opacity: 0})
+
         return tl;
     }
 
     createAnimationMain(){
 
         console.time("create-animation-8")
-        //const tl = this.createAnimationMain2();
+        const tl = this.createAnimationMain2();
      
-        const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
+       /* const {gridLandings, gridMovables, textOne, textTwo, textThree} = this.pageElements
 
         const tl = gsap.timeline()
 
@@ -188,7 +188,7 @@ class Page8 extends AnimationPage{
         tl.to(textThree, {opacity: 0})
 
   
-        console.timeEnd("create-animation-8")
+        console.timeEnd("create-animation-8")*/
    
 
         
@@ -197,11 +197,12 @@ class Page8 extends AnimationPage{
 
     createAnimationOut(){
 
-        const {gridMovables} = this.pageElements
+        const {gridMovables, gridLandings} = this.pageElements
        
         const tl = gsap.timeline()
         tl.to(gridMovables.movables, {delay: 1,  opacity: 0, y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridLandings.cells[idx]
+            const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
         return tl;

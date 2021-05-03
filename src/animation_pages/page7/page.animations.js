@@ -112,7 +112,8 @@ class Page7 extends AnimationPage{
 
         const tl = gsap.timeline();
 
-        console.time("move first cell")
+  
+        tl.set(gridMovables.movables, {opacity: 1})
         // move first cell above s-box
         tl.add(this.moveToLanding(gridMovables.get(0, 0), cellLanding, {duration: 1}))
      
@@ -120,7 +121,7 @@ class Page7 extends AnimationPage{
      
 
 
-        console.time("section-2")
+       
         // highlight row / cols and move substitute to landing
         tl.to(row, {background: "#FFF997"})
         tl.to(column, {background: "#FFF997"})
@@ -132,7 +133,7 @@ class Page7 extends AnimationPage{
 
 
 
-        console.time("section-3")
+   
         // highlight s-box cells & reveal substituted table 
         for(let i = 1; i < gridResultsMovables.movables.length; i++){
 
@@ -147,7 +148,8 @@ class Page7 extends AnimationPage{
             tl.to(gridResultsMovables.movables[i], {opacity: 1, duration: .02}, "<")
             tl.to(movable, {background: "#fff", duration: .02, delay: .4})
         }
-        console.timeEnd("section-3")
+      
+
 
         return tl;
     }

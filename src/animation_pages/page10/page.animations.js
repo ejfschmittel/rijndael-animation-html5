@@ -6,7 +6,7 @@ import Grid from "../../components/Grid"
 
 
 
-class Page8 extends AnimationPage{
+class Page10 extends AnimationPage{
     constructor(){
         super()
 
@@ -73,9 +73,9 @@ class Page8 extends AnimationPage{
         tl.set([page, body, text], {opacity: 0})
 
         tl.set([...gridYellowMovables.movables, ...gridRoundKeyMovables.movables], {opacity: 0})
-        tl.set([...gridResultMovables.movables, equalsSymbol, addSymbol], {opacity: 0})
+        tl.set([ equalsSymbol, addSymbol], {opacity: 0})
         
-
+        tl.set(gridResultMovables.movables, {y: 0, opacity: 0})
         return tl;
     }
 
@@ -90,6 +90,9 @@ class Page8 extends AnimationPage{
             page,
             gridYellowMovables,
             gridRoundKeyMovables,
+            gridResultMovables,
+            gridYellowLandings,
+            gridRoundKeyLandings,
             text
         } = this.pageElements
 
@@ -113,13 +116,15 @@ class Page8 extends AnimationPage{
         tl.to(titleMask, {x: "100%"})
 
         tl.set(gridYellowMovables.movables, {opacity: 0, y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridYellowLandings.cells[idx]
+            const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
 
         
         tl.set(gridRoundKeyMovables.movables, {opacity: 0, x: (idx, target) => {
-            const x = gsap.getProperty(target, "x")
+            const landing = gridRoundKeyLandings.cells[idx]
+            const x = gsap.getProperty(landing, "x")
             return x + 100;
         }})
 
@@ -129,7 +134,7 @@ class Page8 extends AnimationPage{
 
        
         tl.to(gridYellowMovables.movables, {opacity: 1, y: 0})
-
+       
 
         tl.to(gridRoundKeyMovables.movables, {opacity: 1, x: 0})
         // animate grid up
@@ -158,14 +163,17 @@ class Page8 extends AnimationPage{
 
         const tl = gsap.timeline()
 
+
+        tl.set(gridYellowMovables.movables, {opacity: 1})
+
          // move result (set)
-        tl.add(this.moveGroup(gridResultMovables.getCol(0), equationResultLandings.cells, {duration: .0001}), this.getAutoLabel())
+        tl.add(this.moveGroup2(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), equationResultLandings.cells, {duration: .0001}), this.getAutoLabel())
 
         // move first grid col to left side of equation
-        tl.add(this.moveGroup(gridYellowMovables.getCol(0), equationLeftLandings.cells, {duration: 1.5}), this.getAutoLabel())
+        tl.add(this.moveGroup2(gridYellowMovables.getCol(0),gridYellowLandings.getCol(0), equationLeftLandings.cells, {duration: 1.5}), this.getAutoLabel())
 
         // move first round key col to right side of equation
-        tl.add(this.moveGroup(gridRoundKeyMovables.getCol(0), equationRightLandings.cells, {duration: 1.5}), this.getAutoLabel())
+        tl.add(this.moveGroup2(gridRoundKeyMovables.getCol(0),gridRoundKeyLandings.getCol(0), equationRightLandings.cells, {duration: 1.5}), this.getAutoLabel())
 
         // reveal result
         tl.to(addSymbol, {opacity: 1}, this.getAutoLabel())
@@ -173,8 +181,8 @@ class Page8 extends AnimationPage{
         tl.to(gridResultMovables.getCol(0), {opacity: 1}, this.getAutoLabel())
 
         // move to result to grid
-        tl.add(this.moveGroup(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), {duration: 1.5}), this.getAutoLabel())
-        tl.to(equation, {opacity: 0}, "<")
+        tl.add(this.moveGroup2(gridResultMovables.getCol(0),equationResultLandings.getCol(0), gridYellowLandings.getCol(0), {duration: 1.5}), this.getAutoLabel())
+        tl.to([addSymbol, equalsSymbol, ...gridYellowMovables.getCol(0), ...gridRoundKeyMovables.getCol(0)], {opacity: 0}, "<")
 
         // reval # hide
         tl.to(gridResultMovables.getCol(1), {opacity: 1}, this.getAutoLabel())
@@ -188,13 +196,15 @@ class Page8 extends AnimationPage{
     }
 
     createAnimationOut(){
-        const {gridResultMovables, gridYellowMovables} = this.pageElements
+        const {gridResultMovables, gridYellowMovables, gridYellowLandings} = this.pageElements
         const tl = gsap.timeline();
 
         tl.set(gridYellowMovables.movables, {opacity: 0});
 
         tl.to(gridResultMovables.movables, {opacity: 0, y: (idx, target) => {
-            const y = gsap.getProperty(target, "y")
+            const landing = gridYellowLandings.cells[idx]
+            console.log(landing)
+            const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
 
@@ -204,4 +214,4 @@ class Page8 extends AnimationPage{
 }
 
 
-export default Page8
+export default Page10
