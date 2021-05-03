@@ -13,6 +13,7 @@ class Page7 extends AnimationPage{
     init(){
         const {grid, sbox} = this.pageElements
 
+        // create grid + landings
         const gridLandings = new Grid(grid.id, 4,4 ,["rijndael-cell"])
         const gridMovables = gridLandings.createMovables("page-7-grid-movables", ["rijndael-movable-cell", "rijndael-movable-cell--alpha"])
         this.subscribeTo("after-initial-round", gridMovables.movables)
@@ -20,14 +21,9 @@ class Page7 extends AnimationPage{
         const gridResultsMovables = gridLandings.createMovables("page-7-result-movables", ["rijndael-movable-cell", "rijndael-movable-cell--gamma"])
         this.subscribeTo("after-sub-bytes-1", gridResultsMovables.movables)
        
-
-        const Sbox = new LookupTable(sbox.id)
-
-    
+        // create sbox
+        const Sbox = new LookupTable(sbox.id)  
         this.subscribeTo("sbox", Sbox.gridMovables.movables)
-      
-
-
 
         this.addToPageElements({
             gridLandings,
@@ -48,9 +44,7 @@ class Page7 extends AnimationPage{
         } = this.pageElements
 
     
-        const obj = {val: 0}
-        const tl = gsap.timeline()
-        tl.to(obj,{val: 1, duration: .0001})
+        const tl = this.getPreFadeInTimeline();
         tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
         tl.set([page, body, ...gridResultsMovables.movables], {opacity: 0})
@@ -69,8 +63,6 @@ class Page7 extends AnimationPage{
             page,
         } = this.pageElements
 
-
-      
 
         const barBounds = bar.getBoundingClientRect()
 
@@ -95,29 +87,27 @@ class Page7 extends AnimationPage{
     }
 
     createAnimationMain(){
-
         const {gridMovables, cellLanding, SBoxController, gridResultsMovables, gridLandings} = this.pageElements
 
         const firstCell = gridMovables.get(0, 0)
         const firstCellHex = firstCell.innerHTML;
-
      
         const sboxX = hexStringToInt(firstCellHex[0])
         const sboxY = hexStringToInt(firstCellHex[1])
 
         const row = SBoxController.gridMovables.getRow(sboxX)
         const column = SBoxController.gridMovables.getCol(sboxY)
-        const landing = SBoxController.grid.getCell(sboxX, sboxY)
 
+        const sBoxLanding = SBoxController.grid.getCell(sboxX, sboxY)
 
         const tl = gsap.timeline();
 
   
         tl.set(gridMovables.movables, {opacity: 1})
         // move first cell above s-box
-        tl.add(this.moveToLanding(gridMovables.get(0, 0), cellLanding, {duration: 1}))
+        tl.add(this.moveToLanding2(gridMovables.get(0, 0), gridLandings.cells[0], cellLanding, {duration: 1}))
      
-        tl.add(this.moveToLanding(gridResultsMovables.movables[0], landing, {duration: .0001}))
+        tl.add(this.moveToLanding2(gridResultsMovables.movables[0], gridLandings.cells[0], sBoxLanding, {duration: .0001}))
      
 
 
@@ -128,7 +118,7 @@ class Page7 extends AnimationPage{
         tl.to(gridResultsMovables.movables[0], {opacity: 1})
         tl.to([...row, ...column], {background: "#fff"})
       
-        tl.add(this.moveToLanding(gridResultsMovables.movables[0], gridLandings.cells[0], {duration: 2}), "page-7-move-cell-back")
+        tl.add(this.moveToLanding2(gridResultsMovables.movables[0], sBoxLanding, gridLandings.cells[0], {duration: 2}), "page-7-move-cell-back")
         tl.to(gridMovables.get(0, 0), {opacity: 0}, "<")
 
 
