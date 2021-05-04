@@ -118,6 +118,7 @@ class AnimationPage{
 
 
     moveToLanding2(movable, landingStart, landingEnd, settings={}){
+    
         settings = {
             duration: 1,
             ...settings,
@@ -127,8 +128,9 @@ class AnimationPage{
       
         this.controller.movables.registerMovedElement(movable)
 
-        const startPos = getDimensions(landingStart)
-        const endPos = getDimensions(landingEnd)
+        const startPos = getDimensionsLight(landingStart)
+        const endPos = getDimensionsLight(landingEnd)
+       
     
         const copy = {}          
         copy.x =  (startPos.l - endPos.l);
@@ -153,6 +155,7 @@ class AnimationPage{
        tl.set(movable, copy)           
        tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, ...settings})
        tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
+      
        return tl;
 }
 
