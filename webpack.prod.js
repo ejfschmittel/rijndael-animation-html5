@@ -29,6 +29,17 @@ module.exports = merge(common, {
         }),
     ],
     optimization: {
-        	splitChunks: { chunks: "all", },
-    },
+           splitChunks: {
+             cacheGroups: {
+              vendor: {
+               name: "node_vendors", // part of the bundle name and
+                 // can be used in chunks array of HtmlWebpackPlugin
+                 test: /[\\/]node_modules[\\/]/,
+                chunks: "all",
+               },
+             },
+           },
+         },
+   
+
 })
