@@ -8,10 +8,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = merge(common, {
     mode: "production",
     output: {
-        filename: "[name].js",
+        filename: "[name].[hash].js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css",
+          }),
+     
         new HtmlWebpackPlugin({
             template: "./src/index.html",
             inject: false,
@@ -20,7 +27,6 @@ module.exports = merge(common, {
             filename: "frame.html",
             template: "./src/frame.html"
         }),
-        
     ],
     optimization: {
         	splitChunks: { chunks: "all", },
