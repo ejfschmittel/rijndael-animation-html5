@@ -58,6 +58,9 @@ class AnimationController{
 
     resizeIFrameContainer(){
         const width = this.iframeContainer.getBoundingClientRect().width;
+        console.log(window.innerWidth);
+        console.log(window)
+        console.log(width)
         if(width <= 900){
             this.iframeContainer.style.height = window.parent.innerHeight + "px";
         }else{
@@ -68,9 +71,11 @@ class AnimationController{
 
 
 
-    onResize(){
-        this.ui.onResizeStart()
+    onResize(e){
+        console.log(e)
         this.resizeIFrameContainer();
+        this.ui.onResizeStart()
+       
         /*
             onREsize () = > 
                 update iframe height (according to contetn)

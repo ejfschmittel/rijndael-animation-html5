@@ -22,8 +22,9 @@ class AnimationTimeline{
         return gsap.timeline({paused: true, onComplete: () => this.pause()});
     }
 
-    onResize(){
+    onResize(e){
         console.log("on resize ")
+        console.log(e)
         if(!this.tlStateBeforeResize){
             this.saveTimelineState();
         }

@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .rijndael-lookup-table{
     display: grid;
     background: #fff;
