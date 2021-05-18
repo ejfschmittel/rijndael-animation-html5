@@ -5,6 +5,10 @@
     "jumpBackwardsTooltip": "Jump backwards",
     "settingsButtonTooltip": "Settings",
 
+    "infoButtLabel": "Info",
+    "navigationButtonLabel": "Navigation",
+    "formButtonLabel": "Input",
+
     "settingsTitle": "Settings",
     "settingsThemeLabel": "Theme:",
     "settingsJumpLabel": "Jump duration (seconds)",
@@ -98,10 +102,10 @@
         "titleMainRounds": "9 main rounds",
         "titleFinalRound": "final round",
         "labelInitial": "AddRoundKey",
-        "labelMrone": "1-SubBytes",
-        "labelMrTwo": "2-ShiftRows",
-        "labelMrThree": "3-MixColumns",
-        "labelMrFour": "4-addRoundKey",
+        "labelMrone": "1 - SubBytes",
+        "labelMrTwo": "2 - ShiftRows",
+        "labelMrThree": "3 - MixColumns",
+        "labelMrFour": "4 - addRoundKey",
         "labelFrOne": "SubBytes",
         "labelFrTwo": "ShiftRows",
         "labelFrThree": "AddRoundKey",
@@ -113,10 +117,10 @@
     },
     "page-6": {
         "title": "The 4 types of transformations:",
-        "labelone": "1-SubBytes",
-        "labelTwo": "2-ShiftRows",
-        "labelThree": "3-MixColumns",
-        "labelFour": "4-addRoundKey"
+        "labelone": "1 - SubBytes",
+        "labelTwo": "2 - ShiftRows",
+        "labelThree": "3 - MixColumns",
+        "labelFour": "4 - addRoundKey"
     },
     "page-7": {
         "title": "1 - SubBytes",
