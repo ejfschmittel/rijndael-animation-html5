@@ -4,15 +4,22 @@
     display: flex;
     height: 100%;
     
-    @media (max-width: 800px){
+
+
+    @include respond("tab-port"){
         flex-wrap: wrap;
     }
+       
     &__left{
         flex: 2;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        @include respond("tab-port"){
+            justify-content: flex-start;
+        }
     }
 
     &__right{
@@ -22,6 +29,10 @@
         justify-content: center;
         align-items: center;
         position: relative;
+
+        @include respond("tab-port"){
+            justify-content: flex-start;
+        }
     }
 
     &__center{
@@ -30,12 +41,14 @@
        flex-direction: column;
        align-items: center;    
 
+
+       @include respond("tab-port"){
+        flex: 100%;
+        order: -1;
+        justify-content: center;
+       }
        
-        @media (max-width: 800px){
-            flex: 100%;
-            order: -1;
-            justify-content: center;
-        }
+    
     }
 
 
@@ -46,12 +59,27 @@
         text-align: center;
         margin-bottom: 1rem;
         margin-top: 1rem;
+
+        
+       @include respond("tab-port"){
+        font-size: 1.2rem;
+       }
+
+       @include respond("phone"){
+        margin-bottom: .3rem;
+        margin-top: .3rem;
+        }
     }
 
     &__text{
         color: #fff;
 
-        width: 14rem;
+
+        
+
+        @include respond("phone"){
+            font-size: .8rem;
+        }
     }
 }
 
@@ -64,6 +92,8 @@
 
     align-items: center;
     flex-direction: column;
+
+    
 }
 
 #rijndael-page-10-grid-round-key{

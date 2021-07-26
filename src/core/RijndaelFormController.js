@@ -52,9 +52,9 @@ class RijndaelFormController{
 
 
     prepareRijndaelDataForDisplay(aesInfo){
-        const {block1, keySize, mode, key} = aesInfo;
+        const {block0, keySize, mode, key} = aesInfo;
 
-        let temp = {...block1};
+        let temp = {...block0};
 
 
   

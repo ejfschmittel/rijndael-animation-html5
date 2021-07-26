@@ -16,6 +16,7 @@ class LocaleController{
     }
 
     setLocale(localeKey){
+        console.log("set locale")
         if(!this.isValidLocaleKey(localeKey)) return;
         this.currentLocale = localeKey;
 
@@ -28,7 +29,7 @@ class LocaleController{
     // updates page text to current locale
     updatePagesLocale(){
         this.controller.pageIDs.forEach(pageID => {
-            const page = this.pagesByID[pageID];
+            const page = this.controller.pagesByID[pageID];
             page.updateLocaleLanguageTexts()
         })
     }

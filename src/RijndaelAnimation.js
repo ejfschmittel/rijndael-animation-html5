@@ -16,6 +16,7 @@ import Page12 from "./animation_pages/page12/page.animations"
 import Page13 from "./animation_pages/page13/page.animations"
 import Page14 from "./animation_pages/page14/page.animations"
 
+import {logTimer} from "./utils/measure.js"
 
 const SETTINGS = {
     locale: LOCALE,
@@ -53,6 +54,7 @@ class RijndaelAnimation extends AnimationController {
         this.registerAnimationPage(Page14, "page-14")
    
         this.init()
+        logTimer();
  
         //this.buildTimeline()
 
