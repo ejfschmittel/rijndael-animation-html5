@@ -2,6 +2,10 @@
 @use "./variables" as *;
 
 @mixin respond($breakpoint) {
+    @if $breakpoint == "phone-small" {
+        @media only screen and (max-width: $breakpoint-phone-s){ @content };
+    }
+
     @if $breakpoint == "phone" {
         @media only screen and (max-width: $breakpoint-phone){ @content };
     }

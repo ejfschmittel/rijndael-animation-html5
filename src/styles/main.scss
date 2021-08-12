@@ -13,19 +13,17 @@
 @use "./components/animatable-background.scss";
 @use "./components/section-title-page.scss";
 
-
-
-@use "../animation_pages/page1/page.styles.scss" as page1; 
-@use "../animation_pages/page2/page.styles.scss" as page2; 
-@use "../animation_pages/page3/page.styles.scss" as page3; 
-@use "../animation_pages/page4/page.styles.scss" as page4; 
-@use "../animation_pages/page5/page.styles.scss" as page5; 
-@use "../animation_pages/page6/page.styles.scss" as page6; 
-@use "../animation_pages/page7/page.styles.scss" as page7; 
-@use "../animation_pages/page8/page.styles.scss" as page8; 
-@use "../animation_pages/page9/page.styles.scss" as page9; 
-@use "../animation_pages/page10/page.styles.scss" as page10; 
-@use "../animation_pages/page11/page.styles.scss" as page11; 
-@use "../animation_pages/page12/page.styles.scss" as page12;
-@use "../animation_pages/page13/page.styles.scss" as page13;
-@use "../animation_pages/page14/page.styles.scss" as page14;
+@use "../pages/page1/page.styles.scss" as page1; 
+@use "../pages/page2/page.styles.scss" as page2; 
+@use "../pages/page3/page.styles.scss" as page3; 
+@use "../pages/page4/page.styles.scss" as page4; 
+@use "../pages/page5/page.styles.scss" as page5; 
+@use "../pages/page6/page.styles.scss" as page6; 
+@use "../pages/page7/page.styles.scss" as page7; 
+@use "../pages/page8/page.styles.scss" as page8; 
+@use "../pages/page9/page.styles.scss" as page9; 
+@use "../pages/page10/page.styles.scss" as page10; 
+@use "../pages/page11/page.styles.scss" as page11; 
+@use "../pages/page12/page.styles.scss" as page12;
+@use "../pages/page13/page.styles.scss" as page13;
+@use "../pages/page14/page.styles.scss" as page14;

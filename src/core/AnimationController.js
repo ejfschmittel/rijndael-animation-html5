@@ -72,7 +72,7 @@ class AnimationController{
 
 
     onResize(e){
-        console.log(e)
+        console.time("resize")
         this.resizeIFrameContainer();
         this.ui.onResizeStart()
        

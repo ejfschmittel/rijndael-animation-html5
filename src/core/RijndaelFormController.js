@@ -3,12 +3,10 @@
  * 
 */
 
-
 import Rijndael from "./aes/rijndael-block.js"
 import Utils from "./aes/utils.js"
 
 import {intToHexStringArray} from "../utils/conversions"
-
 
 const FORM_BTN_ID = "rijndael-form-button"
 const OUTPUT_FIELD_ID = "rijndael-form-ouput"
@@ -17,8 +15,6 @@ const PLAINTEXT_FIELD_ID = "rijndael-form-plaintext-input"
 
 class RijndaelFormController{
 
-    
-
     constructor(controller){
         this.controller = controller
 
@@ -26,10 +22,6 @@ class RijndaelFormController{
         this.outputField = document.getElementById(OUTPUT_FIELD_ID)
         this.KeyField = document.getElementById(KEY_FIELD_ID)
         this.plaintextField = document.getElementById(PLAINTEXT_FIELD_ID)
-
-
-     
-     
 
         this.errors = null;
 
@@ -43,13 +35,11 @@ class RijndaelFormController{
         this.onEcryptClick();
     }
 
-
     excuteRijndaelAES({plaintext, key}){
         const cipher = new Rijndael(key, 'ecb'); 
         const [ciphertext, info] = cipher.encrypt(plaintext, 128);
         return [ciphertext, info]
     }
-
 
     prepareRijndaelDataForDisplay(aesInfo){
         const {block0, keySize, mode, key} = aesInfo;
@@ -127,20 +117,15 @@ class RijndaelFormController{
       
             const [ciphertext, info] = this.excuteRijndaelAES(formData);
 
-
-            // update output field
-           // const cipherTextAscii =Utils.intArrayToAsciiString(ciphertext)
+          
             this.outputField.value = ciphertext;
-
 
             // prepare data for animation
             const preparedInfo = this.prepareRijndaelDataForDisplay(info)
+
             // call data controller to update
-            console.log("update datacontroller")
-            console.log(preparedInfo)
             this.controller.data.updateStoreByObject(preparedInfo)
-            if(shouldUpdate)
-                this.controller.timeline.saveAndRebuildTimeline();
+            if(shouldUpdate) this.controller.timeline.saveAndRebuildTimeline();
         }
     }
 }

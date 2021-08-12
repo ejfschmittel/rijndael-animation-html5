@@ -48,6 +48,10 @@
         font-size: 2rem;
         position: relative;
         color: #fff;
+
+        @include respond("phone"){
+            font-size: 1.4rem;
+        }
     }
 
     &__title-mask{

@@ -182,6 +182,17 @@
     &__body{
         line-height: 1.6rem;
         font-size: 1rem;
+
+        p {
+            margin: 1rem 0;
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.7rem;
+        }
+
+        ul{
+            padding-left: 2rem;
+        }
     }
 }
 

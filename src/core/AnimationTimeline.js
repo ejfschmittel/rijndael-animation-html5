@@ -121,9 +121,11 @@ class AnimationTimeline{
 
     rebuildTimline(){
       // recreate timeline completely
-      console.time("buildTimeline")
+      console.time("rebuild timeline")
+
+     
       this.controller.buildTimeline();
-      console.timeEnd("buildTimeline")
+ 
 
       // rehide last active page
       this.controller.hideAllPages();
@@ -131,9 +133,9 @@ class AnimationTimeline{
       // go to last timeline state
       const { lastActiveLabels } = this.tlStateBeforeResize;
 
-      console.time("resetToLabel")
+   
       this.resetTimelineToLabel(lastActiveLabels.label)
-      console.timeEnd("resetToLabel")
+    
       // autoplay 
       if(this.tlStateBeforeResize && this.tlStateBeforeResize.paused === false) {         
           this.play();
@@ -142,6 +144,8 @@ class AnimationTimeline{
       this.tlStateBeforeResize = null;
       this.controller.ui.onResizeEnd()
       this.controller.isResizing = false;
+      console.timeEnd("resize")
+      console.timeEnd("rebuild timeline")
     }
 
     
