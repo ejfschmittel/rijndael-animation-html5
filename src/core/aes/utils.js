@@ -21,8 +21,6 @@ const root = (
 
 
 const hexStringToArray = (string) => {
-  console.log("hexstringtoarray")
-  console.log(string)
   let intArray = [];
   for(let i = 0; i < string.length; i+=2){
     const hexStringNum = string.substring(i, i+2);
