@@ -96,16 +96,12 @@ class Page10 extends AnimationPage{
             text
         } = this.pageElements
 
-
-      
-
         const barBounds = bar.getBoundingClientRect()
-
 
         const tl = gsap.timeline()
 
         // move in background
-        tl.to(animatableBackground, {y: 0}, this.getAutoLabel())
+        tl.to(animatableBackground, {y: 0, duration: .8}, this.getAutoLabel())
 
         // move bar down
         tl.to(animatableBackgroundBar, {y: barBounds.y})

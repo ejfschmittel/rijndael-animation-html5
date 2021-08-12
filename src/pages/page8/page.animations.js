@@ -60,7 +60,7 @@ class Page8 extends AnimationPage{
         const tl = gsap.timeline()
 
         // move in background
-        tl.to(animatableBackground, {y: 0}, this.getAutoLabel())
+        tl.to(animatableBackground, {y: 0, duration: .8}, this.getAutoLabel())
 
         // move bar down
         tl.to(animatableBackgroundBar, {y: barBounds.y}, this.getAutoLabel())

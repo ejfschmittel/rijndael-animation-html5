@@ -65,16 +65,10 @@ class Page9 extends AnimationPage{
         tl.set(this.page, {opacity: 0})
         tl.set(animatableBackground, {y: "100%"})
         tl.set([page, body, textOne, textTwo], {opacity: 0})
-
         // hide grid yellow & pink
 
         // move first grid column to result
-       
-
-
-        tl.set([...gridMovablesPink.movables, ...gridMovablesYellow.movables, multiplierSymbol, equalsSymbol, galoisField], {opacity: 0})
-
-      
+        tl.set([...gridMovablesPink.movables, ...gridMovablesYellow.movables, multiplierSymbol, equalsSymbol, galoisField], {opacity: 0})  
 
         return tl;
     }
@@ -100,7 +94,7 @@ class Page9 extends AnimationPage{
         const tl = gsap.timeline()
 
         // move in background
-        tl.to(animatableBackground, {y: 0})
+        tl.to(animatableBackground, {y: 0, duration: .8})
 
         // move bar down
         tl.to(animatableBackgroundBar, {y: barBounds.y})
