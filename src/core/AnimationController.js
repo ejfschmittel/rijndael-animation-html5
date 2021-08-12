@@ -48,19 +48,12 @@ class AnimationController{
         if(this.pagesByID.length <= 0) throw new Error("can't init without at least registering one animation page")
         pageID = pageID ? pageID : this.pageIDs[0];
 
-       
-
         this.setCurrentPage(pageID)
-        console.log(this.pagesByID)
-        console.log(this.currentPage)
         this.resizeIFrameContainer();
     }
 
     resizeIFrameContainer(){
         const width = this.iframeContainer.getBoundingClientRect().width;
-        console.log(window.innerWidth);
-        console.log(window)
-        console.log(width)
         if(width <= 900){
             this.iframeContainer.style.height = window.parent.innerHeight + "px";
         }else{
@@ -72,21 +65,9 @@ class AnimationController{
 
 
     onResize(e){
-        console.time("resize")
         this.resizeIFrameContainer();
         this.ui.onResizeStart()
        
-        /*
-            onREsize () = > 
-                update iframe height (according to contetn)
-                update timeline
-
-            - update height of iframe (once)
-
-
-
-            // create timeline because of innitial resize?
-        */
         this.isResizing = true;
         this.timeline.onResize();      
     }
@@ -144,21 +125,13 @@ class AnimationController{
 
 
     buildTimeline(){
-  
-        console.time("resetMovables")
         this.movables.resetMovedElement();
-        console.timeEnd("resetMovables")
         // create timline
         this.timeline.createTimeline();
-        console.time("resetMovables2")
         this.movables.resetMovedElement();
-        console.timeEnd("resetMovables2")
         // update menu 
 
-        console.time("recreateNavigation")
         this.ui.recreateNavigation()
-        console.time("recreateNavigation")
- 
     }
 
 }

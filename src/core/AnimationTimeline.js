@@ -23,8 +23,6 @@ class AnimationTimeline{
     }
 
     onResize(e){
-        console.log("on resize ")
-        console.log(e)
         if(!this.tlStateBeforeResize){
             this.saveTimelineState();
         }
@@ -64,7 +62,6 @@ class AnimationTimeline{
             paused,
         }
 
-        console.log(this.tlStateBeforeResize)
     }
 
 
@@ -115,15 +112,13 @@ class AnimationTimeline{
     }
 
     onAfterResize = debounce(() => {
-        console.log("onafter resize")
         this.rebuildTimline();
     }, 200)
 
     rebuildTimline(){
       // recreate timeline completely
       console.time("rebuild timeline")
-
-     
+ 
       this.controller.buildTimeline();
  
 
@@ -144,7 +139,6 @@ class AnimationTimeline{
       this.tlStateBeforeResize = null;
       this.controller.ui.onResizeEnd()
       this.controller.isResizing = false;
-      console.timeEnd("resize")
       console.timeEnd("rebuild timeline")
     }
 
@@ -209,10 +203,7 @@ class AnimationTimeline{
 
         this.controller.pageIDs.forEach((pageID, idx) => {
       
-            console.time(`createTimeline-${pageID}`);
             const page = this.controller.pagesByID[pageID]
- 
- 
          
             const updatePage = page.createUpdatePage(idx == 0 ? null : this.controller.pageIDs[idx-1])
             const preFadeIn = page.createPreFadeIn()       
@@ -220,8 +211,6 @@ class AnimationTimeline{
             const animationIn = page.createAnimationIn()
             const animationMain = page.createAnimationMain()
             const animationOut = page.createAnimationOut()
-          
- 
  
             const createdNestedTimelines = {
                  [`${pageID}-update-page`]: updatePage,
@@ -242,10 +231,7 @@ class AnimationTimeline{
                  this.tl.add(createdNestedTimelines[label], label)
              })
  
- 
- 
              this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
-             console.timeEnd(`createTimeline-${pageID}`);
          })
     }
 

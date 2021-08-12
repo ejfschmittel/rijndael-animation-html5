@@ -165,21 +165,16 @@ class AnimationPage{
                 duration: 1,
                 ...settings,
             }
-
           
             const currentParent = movable.parentNode; 
           
             this.controller.movables.registerMovedElement(movable)
-          
-            //if(this.id == "page-7") console.time("section-1")
+        
             const startPos = getDimensions(movable)
           
             landing.appendChild(movable)
         
             const endPos = getDimensions(movable)
-            //if(this.id == "page-7") console.timeEnd("section-1")
-     
-
         
             const copy = {}          
             copy.x = endPos.x + (startPos.l - endPos.l);

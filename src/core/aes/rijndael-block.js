@@ -33,8 +33,6 @@ class RijndaelBlock {
 
     //this.key = Utils.toArray(key);
     this.key = Utils.hexStringToArray(key)
-    console.log("key")
-    console.log(this.key)
     this.keySize = keySize;
     this.mode = mode;
   }
@@ -61,8 +59,6 @@ class RijndaelBlock {
     }
 
     const plaintext = Utils.toArray(_plaintext);
-    console.log("plaintexthex")
-    console.log(Utils.intArrayToHexString(plaintext))
     let padLength = plaintext.length % blockSize;
 
     if (padLength !== 0) padLength = blockSize - padLength;
@@ -87,9 +83,6 @@ class RijndaelBlock {
           const end = (i + 1) * blockSize;
           const block = plaintext.slice(start, end);
 
-          console.log("blockhex")
-          console.log(Utils.intArrayToHexString(block))
-
           const [encrypted, info] = cipher.encrypt(block);
           
           allInfo[`block${i}`] = info;
@@ -97,7 +90,6 @@ class RijndaelBlock {
           for (let j = 0; j < blockSize; j++)
             ciphertext[start + j] = encrypted[j];
         }
-        console.log("allinfo")
         console.log(allInfo)
         break;
 

@@ -16,7 +16,6 @@ class LocaleController{
     }
 
     setLocale(localeKey){
-        console.log("set locale")
         if(!this.isValidLocaleKey(localeKey)) return;
         this.currentLocale = localeKey;
 
