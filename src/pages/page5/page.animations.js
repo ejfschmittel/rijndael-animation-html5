@@ -10,6 +10,8 @@ import SVGLoop from "../../components/SVGLoop"
 
 
 
+// default time to go through whole motion path
+const DEFAULT_MOTION_PATH_DURATION = 10;
 
 class Page5 extends AnimationPage{
     constructor(){
@@ -104,9 +106,9 @@ class Page5 extends AnimationPage{
 
 
     // one rund through the whole motion path 0 to 1 should take 10 seconds
-    getMotionPathDuration(startProgress, endProgress){
-        const MOTION_PATH_DURATION_SECONDS = 10;
-        return (endProgress - startProgress) * MOTION_PATH_DURATION_SECONDS;
+
+    getMotionPathDuration(startProgress, endProgress, multiplier=10){
+        return (endProgress - startProgress) * multiplier;
     }
 
     createAnimationMain(){
@@ -126,15 +128,16 @@ class Page5 extends AnimationPage{
 
         for(let i = 1; i < 9; i++){
 
+            const duration = i == 1 ? DEFAULT_MOTION_PATH_DURATION : 1.5;
             tl.add(this.createSegmentWithLabelTL(1, svgSegments, runner, svg, labelsMain, [
                 "#4b759c",
                 "#b86158", 
                 "#e6dd65", 
                 "#4f9c81"
-            ]), `main-round-${i}`)
+            ], duration), `main-round-${i}`)
 
             tl.call(() => { counter.innerHTML = i; })
-            tl.add(this.createSegmentTL(2, svgSegments, runner, svg.path))
+            tl.add(this.createSegmentTL(2, svgSegments, runner, svg.path, duration))
         }
 
         tl.add(this.createSegmentWithLabelTL(3, svgSegments, runner, svg, labelsMain, [
@@ -155,16 +158,16 @@ class Page5 extends AnimationPage{
     }
 
 
-    createSegmentWithLabelTL(segmentIndex, segments, runner, svg, labels, colors=[]){
+    createSegmentWithLabelTL(segmentIndex, segments, runner, svg, labels, colors=[], customDuration=DEFAULT_MOTION_PATH_DURATION){
         const labelElements = labels.querySelectorAll(".rijndael-rounded-label")
         const endProgress = segmentIndex == segments.length -1 ? 1 : segments[segmentIndex+1].progress;
-        const duration = this.getMotionPathDuration(segments[segmentIndex].progress,endProgress)
+        const duration = this.getMotionPathDuration(segments[segmentIndex].progress,endProgress, customDuration)
 
         const svgBounds = svg.svg.getBoundingClientRect();
         
     
         const tl = gsap.timeline();
-        tl.add(this.createSegmentTL(segmentIndex, segments, runner, svg.path), "segOne")
+        tl.add(this.createSegmentTL(segmentIndex, segments, runner, svg.path, customDuration), "segOne")
 
         for(let i = 0; i < labelElements.length; i++){
             const bounds = labelElements[i].getBoundingClientRect()
@@ -183,12 +186,12 @@ class Page5 extends AnimationPage{
     }
 
 
-    createSegmentTL(index, segments, runner, path){
+    createSegmentTL(index, segments, runner, path, customDuration=DEFAULT_MOTION_PATH_DURATION){
         const tl = gsap.timeline();
 
         const endProgress = index == segments.length -1 ? 1 : segments[index+1].progress;
 
-        const duration = this.getMotionPathDuration( segments[index].progress, endProgress)
+        const duration = this.getMotionPathDuration( segments[index].progress, endProgress, customDuration)
         tl.to(runner, {motionPath: {
             path: path,
             alignOrigin: [0.5, 0.5],
