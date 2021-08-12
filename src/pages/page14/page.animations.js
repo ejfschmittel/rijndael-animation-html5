@@ -312,15 +312,12 @@ class Page14 extends AnimationPage{
         // define movable columns
         const gridIndex = Math.floor(wi/4);
 
-
-       
+      
         const equationLeftMovables = this.getWiCol(pgMovablesTransforms,wi-4)
         const equationRightMovables = this.getWiCol(pgMovablesTransforms,wi-1)
         const subbedColMovables = substitutionMovables.getCol(gridIndex-1)
         const rconColMovables = rconMovables.getCol(gridIndex-1)
-        const resultColMovables = this.getWiCol(pgMovablesTransforms,wi)
-        
-       
+        const resultColMovables = this.getWiCol(pgMovablesTransforms,wi)    
         
 
         const tl = gsap.timeline();
@@ -448,8 +445,10 @@ class Page14 extends AnimationPage{
 
 
     shiftColumn(movables, landings){
+
+        const shiftOffset = window.screen.width <= 800 ? -50 : -100;
         const tl = gsap.timeline();
-        tl.add(this.moveToLandingAdvanced2(movables[0], landings[0], landings[3], {offsetX: -100}), "shift")
+        tl.add(this.moveToLandingAdvanced2(movables[0], landings[0], landings[3], {offsetX: shiftOffset}), "shift")
         tl.add(this.moveToLanding2(movables[1], landings[1], landings[0]), "shift+=.5")
         tl.add(this.moveToLanding2(movables[2], landings[2], landings[1]), "shift+=.5")
         tl.add(this.moveToLanding2(movables[3], landings[3], landings[2]), "shift+=.5")
