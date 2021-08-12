@@ -97,7 +97,7 @@ html,body{
 .tooltiptext{
     visibility: hidden;
     width: max-content;
-    max-width: 160px;
+    max-width: 180px;
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -108,7 +108,14 @@ html,body{
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 10;
+    font-size: .9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
 
     bottom: calc(100% + 5px);
     left: 50%;
