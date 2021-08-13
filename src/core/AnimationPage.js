@@ -130,6 +130,8 @@ class AnimationPage{
 
         const startPos = getDimensionsLight(landingStart)
         const endPos = getDimensionsLight(landingEnd)
+
+
        
     
         const copy = {}          
@@ -142,17 +144,19 @@ class AnimationPage{
 
         const tl = gsap.timeline({
             onStart: () => {          
+                console.log("on start")
                 landingEnd.appendChild(movable)
             },
-            onReverseComplete: () => {
-                currentParent.appendChild(movable)
-               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
-            }
         })
       
        
 
-       tl.set(movable, copy)           
+       tl.to(movable, {...copy, duration: .00001,onReverseComplete: () => {
+   
+        landingStart.appendChild(movable)
+        let reverseSettings = {x: 0, y: 0, width: "100%", height: "100%"}
+        gsap.set(movable, reverseSettings)
+       }})           
        tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, ...settings})
        tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
       

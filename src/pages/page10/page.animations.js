@@ -162,8 +162,11 @@ class Page10 extends AnimationPage{
 
         tl.set(gridYellowMovables.movables, {opacity: 1})
 
-         // move result (set)
-        tl.add(this.moveGroup2(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), equationResultLandings.cells, {duration: .0001}), this.getAutoLabel())
+        
+
+        // instant move
+        // .5 opactiy
+        // move slow
 
         // move first grid col to left side of equation
         tl.add(this.moveGroup2(gridYellowMovables.getCol(0),gridYellowLandings.getCol(0), equationLeftLandings.cells, {duration: 1.5}), this.getAutoLabel())
@@ -171,9 +174,15 @@ class Page10 extends AnimationPage{
         // move first round key col to right side of equation
         tl.add(this.moveGroup2(gridRoundKeyMovables.getCol(0),gridRoundKeyLandings.getCol(0), equationRightLandings.cells, {duration: 1.5}), this.getAutoLabel())
 
-        // reveal result
+       
+      
+
+         // reveal result
         tl.to(addSymbol, {opacity: 1}, this.getAutoLabel())
         tl.to(equalsSymbol, {opacity: 1}, this.getAutoLabel())
+
+        // move result (set)
+        tl.add(this.moveGroup2(gridResultMovables.getCol(0), gridYellowLandings.getCol(0), equationResultLandings.cells, {duration: .0001}), this.getAutoLabel())
         tl.to(gridResultMovables.getCol(0), {opacity: 1}, this.getAutoLabel())
 
         // move to result to grid

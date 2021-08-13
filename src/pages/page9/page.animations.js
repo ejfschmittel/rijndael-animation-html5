@@ -133,7 +133,7 @@ class Page9 extends AnimationPage{
 
       
         tl.set(gridMovablesPink.movables, {opacity: 0})
-        tl.add(this.moveGroup2(gridMovablesPink.getCol(0), gridLandings.getCol(0), equationResultLandings.cells, {duration: .0001}))
+        
         tl.add(this.moveGroup2(gridMovablesYellow.getCol(0), gridLandings.getCol(0), equationMultiplierLandings.cells, {duration: 1}))
 
         // reveal galois field + multiplier
@@ -143,6 +143,7 @@ class Page9 extends AnimationPage{
 
         tl.to(equalsSymbol, {opacity: 1, delay: 3})
         // reveal result col and move back to start point
+        tl.add(this.moveGroup2(gridMovablesPink.getCol(0), gridLandings.getCol(0), equationResultLandings.cells, {duration: .0001}))
         tl.to(gridMovablesPink.getCol(0), {opacity: 1, duration: .5})
         tl.add(this.moveGroup2(gridMovablesPink.getCol(0),equationResultLandings.cells, gridLandings.getCol(0), {duration: 1}))
         tl.to([textOne, galoisField, equalsSymbol, multiplierSymbol, ...gridMovablesYellow.getCol(0)], {opacity: 0}, "<")

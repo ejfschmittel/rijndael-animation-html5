@@ -117,7 +117,7 @@ class Page7 extends AnimationPage{
 
         // premove element to sbox
         tl.add(this.moveToLanding2(gridResultsMovables.movables[0], gridLandings.cells[0], sBoxLanding, {duration: .0001})) 
-        tl.set(gridResultsMovables.movables[0], {opacity: 1}) 
+        tl.set(gridResultsMovables.movables[0], {opacity: 0}) 
 
 
         tl.to(gridResultsMovables.movables[0], {opacity: 1})
