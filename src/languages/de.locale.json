@@ -26,6 +26,7 @@
     "keyLabel": "Schlüssel",
     "outputLabel": "Ausgabe",
     "encryptButtonLabel": "Verschlüsseln",
+    "formErrorMessage": "Der Schlüssel muss aus 32 hexadezimalen Zeichen bestehen.",
 
     "page-1-title": "Seite 1 - Rijndael Animation Intro",
     "page-1-info": "<p>Diese Animation gibt einen Überblick über die Funktionsweise des AES-Rijndael-Algorithmus. Er verwendet eine Größe von 128 Bit sowohl für den Datenblock als auch für den Schlüssel. Für einen tieferen Einblick in die Mathematik hinter dem Algorithmus konsultieren Sie bitte die entsprechende Literatur.</p>",

@@ -26,6 +26,7 @@
     "keyLabel": "Key",
     "outputLabel": "Output",
     "encryptButtonLabel": "Encrypt",
+    "formErrorMessage": "Key must be 32 char hexadecimal.",
 
     "page-1-title": "Page 1 - Rijndael Animation Intro",
     "page-1-info": "<p>This animation gives a high-level overview of the inner workings of the AES Rijndael algorithm. It uses a size of 128 bit for both, the data block, and the key. For an in-depth look at the mathematics behind the algorithm please consult the according literature.</p>",

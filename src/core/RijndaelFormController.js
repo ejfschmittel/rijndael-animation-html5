@@ -12,6 +12,7 @@ const FORM_BTN_ID = "rijndael-form-button"
 const OUTPUT_FIELD_ID = "rijndael-form-ouput"
 const KEY_FIELD_ID = "rijndael-form-key-input"
 const PLAINTEXT_FIELD_ID = "rijndael-form-plaintext-input"
+const FORM_ERROR_FIELD = "rijndael-form-error-field"
 
 class RijndaelFormController{
 
@@ -22,6 +23,7 @@ class RijndaelFormController{
         this.outputField = document.getElementById(OUTPUT_FIELD_ID)
         this.KeyField = document.getElementById(KEY_FIELD_ID)
         this.plaintextField = document.getElementById(PLAINTEXT_FIELD_ID)
+        this.errorField = document.getElementById(FORM_ERROR_FIELD)
 
         this.errors = null;
 
@@ -103,8 +105,19 @@ class RijndaelFormController{
     }
 
     validateFormData(data){
+        console.log(data)
+        // hexadecimal regex
+        var re = /[0-9A-Fa-f]{6}/g;
 
-        return true;
+        const key = data.key
+        // check if 32 cipher hexadecimal.
+        if(key.length == 32 && re.test(key)) {
+            this.errorField.innerHTML = "" 
+            return true;
+        }
+
+        this.errorField.innerHTML = this.controller.locale.getLocaleText("formErrorMessage")
+        return false;
     }
 
 
@@ -117,7 +130,6 @@ class RijndaelFormController{
       
             const [ciphertext, info] = this.excuteRijndaelAES(formData);
 
-          
             this.outputField.value = ciphertext;
 
             // prepare data for animation

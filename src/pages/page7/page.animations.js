@@ -107,17 +107,23 @@ class Page7 extends AnimationPage{
         // move first cell above s-box
         tl.add(this.moveToLanding2(gridMovables.get(0, 0), gridLandings.cells[0], cellLanding, {duration: 1}))
      
-        tl.add(this.moveToLanding2(gridResultsMovables.movables[0], gridLandings.cells[0], sBoxLanding, {duration: .0001}))
-     
+  
 
 
        
         // highlight row / cols and move substitute to landing
         tl.to(row, {background: "#FFF997"})
         tl.to(column, {background: "#FFF997"})
+
+        // premove element to sbox
+        tl.add(this.moveToLanding2(gridResultsMovables.movables[0], gridLandings.cells[0], sBoxLanding, {duration: .0001})) 
+        tl.set(gridResultsMovables.movables[0], {opacity: 1}) 
+
+
         tl.to(gridResultsMovables.movables[0], {opacity: 1})
         tl.to([...row, ...column], {background: "#fff"})
-      
+
+        
         tl.add(this.moveToLanding2(gridResultsMovables.movables[0], sBoxLanding, gridLandings.cells[0], {duration: 2}), "page-7-move-cell-back")
         tl.to(gridMovables.get(0, 0), {opacity: 0}, "<")
 

@@ -199,7 +199,6 @@ class Page10 extends AnimationPage{
 
         tl.to(gridResultMovables.movables, {opacity: 0, y: (idx, target) => {
             const landing = gridYellowLandings.cells[idx]
-            console.log(landing)
             const y = gsap.getProperty(landing, "y")
             return y + 100;
         }})
