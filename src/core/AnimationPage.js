@@ -161,50 +161,8 @@ class AnimationPage{
        tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
       
        return tl;
-}
-
-
-    moveToLanding(movable, landing, settings={}){
-            settings = {
-                duration: 1,
-                ...settings,
-            }
-          
-            const currentParent = movable.parentNode; 
-          
-            this.controller.movables.registerMovedElement(movable)
-        
-            const startPos = getDimensions(movable)
-          
-            landing.appendChild(movable)
-        
-            const endPos = getDimensions(movable)
-        
-            const copy = {}          
-            copy.x = endPos.x + (startPos.l - endPos.l);
-            copy.y = endPos.y + (startPos.t - endPos.t);
-            copy.width = startPos.w;
-            copy.height = startPos.h;
-          
-            copy.zIndex = 20;
-
-            const tl = gsap.timeline({
-                onStart: () => {          
-                    landing.appendChild(movable)
-                },
-                onReverseComplete: () => {
-                    currentParent.appendChild(movable)
-                   gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
-                }
-            })
-          
-           
- 
-           tl.set(movable, copy)           
-           tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, ...settings})
-           tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
-           return tl;
     }
+
 
     moveToLandingAdvanced2(movable,landingStart, landingEnd, settings={}){
 
@@ -239,67 +197,14 @@ class AnimationPage{
             onStart: () => {          
                 landingEnd.appendChild(movable)
             },
-            onReverseComplete: () => {
-                currentParent.appendChild(movable)
-               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%"})
-            }
         })
 
-       tl.set(movable, copy)    
-       tl.to(movable, {
-        x: copy.x / 2 + settings.offsetX, 
-        y: copy.y / 2 + settings.offsetY, 
-        width: endPos.w - (endPos.w - startPos.w) / 2, 
-        height: endPos.h - (endPos.h - startPos.h) / 2})   
-       tl.to(movable, {x: 0, y: 0, width: endPos.w, height: endPos.h, duration: 1})
-       tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
-       return tl;
-    }
-
-
-    
-    moveToLandingAdvanced(movable, landing, settings={}){
-
-        settings = {
-            offsetX: 0,
-            offsetY: 0,
-            ...settings
-        }
-
-
-        const currentParent = movable.parentNode;      
-
-        this.controller.movables.registerMovedElement(movable)
-
-       
-        const startPos = getDimensions(movable)
-        landing.appendChild(movable)
-        const endPos = getDimensions(movable)
-
-        const copy = {}          
-        copy.x = endPos.x + (startPos.l - endPos.l);
-        copy.y = endPos.y + (startPos.t - endPos.t);
-        copy.width = startPos.w;
-        copy.height = startPos.h;
       
-
-        copy.zIndex = 20;
-
-        const tl = gsap.timeline({
-            onStart: () => {
-                
-                landing.appendChild(movable)
-            },
-            onReverseComplete: () => {
-                currentParent.appendChild(movable)
-               gsap.set(movable, {x: 0, y: 0, width: "100%", height: "100%", zIndex: 5})
-            }
-        })
-       
-
-
-
-       tl.set(movable, copy)    
+       tl.to(movable, {...copy, duration: .00001,onReverseComplete: () => {   
+        landingStart.appendChild(movable)
+        let reverseSettings = {x: 0, y: 0, width: "100%", height: "100%"}
+        gsap.set(movable, reverseSettings)
+       }})  
        tl.to(movable, {
         x: copy.x / 2 + settings.offsetX, 
         y: copy.y / 2 + settings.offsetY, 
@@ -309,6 +214,7 @@ class AnimationPage{
        tl.set(movable, {width: "100%", height: "100%", zIndex: 5})
        return tl;
     }
+
 
 
     getColor(name){
