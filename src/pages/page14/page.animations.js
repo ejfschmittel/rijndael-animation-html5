@@ -215,12 +215,12 @@ class Page14 extends AnimationPage{
 
         
         // position result movables 
-        tl.add(this.moveGroup2(colResMovables, this.getWiCol(primaryLandings, wi),this.getWiCol(secondaryLandings, wi+2), {duration: .001}))
+        tl.add(this.moveGroup(colResMovables, this.getWiCol(primaryLandings, wi),this.getWiCol(secondaryLandings, wi+2), {duration: .001}))
 
         // move columns down for equation
         tl.set(colOneMovables, {opacity: 1})
-        tl.add(this.moveGroup2(colOneMovables, this.getWiCol(primaryLandings, wi-4), this.getWiCol(secondaryLandings, wi-4), {duration: 1}))
-        tl.add(this.moveGroup2(colTwoMovables, this.getWiCol(primaryLandings, wi-1), this.getWiCol(secondaryLandings, wi-1), {duration: 1}))
+        tl.add(this.moveGroup(colOneMovables, this.getWiCol(primaryLandings, wi-4), this.getWiCol(secondaryLandings, wi-4), {duration: 1}))
+        tl.add(this.moveGroup(colTwoMovables, this.getWiCol(primaryLandings, wi-1), this.getWiCol(secondaryLandings, wi-1), {duration: 1}))
 
          // reval equation symbols & result
          tl.to(addSymbolOne, {opacity: 1})
@@ -228,11 +228,11 @@ class Page14 extends AnimationPage{
          tl.to(colResMovables,  {opacity: 1})  
 
         // move result back up
-        tl.add(this.moveGroup2(colResMovables, this.getWiCol(secondaryLandings, wi+2), this.getWiCol(primaryLandings, wi), {duration: 1}),)
+        tl.add(this.moveGroup(colResMovables, this.getWiCol(secondaryLandings, wi+2), this.getWiCol(primaryLandings, wi), {duration: 1}),)
 
         // hide equation + cleanup
         tl.to( [...colOneMovables, ...colTwoMovables, equalsSymbol, addSymbolOne], {opacity: 0})
-        tl.add(this.moveGroup2(colTwoMovables, this.getWiCol(secondaryLandings, wi-1), this.getWiCol(primaryLandings, wi-1), {duration: .001}),)
+        tl.add(this.moveGroup(colTwoMovables, this.getWiCol(secondaryLandings, wi-1), this.getWiCol(primaryLandings, wi-1), {duration: .001}),)
         tl.set(this.getWiCol(pgMovablesOg, wi), {opacity: 1})
 
         return tl;
@@ -324,7 +324,7 @@ class Page14 extends AnimationPage{
      
         // hide + move result column to initial result position
         tl.set(resultColMovables, {opacity: 0})
-        tl.add(this.moveGroup2(resultColMovables, this.getWiCol(primaryLandings,wi), this.getWiCol(secondaryLandings,wi+5), {duration: .001}))
+        tl.add(this.moveGroup(resultColMovables, this.getWiCol(primaryLandings,wi), this.getWiCol(secondaryLandings,wi+5), {duration: .001}))
 
       
         // move symbols to positions (hidden)
@@ -339,7 +339,7 @@ class Page14 extends AnimationPage{
         const bounds = this.getRelativeBounds(this.getWiCol(secondaryLandings,wi-1)[0])
         tl.to(textRotWord, {x: bounds.x + 50, y: bounds.y + 30 , duration: .001, delay: 2})
         tl.to(textInitial, {opacity: 0})
-        tl.add(this.moveGroup2(equationRightMovables,this.getWiCol(primaryLandings,wi-1), this.getWiCol(secondaryLandings,wi-1), {duration: 1}))
+        tl.add(this.moveGroup(equationRightMovables,this.getWiCol(primaryLandings,wi-1), this.getWiCol(secondaryLandings,wi-1), {duration: 1}))
 
         // shift col
         tl.to([textRotWord], {opacity: 1})
@@ -354,12 +354,12 @@ class Page14 extends AnimationPage{
     
         // move adds and reveal equation
         tl.set(equationLeftMovables, {opacity: 1})
-        tl.add(this.moveGroup2(equationLeftMovables, this.getWiCol(primaryLandings,wi-4), this.getWiCol(secondaryLandings,wi-4), {duration: 1}))
+        tl.add(this.moveGroup(equationLeftMovables, this.getWiCol(primaryLandings,wi-4), this.getWiCol(secondaryLandings,wi-4), {duration: 1}))
         tl.to(addSymbolOne, {opacity: 1})
       
 
         // move rcon col up
-        tl.add(this.moveGroup2(rconColMovables,rcon.getCol(gridIndex-1), this.getWiCol(secondaryLandings,wi+2), {duration: 1}))
+        tl.add(this.moveGroup(rconColMovables,rcon.getCol(gridIndex-1), this.getWiCol(secondaryLandings,wi+2), {duration: 1}))
 
         // reveal optional text
         if(showInfoTexts){ tl.to(textB, {opacity: 1}) }
@@ -371,7 +371,7 @@ class Page14 extends AnimationPage{
 
 
         // move back result
-        tl.add(this.moveGroup2(resultColMovables, this.getWiCol(secondaryLandings,wi+5), this.getWiCol(primaryLandings,wi), {duration: 1}))
+        tl.add(this.moveGroup(resultColMovables, this.getWiCol(secondaryLandings,wi+5), this.getWiCol(primaryLandings,wi), {duration: 1}))
 
 
         // show column underneath result (for moving later)
@@ -383,7 +383,7 @@ class Page14 extends AnimationPage{
         tl.to([...equationLeftMovables, ...equationRightMovables, ...rconColMovables, ...substitutionMovables.movables], {opacity: 0})
 
         // move last col back
-        tl.add(this.moveGroup2(equationRightMovables, this.getWiCol(secondaryLandings,wi-1), this.getWiCol(primaryLandings,wi-1), {duration: .001}))
+        tl.add(this.moveGroup(equationRightMovables, this.getWiCol(secondaryLandings,wi-1), this.getWiCol(primaryLandings,wi-1), {duration: .001}))
         tl.set(equationRightMovables, {opacity: 1})
   
         return tl;
@@ -404,7 +404,7 @@ class Page14 extends AnimationPage{
         const tl = gsap.timeline();
 
         // prepare results
-        tl.add(this.moveGroup2(subbedColMovables, this.getWiCol(primaryLandings, gridIndex-1), this.getWiCol(secondaryLandings, wi-1)), {duration: .001})
+        tl.add(this.moveGroup(subbedColMovables, this.getWiCol(primaryLandings, gridIndex-1), this.getWiCol(secondaryLandings, wi-1)), {duration: .001})
 
         // reveal sbox
         tl.to(sbox.component, {opacity: 1})
@@ -416,9 +416,9 @@ class Page14 extends AnimationPage{
             const cellSub = subbedColMovables[i]
 
             if(i == 0){
-                tl.add(this.moveToLanding2(cellSub, this.getWiCol(secondaryLandings, wi-1)[0], cellLanding, {duration: .001})) 
+                tl.add(this.moveToLanding(cellSub, this.getWiCol(secondaryLandings, wi-1)[0], cellLanding, {duration: .001})) 
                 tl.to(cellSub, {opacity: 1})
-                tl.add(this.moveToLanding2(cellSub, cellLanding, this.getWiCol(secondaryLandings, wi-1)[0], {duration: 1.5}))
+                tl.add(this.moveToLanding(cellSub, cellLanding, this.getWiCol(secondaryLandings, wi-1)[0], {duration: 1.5}))
             }else{
                 // highlight sbox cell + reveal cell landing
                 tl.to(cellLanding, {background: "#FFCC61"})
@@ -448,10 +448,10 @@ class Page14 extends AnimationPage{
 
         const shiftOffset = window.screen.width <= 800 ? -50 : -100;
         const tl = gsap.timeline();
-        tl.add(this.moveToLandingAdvanced2(movables[0], landings[0], landings[3], {offsetX: shiftOffset}), "shift")
-        tl.add(this.moveToLanding2(movables[1], landings[1], landings[0]), "shift+=.5")
-        tl.add(this.moveToLanding2(movables[2], landings[2], landings[1]), "shift+=.5")
-        tl.add(this.moveToLanding2(movables[3], landings[3], landings[2]), "shift+=.5")
+        tl.add(this.moveToLandingAdvanced(movables[0], landings[0], landings[3], {offsetX: shiftOffset}), "shift")
+        tl.add(this.moveToLanding(movables[1], landings[1], landings[0]), "shift+=.5")
+        tl.add(this.moveToLanding(movables[2], landings[2], landings[1]), "shift+=.5")
+        tl.add(this.moveToLanding(movables[3], landings[3], landings[2]), "shift+=.5")
         return tl;
     }
 }

@@ -117,7 +117,7 @@ class AnimationPage{
 
 
 
-    moveToLanding2(movable, landingStart, landingEnd, settings={}){
+    moveToLanding(movable, landingStart, landingEnd, settings={}){
     
         settings = {
             duration: 1,
@@ -164,7 +164,7 @@ class AnimationPage{
     }
 
 
-    moveToLandingAdvanced2(movable,landingStart, landingEnd, settings={}){
+    moveToLandingAdvanced(movable,landingStart, landingEnd, settings={}){
 
         settings = {
             offsetX: 0,
@@ -223,25 +223,13 @@ class AnimationPage{
     }
 
 
-    moveGroup(movables, landings, settings={}, label="label"){
-        const tl = gsap.timeline()
 
-        tl.add(this.moveToLanding(movables[0], landings[0], settings), label)
+    moveGroup(movables, landingsStart,landingsEnd, settings={}, label="label"){
+        const tl = gsap.timeline()
+        tl.add(this.moveToLanding(movables[0], landingsStart[0], landingsEnd[0], settings), label)
 
         for(let i = 1; i < movables.length; i++){
-            tl.add(this.moveToLanding(movables[i], landings[i], settings), `${label}+=0`)
-        }
-
-        return tl;
-    }
-
-
-    moveGroup2(movables, landingsStart,landingsEnd, settings={}, label="label"){
-        const tl = gsap.timeline()
-        tl.add(this.moveToLanding2(movables[0], landingsStart[0], landingsEnd[0], settings), label)
-
-        for(let i = 1; i < movables.length; i++){
-            tl.add(this.moveToLanding2(movables[i], landingsStart[i], landingsEnd[i], settings), `${label}+=0`)
+            tl.add(this.moveToLanding(movables[i], landingsStart[i], landingsEnd[i], settings), `${label}+=0`)
         }
 
         return tl;

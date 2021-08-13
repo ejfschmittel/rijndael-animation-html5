@@ -90,11 +90,11 @@ class Page8 extends AnimationPage{
     // helper function for the row rotaion animation
     shiftRow(movablesRow, landingsRow){
         const tl = gsap.timeline();
-        tl.add(this.moveToLandingAdvanced2(movablesRow[0],landingsRow[0], landingsRow[3], {offsetY: -100}), "shift")
+        tl.add(this.moveToLandingAdvanced(movablesRow[0],landingsRow[0], landingsRow[3], {offsetY: -100}), "shift")
 
-        tl.add(this.moveToLanding2(movablesRow[1], landingsRow[1], landingsRow[0]), "shift+=.5")
-        tl.add(this.moveToLanding2(movablesRow[2], landingsRow[2], landingsRow[1]), "shift+=.5")
-        tl.add(this.moveToLanding2(movablesRow[3], landingsRow[3], landingsRow[2]), "shift+=.5")
+        tl.add(this.moveToLanding(movablesRow[1], landingsRow[1], landingsRow[0]), "shift+=.5")
+        tl.add(this.moveToLanding(movablesRow[2], landingsRow[2], landingsRow[1]), "shift+=.5")
+        tl.add(this.moveToLanding(movablesRow[3], landingsRow[3], landingsRow[2]), "shift+=.5")
 
         return tl;
     }
