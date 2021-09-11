@@ -114,7 +114,8 @@ class RijndaelBlock {
 
         break;
     }
-
+    
+    allInfo['plaintext'] = plaintext;
     ciphertext = Utils.intArrayToHexString(ciphertext)
     return [ciphertext, allInfo];
   }

@@ -1,7 +1,7 @@
 {
 
     "playButtonTooltip": "Wiedergabe / Pause",
-    "jumpForwardsTooltip": "Forwärts springen",
+    "jumpForwardsTooltip": "Vorwärts springen",
     "jumpBackwardsTooltip": "Zurück springen",
     "settingsButtonTooltip": "Einstellungen",
 
@@ -15,27 +15,28 @@
     "settingsLanguageLabel": "Sprache",
 
     "themeOptionDefault": "Default",
-    "themeOptionNew": "Test",
+    "themeOptionNew": "Theme 2",
     
     "languageOptionEN": "Englisch",
     "languageOptionDE": "Deutsch",
 
-    "formTitle": "Rijndael Animation Data",
-    "formInfo": "Veränderungen werden in der Animation gezeigt. Probier es aus!",
+    "formTitle": "Rijndael Animation: Benutzte Daten",
+    "formInfo": "Veränderungen werden in der Animation gezeigt. Probiere es aus!",
     "plaintextLabel": "Klartext",
     "keyLabel": "Schlüssel",
-    "outputLabel": "Ausgabe",
+    "outputLabel": "Ausgabe (Hexadezimalsystem)",
+    "plaintextHexadecimalLabel": "Eingabe (Hexadezimalsystem)",
     "encryptButtonLabel": "Verschlüsseln",
     "formErrorMessage": "Der Schlüssel muss aus 32 hexadezimalen Zeichen bestehen.",
 
     "page-1-title": "Seite 1 - Rijndael Animation Intro",
-    "page-1-info": "<p>Diese Animation gibt einen Überblick über die Funktionsweise des AES-Rijndael-Algorithmus. Er verwendet eine Größe von 128 Bit sowohl für den Datenblock als auch für den Schlüssel. Für einen tieferen Einblick in die Mathematik hinter dem Algorithmus konsultieren Sie bitte die entsprechende Literatur.</p>",
+    "page-1-info": "<p>Diese Animation gibt einen Überblick über die Funktionsweise des AES-Rijndael-Algorithmus. Die unten eingegebenen Daten werden dynamisch verarbeitet. Über das Zahnrad kommen Sie zu den Einstellungen, wo Sie zwischen deutsch und englisch umschalten können. In dieser Animation haben sowohl der Datenblock als auch der Schlüssel eine Länge von 128 bit. Für einen tieferen Einblick in die Mathematik hinter dem Algorithmus konsultieren Sie bitte die entsprechende Literatur.</p><p>Zum Einstieg können Sie sich anschauen: <a href='https://de.wikipedia.org/wiki/Advanced_Encryption_Standard'>https://de.wikipedia.org/wiki/Advanced_Encryption_Standard</a></p><p>Eine weitere Darstellung von AES bietet auch: <a href='https://www.cryptool.org/en/cto/aes-step-by-step'>https://www.cryptool.org/en/cto/aes-step-by-step</a></p>",
 
     "page-2-title": "Seite 2 - Übersicht über die Verschlüsselung",
     "page-2-info": "<p>Der Advanced Encryption Standard (AES) ist auch unter seinem ursprünglichen Namen Rijndael bekannt. Es handelt sich um eine symmetrische Blockchiffre. Auf dieser Seite werden die Eingaben (Klartext und Chiffrierschlüssel) und die Ausgaben (Chiffretext) des Rijndael-Verschlüsselungsverfahrens angezeigt.</p>",
 
     "page-3-title": "Seite 3 - Verschlüsselungsverfahren und Chiffrierschlüssel",
-    "page-3-info": "<p>AES ist eine Untermenge der Rijndael-Blockchiffre. Während der Rijndael-Algorithmus eine Reihe von Schlüssel- und Blockgrößen zulässt (128, 160, 192, 224, 256 Bit), ist AES nicht so flexibel. AES hat eine feste Blocklänge von 128 Bit und lässt nur 128, 192 und 256 Bit als Schlüssellänge zu.</p><p>Der Zustand und der Schlüssel können als rechteckiges Feld von Bytes dargestellt werden. Während die Länge des Zustands/Schlüssels geteilt durch 32 die Anzahl der Spalten bestimmt, besteht jede Spalte immer aus 4 Bytes. Die Anzahl der Spalten im Status wird üblicherweise als Nb und die Anzahl der Spalten im Chiffrierschlüssel als Nk bezeichnet. Diese Spalten werden manchmal auch als Wörter bezeichnet.</p><p>Da wir in dieser Animation sowohl für den Zustand als auch für den Schlüssel eine Länge von 128 Bit verwenden, sind Nb und Nk in diesem Fall jeweils 4. Die sich ergebenden Arrays können daher als vier mal vier Tabellen dargestellt werden, wobei die Byte-Werte in hexadezimaler Schreibweise angegeben werden.</p><p>Der Übersichtlichkeit halber werden der Verschlüsselungsvorgang und die Erstellung des Schlüsselplans in getrennten Abschnitten dargestellt. Da der eigentliche Verschlüsselungsvorgang für die meisten Menschen der interessantere Teil ist, wird dieser zuerst in Teil A behandelt.</p>",
+    "page-3-info": "<p>AES ist eine Untermenge der Rijndael-Blockchiffre. Während der Rijndael-Algorithmus eine Reihe von Schlüssel- und Blockgrößen zulässt (128, 160, 192, 224, 256 Bit), ist AES nicht so flexibel. AES hat eine feste Blocklänge von 128 Bit und lässt nur 128, 192 und 256 Bit als Schlüssellänge zu.</p><p>Der Zustand und der Schlüssel können als rechteckiges Feld von Bytes dargestellt werden. Während die Länge des Zustands/Schlüssels geteilt durch 32 die Anzahl der Spalten bestimmt, besteht jede Spalte immer aus 4 Bytes. Die Anzahl der Spalten im Status wird üblicherweise als Nb und die Anzahl der Spalten im Chiffrierschlüssel als Nk bezeichnet. Diese Spalten werden manchmal auch als Wörter bezeichnet.</p><p>Da wir in dieser Animation sowohl für den Zustand als auch für den Schlüssel eine Länge von 128 Bit verwenden, sind Nb und Nk in diesem Fall jeweils 4. Die sich ergebenden Arrays können daher als vier mal vier Tabellen dargestellt werden, wobei die Byte-Werte in hexadezimaler Schreibweise angegeben werden.</p><p>Der Übersichtlichkeit halber werden der Verschlüsselungsvorgang und die Erstellung der Rundenschlüssel in getrennten Abschnitten dargestellt. Da der eigentliche Verschlüsselungsvorgang für die meisten Menschen der interessantere Teil ist, wird dieser zuerst in Teil A behandelt.</p>",
 
     "page-4-title": "Seite 4 - A) Verschlüsselungsprozess",
     "page-4-info": "<p>In diesem Abschnitt werden der Verschlüsselungsprozess und seine Vorgänge erläutert. Der Entschlüsselungsprozess funktioniert in umgekehrter Weise sehr ähnlich.</p>",
@@ -93,7 +94,7 @@
     },
     "page-4": {
         "title": "Verschlüsselungs-Prozess",
-        "text": "(Durchführung der Verschlüsselung für den gegebenen Klartextblock mit Hilfe von 4 verschiedenen Transformationen in der Initial-Rounde, den 9 Haupt-Runden und in der Final-Runde)"
+        "text": "(Durchführung der Verschlüsselung für den gegebenen Klartextblock mit Hilfe von 4 verschiedenen Transformationen in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde)"
     },
     "page-5": {
         "title": "Verschlüsselungsprozess",
@@ -174,7 +175,7 @@
     },
     "page-13": {
         "title": "Schlüsselgenerierung",
-        "text": "(Expandierung des gegebenen Hauptschlüssel in 11 Teilschlüssel, die in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde benutzt werden)"
+        "text": "(Expandierung des gegebenen Hauptschlüssels in 11 Teilschlüssel, die in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde benutzt werden)"
     },
     "page-14": {
         "title": "Schlüsselgenerierung",
