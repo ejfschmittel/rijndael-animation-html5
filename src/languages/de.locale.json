@@ -14,18 +14,22 @@
     "settingsJumpLabel": "Sprungweite (sekunden)",
     "settingsLanguageLabel": "Sprache",
 
+    "settingsNotice": "Wenn Sie nochmal auf das Zahnrad klicken, kommen Sie zurück in die Animation.",
+    "settingsNoticeJump": "Setzt die Sprungweite in der Animationstimeline für die Steuerungsknöpfe \"Zurück springen\" und \"Vorwärts springen\".",
+
+
     "themeOptionDefault": "Default",
     "themeOptionNew": "Theme 2",
     
     "languageOptionEN": "Englisch",
     "languageOptionDE": "Deutsch",
 
-    "formTitle": "Rijndael Animation: Benutzte Daten",
+    "formTitle": "Rijndael Animation: Verwendete Daten",
     "formInfo": "Veränderungen werden in der Animation gezeigt. Probiere es aus!",
-    "plaintextLabel": "Klartext",
-    "keyLabel": "Schlüssel",
-    "outputLabel": "Ausgabe (Hexadezimalsystem)",
-    "plaintextHexadecimalLabel": "Eingabe (Hexadezimalsystem)",
+    "plaintextLabel": "Eingabe (Klartext in ASCII)",
+    "plaintextHexadecimalLabel": "Eingabe (Klartext in hex)",
+    "keyLabel": "Eingabe (Schlüssel in hex)",
+    "outputLabel": "Ausgabe (Geheimtext in hex)",
     "encryptButtonLabel": "Verschlüsseln",
     "formErrorMessage": "Der Schlüssel muss aus 32 hexadezimalen Zeichen bestehen.",
 
