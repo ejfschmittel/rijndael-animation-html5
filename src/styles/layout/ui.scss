@@ -296,7 +296,7 @@
     }
    
     & > * {	
-        user-select: none;	
+        //user-select: none;	
     }
 
     &--display{
@@ -440,6 +440,17 @@
         margin: 1rem 0;
     }
 
+
+    &__radio-row{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+
+        & > * {
+            margin-right: .5rem ;
+        }
+    }
+
     &__row{
         display: flex;
         flex-direction: column;
@@ -451,6 +462,11 @@
         }
 
         
+    }
+
+    &__rows{
+        display: flex;
+        flex-direction: column;
     }
 
     &__error{
@@ -536,6 +552,30 @@
 
         @include respond("tab-port"){
             margin-bottom: .5rem;
+        }
+    }
+
+    &__close-btn{
+        display: block;
+        width: 10rem;
+        margin: 0 auto;
+        padding: .3rem .5rem;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        transition: all .3s;
+        font-size: 1.2rem;
+        font-weight: bold;
+        background: #eee;
+        border: none;
+        box-shadow: 0 .2rem .3rem rgba(0,0,0,.3);
+        border-bottom: 1px solid #aaa;
+
+        &:hover{
+            box-shadow: 0 .2rem .3rem rgba(0,0,0,.5);
+        }
+
+        &:active{
+            box-shadow: 0 .2rem .2rem rgba(0,0,0,.3);
         }
     }
 }

@@ -9,6 +9,8 @@ const NAVIGATION_BTN_ID = "rijndael-animation-navigation-btn";
 const INFO_BTN_ID  = "rijndael-animation-info-btn";
 const FORM_BTN_ID = "rijndael-animation-form-btn";
 
+const CLOSE_SETTINGS_BTN_ID = "close-settings-btn"
+
 
 // overlays
 const SETTINGS_OVERLAY_ID = "rijndael-animation-settings-overlay";
@@ -53,6 +55,8 @@ class AnimationPlayerUI{
 
         this.navigationContainer = document.getElementById(NAVIGATION_CONTAINER_ID)
         this.infoContainer = document.getElementById(INFO_TEXT_CONTAINER_ID)
+
+        this.closeSettingsBtn = document.getElementById(CLOSE_SETTINGS_BTN_ID)
 
         //this.themeSelect = document.getElementById(THEME_SELECT_INPUT_ID)
        // this.langSelect = document.getElementById(LANG_SELECT_INPUT_ID)
@@ -124,6 +128,12 @@ class AnimationPlayerUI{
         
         });
 
+
+        this.closeSettingsBtn.addEventListener("click", (e) => {
+            this.settingsOverlay.classList.remove("ui-container--display")
+            this.higlightButton(this.settingsBtn, false)
+
+        })
 
        /* this.themeSelect.addEventListener("change", (e) => {
             const theme = e.target.value;

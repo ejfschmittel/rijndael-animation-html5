@@ -29,6 +29,9 @@ const hexStringToArray = (string) => {
   return intArray;
 }
 
+
+
+
 const hexToInt = (hex) => {
   if(!hex) return 0;
    return parseInt(hex.replace(/^#/, ''), 16);

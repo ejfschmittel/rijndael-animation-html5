@@ -108,23 +108,37 @@
             <h3 class="rijndael-form__title" data-lang="formTitle">Rijndael Animation Data</h3>
             <p class="rijndael-form__info" data-lang="formInfo">Updating changes the animation. Try it out!</p>
             <form class="rijndael-form__form">
-                <div class="rijndael-form__row">
-                    <label data-lang="plaintextLabel">Plaintext:</label>
-                    <input type="text" name="rijndael-key" id="rijndael-form-plaintext-input" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do" >
+
+                <div class="rijndael-form__radio-row">
+                    <span data-lang="formSelectInputOne"></span>
+                    <label>ASCII</label>
+                    <input type="radio" name="asciiorhex" value="ascii" checked />
+                    <span data-lang="formSelectInputTwo"></span>
+                    <label>hex</label>
+                    <input type="radio" name="asciiorhex" value="hex"/>
+                    
                 </div>
-                <div class="rijndael-form__row">
-                    <label data-lang="keyLabel">Key:</label>
-                    <input type="text" name="rijndael-key" id="rijndael-form-key-input" value="2b7e151628aed2a6abf7158809cf4f3c" maxlength="32">
-                </div>       
-                <div class="rijndael-form__row">
-                    <label data-lang="plaintextHexadecimalLabel">Input (hexadecimal):</label>
-                    <input type="text" name="rijndael-key" id="rijndael-form-plaintext-hexadecimal" value="" disabled>
-                </div>    
-                <div class="rijndael-form__row">
-                    <label data-lang="outputLabel">Output:</label>
-                    <input type="text" name="rijndael-key" id="rijndael-form-ouput" value="" disabled>
+
+
+                <div class="rijndael-form__rows">
+                    <div class="rijndael-form__row" id="rijndael-plaintext-row">
+                        <label data-lang="plaintextLabel">Plaintext:</label>
+                        <input type="text" name="rijndael-key" id="rijndael-form-plaintext-input" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do" >
+                    </div>
+                    <div class="rijndael-form__row">
+                        <label data-lang="keyLabel">Key:</label>
+                        <input type="text" name="rijndael-key" id="rijndael-form-key-input" value="2b7e151628aed2a6abf7158809cf4f3c" maxlength="32">
+                    </div>       
+                    <div class="rijndael-form__row" id="rijndael-plaintext-hex-row">
+                        <label data-lang="plaintextHexadecimalLabel">Input (hexadecimal):</label>
+                        <input type="text" name="rijndael-key" id="rijndael-form-plaintext-hexadecimal" value="" disabled>
+                    </div>    
+                    <div class="rijndael-form__row">
+                        <label data-lang="outputLabel">Output:</label>
+                        <input type="text" name="rijndael-key" id="rijndael-form-ouput" value="" disabled>
+                    </div>
                 </div>
-                <div class="rijndael-form__error" id="rijndael-form-error-field"></div>
+                <div class="rijndael-form__error" id="rijndael-form-error-field">Test</div>
                 <button class="rijndael-form__button" id="rijndael-form-button" data-lang="encryptButtonLabel">Encrypt</button>
             </form>
         </div>
@@ -204,8 +218,8 @@ l120 -13 397 -400 398 -401 37 29 c85 63 356 286 468 384 302 265 573 556 755
                 <p data-lang="settingsNoticeJump"></p>
             </div>
             <p data-lang="settingsNotice"></p>
+            <button id="close-settings-btn" class="settings__close-btn" data-lang="settingsCloseBtn"></button>
         </div>
-
     </div>
 
       <!-- mobile btns -->

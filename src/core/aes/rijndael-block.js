@@ -58,7 +58,7 @@ class RijndaelBlock {
         throw new Error(`IV size should match with block size (${blockSize * 8} bit)`);
     }
 
-    const plaintext = Utils.toArray(_plaintext);
+    const plaintext = _plaintext;
     let padLength = plaintext.length % blockSize;
 
     if (padLength !== 0) padLength = blockSize - padLength;
