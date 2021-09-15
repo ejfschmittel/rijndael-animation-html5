@@ -32,8 +32,8 @@
     "formTitle": "Rijndael Animation: Verwendete Daten",
     "formInfo": "Veränderungen werden in der Animation gezeigt. Probiere es aus!",
 
-    "formSelectInputOne": "Enter message in ",
-    "formSelectInputTwo": "or in ",
+    "formSelectInputOne": "Plaintext eingeben in ",
+    "formSelectInputTwo": "oder in ",
 
     "plaintextLabel": "Eingabe (Klartext in ASCII)",
     "plaintextHexadecimalLabel": "Eingabe (Klartext in hex)",

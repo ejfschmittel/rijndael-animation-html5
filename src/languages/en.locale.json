@@ -27,6 +27,8 @@
     "languageOptionDE": "German",
 
     "formTitle": "Rijndael Animation Data",
+    "formSelectInputOne": "Enter message in ",
+    "formSelectInputTwo": "or in ",
     "formInfo": "Updating the data  below changes the animation. Try it out!",
     "plaintextLabel": "Input (plain text in ASCII)",
     "keyLabel": "Input (key in hexadecimal)",
