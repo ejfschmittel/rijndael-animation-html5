@@ -21,6 +21,7 @@
 
     "settingsNotice": "Wenn Sie nochmal auf das Zahnrad klicken, kommen Sie zurück in die Animation.",
     "settingsNoticeJump": "Setzt die Sprungweite in der Animations-Timeline für die Steuerungsknöpfe \"Zurück springen\" und \"Vorwärts springen\".",
+    "settingsInfo": "<p>Das User-Interface dieser Animation besteht aus einem Anzeigefeld, welches die Animation darstellt. Unter dieser befindet sich eine Bedienungsleiste, in der sich die Animation starten/stoppen lässt, sowie Knöpfe um direkt zu einzelnen Animations-Seiten zu gelangen. Ebenso sind ein \"Vorwärtsspringen\" und ein \"Rückwärtsspringen\" Knopf vorhanden. Diese erlauben es sich direkt, in den eingestellten Sekundensprüngen, über die Seitengrenzen hinweg durch die Animations-Timeline zu bewegen.</p><p>Unter der Bedienungsleiste befindet sich noch ein Abschnitt mit einem Info-Text zu der jeweils angezeigten Seite und ganz unten eine Form zur Eingabe der Parameter, die Verschlüsselung deren Daten in der Animation angezeigt werden.</p>",
 
 
     "themeOptionDefault": "Default",

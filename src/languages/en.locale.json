@@ -19,6 +19,8 @@
     "settingsThemeLabel": "Theme:",
     "settingsJumpLabel": "Jump duration (seconds)",
     "settingsLanguageLabel": "Language",
+    "settingsInfo": "<p>The user interface of this animation consists of a animation display field that shows the animation. Below this is a control bar where the animation can be started/stopped, as well as buttons to go directly to individual animation pages. There is also a \"jump forwards\" and a \"jump backwards\" button. These allow you to move directly across the page boundaries through the animation timeline in the set second jumps.</p><p>Below the control bar there is another section with an info text about the page displayed in each case and at the very bottom a form for entering the parameters, the encryption whose data is displayed in the animation.</p>",
+
 
     "themeOptionDefault": "Default",
     "themeOptionNew": "Theme 2",
