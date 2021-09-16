@@ -111,7 +111,7 @@ class LocaleController{
 
 
     getCurrentPageLocale(){
-        return document.documentElement.lang;
+        return  parent.document.documentElement.lang;
     }
 }
 

@@ -128,6 +128,8 @@ class AnimationPlayerUI{
         
         });
 
+     
+
 
         this.closeSettingsBtn.addEventListener("click", (e) => {
             this.settingsOverlay.classList.remove("ui-container--display")
@@ -213,12 +215,32 @@ class AnimationPlayerUI{
             firstChild.addEventListener("click", () => {
                // this.goToPage(pageID)
                this.controller.timeline.goToPage(pageID)
+
+               // hide overlays and deselect buttons
                this.hideAllOverlays();
                this.higlightButton()
             })   
           
             this.navigationContainer.appendChild(firstChild)
         })
+
+        // add for end screen
+        /*const menuItem = document.createElement("div")
+        menuItem.innerHTML = menuItem.innerHTML = this.getMenuItemTemplate(this.controller.pageIDs.length +1).trim();;
+        const firstChild = menuItem.firstChild;
+
+
+        this.addLocaleToElement("page-15-title", firstChild.querySelector(".tooltiptext"))
+        this.addLocaleToElement("page-15-title", firstChild.querySelector(".navigation-item__title"))
+        firstChild.addEventListener("click", () => {
+          
+            this.controller.timeline.goToPage(pageID)
+            this.hideAllOverlays();
+            this.higlightButton()
+         })   
+
+         this.navigationContainer.appendChild(firstChild)*/
+
     }
 
 
@@ -275,8 +297,6 @@ class AnimationPlayerUI{
         const menuItems = this.navigationContainer.querySelectorAll(".navigation-item")
         const currentIndex = this.controller.pageIDs.indexOf(pageID)
 
-       
-
         menuItems.forEach((menuItem, idx) => {       
             if(idx == currentIndex){
                 menuItem.classList.add("navigation-item--current")
@@ -284,13 +304,15 @@ class AnimationPlayerUI{
                 menuItem.classList.remove("navigation-item--current")
             }
         })
+
+        // final page???
+
     }, 100)
 
 
     // hide overlays & dehighlight buttons
     onOverlayBtnPress(btn, overlay){
         const shouldHighlight = this.toggleOverlays(overlay)
-
         this.higlightButton(btn, shouldHighlight)
     }
 

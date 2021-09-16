@@ -23,9 +23,6 @@ class AnimationController{
 
         this.isResizing = false;
        
-
-      
-    
         this.locale = new LocaleController(this, settings.locale)
         this.theme = new ThemeController(this, settings.themes)
         this.movables = new MovablesController(this);

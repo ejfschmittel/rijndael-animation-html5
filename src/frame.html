@@ -12,7 +12,7 @@
 
   <div class="ui">
         
-    <div class="ui__screen">
+    <div class="ui__screen" tabindex="1" id="rijndael-animation-screen">
         <%= require('html-loader!./pages/page1/page.html').default %>
         <%= require('html-loader!./pages/page2/page.html').default %>
         <%= require('html-loader!./pages/page3/page.html').default %>
@@ -130,7 +130,7 @@
                         <input type="text" name="rijndael-key" id="rijndael-form-key-input" value="2b7e151628aed2a6abf7158809cf4f3c" maxlength="32">
                     </div>       
                     <div class="rijndael-form__row" id="rijndael-plaintext-hex-row">
-                        <label data-lang="plaintextHexadecimalLabel">Input (hexadecimal):</label>
+                        <label data-lang="plaintextHexadecimalLabel" id="rijndael-plaintext-hex-label">Input (hexadecimal):</label>
                         <input type="text" name="rijndael-key" id="rijndael-form-plaintext-hexadecimal" value="" disabled>
                     </div>    
                     <div class="rijndael-form__row">

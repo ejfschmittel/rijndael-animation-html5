@@ -41,6 +41,18 @@ class AnimationTimeline{
             e.preventDefault()
             this.goToPage("page-1")
         })
+
+        // evenhandler for keypress
+        window.addEventListener("keypress", (e) => {
+            e.stopPropagation()
+        console.log(document.activeElement)
+            if(e.key === " " || e.keyCode == 32){
+                if(document.activeElement.id === "rijndael-animation-screen"){
+                    // jump forward=s
+                    this.jumpForwards();
+                }     
+            }
+        });
     }
 
     createEmptyTimeline(){
