@@ -89,26 +89,46 @@
     }
 
     &__add-symbol{
-        font-size: 2rem;
-        font-weight: bold;
+  
+      
         width: 2.2rem;
         height: 2.2rem;
-        justify-content: center;
-        align-items: center;
-        display: flex;
+
         border-radius: 50%;
         border: 2px solid #333;
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         top: 0;
         left: 0;
         transform: translate(-50%, -50%);
+        
+
+        &:before{ 
+            font-size: 2rem;
+            line-height: 2rem;
+            font-weight: bold;
+            content: '\FF0B';
+            height: 2rem;
+            width: 2rem;
+
+            @media screen and (max-width: 800px) {
+                font-size: 1rem;
+                line-height: 1rem;
+                height: 1rem;
+                width: 1rem;
+            }
+        }
+        
 
         @media screen and (max-width: 800px) {
-            font-size: 1.2rem;
             width: 1.4rem;
             height: 1.4rem;
         }
     }
+
+    
 
     &__equals-symbol{
         font-size: 2.4rem;
