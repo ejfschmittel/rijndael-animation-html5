@@ -153,7 +153,12 @@ class Page14 extends AnimationPage{
             pgMovablesOg,
             pgMovablesTransforms,
             finalGridMovables,
-            textSubbytes
+            textSubbytes,
+            gridOneLabel,
+            gridTwoLabel,
+            gridThreeLabel,
+            gridFourLabel,
+            gridFinalLabel,
         } = this.pageElements
 
 
@@ -164,7 +169,8 @@ class Page14 extends AnimationPage{
             sbox.component,
             ...substitutionMovables.movables,
             equalsSymbol,addSymbolOne,addSymbolTwo,
-            textS,textA,textB, textInitial,textXor,], {opacity: 0})
+            textS,textA,textB, textInitial,textXor,
+            gridOneLabel, gridTwoLabel, gridThreeLabel, gridFourLabel, gridFinalLabel], {opacity: 0})
 
         for(let i = 1; i < 4; i++){
             tl.set([...pgMovablesOg[i].getCol(0), ...pgMovablesTransforms[i].getCol(0)],{
@@ -256,7 +262,7 @@ class Page14 extends AnimationPage{
         tl.to(textXor, {opacity: 0})
 
 
-        const {rconMovables, pgFourMovablesOg, finalGridMovables} = this.pageElements
+        const {rconMovables, pgFourMovablesOg, finalGridMovables, gridFourLabel, gridOneLabel, gridTwoLabel, gridThreeLabel, gridFinalLabel} = this.pageElements
         const { rconLabel} = this.pageElements
 
        
@@ -269,9 +275,13 @@ class Page14 extends AnimationPage{
             tl.add(this.addColumns(10))
             tl.add(this.addColumns(11))
 
-            
-            tl.to(pgFourMovablesOg.movables, {opacity: 1})
+            tl.to([gridOneLabel, gridTwoLabel, gridThreeLabel], {opacity: 1})
+
+            tl.to(gridFourLabel, {opacity: 1, delay: .5})
+            tl.to(pgFourMovablesOg.movables, {opacity: 1}, "<")
             tl.to(rconMovables.getCol(2), {opacity: 0}, "<")
+        }else{
+            tl.to([gridOneLabel, gridTwoLabel], {opacity: 1})
         }
 
         const rconStart = isMobile ?  1 : 3;
@@ -281,7 +291,8 @@ class Page14 extends AnimationPage{
         }
 
         tl.to(rconLabel, {opacity: 0}, "<")
-        tl.to(finalGridMovables.movables, {opacity: 1})
+        tl.to(gridFinalLabel, {opacity: 1})
+        tl.to(finalGridMovables.movables, {opacity: 1}, "<")
        
         
       

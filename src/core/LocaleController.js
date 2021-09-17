@@ -102,9 +102,6 @@ class LocaleController{
             const localeKey = e.target.value;
             this.setLocale(localeKey)
         })
-
-
-
     }
 
 

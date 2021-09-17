@@ -144,6 +144,23 @@
             font-size: 1rem;
         }
     }
+
+    &__grid-label{
+        position: absolute;
+        bottom: -2rem;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+
+        @media screen and (max-width: 800px) {
+            bottom: -1.5rem;
+            font-size: .6rem;
+        }
+    }
+
+    &__grid{
+        position: relative;
+    }
 }
 
 
@@ -178,14 +195,24 @@
 }
 
 
-    @media screen and (max-width: 800px) {
 
-        #rijndael-page-14-primary-grids-four{
-            display: none;
-        }
 
-        #rijndael-page-14-primary-grids-three{
-            display: none;
-        }
+@media screen and (max-width: 800px) {
+
+    #rijndael-page-14-primary-grids-four{
+        display: none;
     }
+
+    #rijndael-page-14-primary-grids-three{
+        display: none;
+    }
+
+    #rijndael-page-14-grid-three-label{
+        display: none;
+    }
+
+    #rijndael-page-14-grid-four-label{
+        display: none;
+    }
+}
 
