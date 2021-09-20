@@ -273,7 +273,7 @@ class AnimationTimeline{
              this.nestedTimelines = {...this.nestedTimelines, ...createdNestedTimelines}
          })
 
-         this.tl.to(this.animationCompletedScreen, {delay: 3, display: "flex", duration: .00001})
+         //this.tl.to(this.animationCompletedScreen, {delay: 3, display: "flex", duration: .00001})
     }
 
 

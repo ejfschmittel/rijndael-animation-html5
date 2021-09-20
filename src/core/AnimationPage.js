@@ -144,7 +144,6 @@ class AnimationPage{
 
         const tl = gsap.timeline({
             onStart: () => {          
-                console.log("on start")
                 landingEnd.appendChild(movable)
             },
         })

@@ -27,6 +27,7 @@
         <%= require('html-loader!./pages/page12/page.html').default %>
         <%= require('html-loader!./pages/page13/page.html').default %>
         <%= require('html-loader!./pages/page14/page.html').default %>
+        <%= require('html-loader!./pages/page15/page.html').default %>
     </div>
 
     <!-- controlls -->
@@ -66,30 +67,7 @@
         </div>
     </div>
 
-    <div class="ui__animation-final-overlay finish-screen" id="animation-completed-screen">
-
-        <div class="finish-screen__container" >
-
-            <h3>AES-Rijndael-Animation</h3>
-            <div data-lang="finishOverlayBackToEncryption" class="finish-screen__button finish-screen__button--yellow" id="back-to-encryption-process-btn">
-                View encryption process again
-            </div>
-
-            <div  data-lang="finishOverlayBackToKeySchedule" class="finish-screen__button finish-screen__button--blue" id="back-to-key-schedule-btn">
-                View key schedule again
-            </div>
-
-            <div class="finish-screen__button-repeat">
-                <button class="controlls__btn tooltip tooltip" id="back-to-start-btn">
-                    <div class="tooltiptext" data-lang="finishOverlayBackToStart">Restart animation</div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                        <title>Refresh</title>
-                        <path d="M320 146s24.36-12-64-12a160 160 0 10160 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/>
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 58l80 80-80 80"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="ui__navigations ui-container" id="rijndael-animation-navigation-overlay">
         <div class="navigation" id="rijndael-animation-navigation">

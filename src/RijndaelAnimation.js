@@ -15,7 +15,7 @@ import Page11 from "./pages/page11/page.animations"
 import Page12 from "./pages/page12/page.animations"
 import Page13 from "./pages/page13/page.animations"
 import Page14 from "./pages/page14/page.animations"
-
+import Page15 from "./pages/page15/page.animations"
 
 
 const SETTINGS = {
@@ -48,6 +48,7 @@ class RijndaelAnimation extends AnimationController {
         this.registerAnimationPage(Page12, "page-12")
         this.registerAnimationPage(Page13, "page-13")
         this.registerAnimationPage(Page14, "page-14")
+        this.registerAnimationPage(Page15, "page-15")
    
         this.init()
    

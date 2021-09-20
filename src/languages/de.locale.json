@@ -1,14 +1,11 @@
 {
-
     "playButtonTooltip": "Wiedergabe / Pause",
     "jumpForwardsTooltip": "Vorwärts springen",
     "jumpBackwardsTooltip": "Zurück springen",
     "settingsButtonTooltip": "Einstellungen",
     "settingsCloseBtn": "Schließen",
 
-    "finishOverlayBackToEncryption": "Verschlüsselungsprozess erneut anschauen",
-    "finishOverlayBackToKeySchedule": "Schlüsselplanerstellung erneut anschauen",
-    "finishOverlayBackToStart": "Animation neu starten",
+
 
     "infoButtLabel": "Info",
     "navigationButtonLabel": "Navigation",
@@ -23,18 +20,16 @@
     "settingsNoticeJump": "Setzt die Sprungweite in der Animations-Timeline für die Steuerungsknöpfe \"Zurück springen\" und \"Vorwärts springen\".",
     "settingsInfo": "<p>Das User-Interface dieser Animation besteht aus einem Anzeigefeld, welches die Animation darstellt. Unter dieser befindet sich eine Bedienungsleiste, in der sich die Animation starten/stoppen lässt, sowie Knöpfe um direkt zu einzelnen Animations-Seiten zu gelangen. Ebenso sind ein \"Vorwärtsspringen\" und ein \"Rückwärtsspringen\" Knopf vorhanden. Diese erlauben es sich direkt, in den eingestellten Sekundensprüngen, über die Seitengrenzen hinweg durch die Animations-Timeline zu bewegen.</p><p>Unter der Bedienungsleiste befindet sich noch ein Abschnitt mit einem Info-Text zu der jeweils angezeigten Seite, und ganz unten ein Formular zur Eingabe der Parameter und der Nachricht, die in der Animation benutzt werden, und zur Ausgabe.</p>",
 
-
     "themeOptionDefault": "Default",
     "themeOptionNew": "Theme 2",
     
     "languageOptionEN": "Englisch",
     "languageOptionDE": "Deutsch",
 
-    "formTitle": "Rijndael-Animation: Verwendete Daten",
-    "formInfo": "Veränderungen werden in der Animation gezeigt. Probiere es aus!",
-
+    "formTitle": "Rijndael-Animation: Verwendete Daten", 
     "formSelectInputOne": "Plaintext eingeben in ",
     "formSelectInputTwo": "oder in ",
+    "formInfo": "Veränderungen werden in der Animation gezeigt. Probiere es aus!",
 
     "plaintextLabel": "Klartext (Eingabe in ASCII)",
     "plaintextHexadecimalLabel": "Klartext (in hex)",
@@ -88,21 +83,22 @@
     "page-14-title": "Seite 14: Schlüsselplan",
     "page-14-info": "<p>Der Schlüsselplan ist das Mittel, mit dem der Hauptschlüssel in einen Satz von Rundschlüsseln erweitert wird. Dies geschieht vor dem Verschlüsselungs-/Entschlüsselungsprozess. Die Anzahl der resultierenden Rundenschlüssel-Bits ist gleich der Blocklänge multipliziert mit der Anzahl der Runden plus eins (hier 128 Bit * 11 = 1408 Rundenschlüssel-Bits).</p><p>Zur Erinnerung: Nb = Anzahl der Wörter im Nachrichtenblock, Nk = Anzahl der Wörter im Hauptschlüssel.</p><p>Dieser erweiterte Schlüssel ist ein Array von 4-Byte-Wörtern (W). Die ersten Nb Wörter werden mit dem Hauptschlüssel gefüllt. Die folgenden Wörter werden dann rekursiv durch Wörter mit kleineren Indizes definiert.</p><p>Die genauen Operationen, die dafür verwendet werden, hängen vom Wert von Nk ab. Es gibt zwei Gruppen von Operationen, eine für Nk ≤ 6 und eine für Nk > 6.</p><p>Jedes Wort, das auf den Hauptschlüssel folgt, wird durch eine XOR-Verknüpfung des vorherigen Wortes W[i-1] und des Wortes, das Nk Positionen vor W[i-Nk] liegt, erzeugt.</p><p>Für Wörter an Positionen, die ein Vielfaches von Nk sind, wird vor der XOR-Verknüpfung eine Transformation auf W[i-1] angewendet. Zusätzlich wird eine Rundungskonstante (Rcon) XORiert.</p><p>Die Transformation von W[i-1] besteht aus einer zyklischen Verschiebung der Bytes im Wort (RotByte), gefolgt von einem Tabellennachschlag auf alle vier Bytes des Wortes (SubBytes).</p><p>Der individuelle Rundenschlüssel (i) kann dann durch Auswahl des Unterarrays W[Nb * i] bis W[Nb * (i+1)] definiert werden.</p>",
 
-
-    "page-15-title": "Page 15: Animation Finish card",
-    "page-15-info": "Page 15: Animation Finish card",
+    "page-15-title": "Page 15: Endkarte",
+    "page-15-info": "Page 15: Endkarte",
 
     "page-1": {
         "titlePartOne": "Rijndael",
         "titlePartTwo": "Cipher",
-        "text": "In der Animation wurde sowohl für den Datenblock als auch für den Schlüssel eine Länge von 128 Bit angenommen"
+        "text": "In der Animation wurde sowohl für den Datenblock als auch für den Schlüssel eine Länge von 128 Bit angenommen."
     },
+
     "page-2": {
         "boxText": "Rijndael-Verschlüsseler",
         "textLeft": "Hauptschlüssel",
         "textBottom": "Geheimtext",
         "textTop": "Klartext"
     },
+
     "page-3": {
         "title": "Input",
         "subtitleLeft": "State",
@@ -112,10 +108,12 @@
         "textLeft": "zum Verschlüsselungs-Prozess",
         "textRight": "zur Schlüsselgenerierung"
     },
+
     "page-4": {
         "title": "Verschlüsselungs-Prozess",
         "text": "(Durchführung der Verschlüsselung für den gegebenen Klartextblock mit Hilfe von 4 verschiedenen Transformationen in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde)"
     },
+
     "page-5": {
         "title": "Verschlüsselungsprozess",
         "titleInitialRound": "Initial-Runde",
@@ -136,6 +134,7 @@
 
         "round": "Runde"
     },
+
     "page-6": {
         "title": "Die vier Arten der Verschlüsselungs-Transformationen:",
         "labelOne": "1 - SubBytes",
@@ -143,28 +142,33 @@
         "labelThree": "3 - MixColumns",
         "labelFour": "4 - addRoundKey"
     },
+
     "page-7": {
         "title": "1 - SubBytes",
         "round": "Runde 1",
         "sboxLabel": "S-Box",
         "sboxExplanation": "Byte-Ersetzungstabelle"
     },
+
     "page-8": {
         "title": "2 - ShiftRows",
         "rotateTextOne": "Rotation um 1 Byte",
         "rotateTextTwo": "Rotation um 2 Bytes",
         "rotateTextThree": "Rotation um 3 Bytes"
     },
+    
     "page-9": {
         "title": "3 - MixColumns",
         "text": "Die 4 Zahlen einer Spalte werden mit einer gegebenen Matrix modulo multipliziert in einem Rijndael-Galois-Feld",
         "text2": "Der MixColumns-Schritt ist zusammen mit dem ShiftRows-Schritt die Hauptursache für die Diffusion in der Rijndael-Chiffre."
     },
+
     "page-10": {
         "title": "4 - AddRoundKey",
         "roundKeyLabel": "Rundenschlüssel",
         "roundKeyText": "(hergeleitet als Rundenschlüssel 1 bei der Schlüsselgenerierung - siehe Seite 14)"
     },
+
     "page-11": {
         "introText": "Diese vier Transformationen werden in den 9 Hauptrunden auf den Klartextblock angewandt. Die MixColumns-Transformation wird in der Final-Runde nicht benutzt.",
         "roundLabel": "Start der Runde",
@@ -179,6 +183,7 @@
         "roundFourLabel": "Runde 4",
         "roundFiveLabel": "Runde 5"
     },
+
     "page-12": {
         "roundLabel": "Start der Runde",
         "subBytesLabel": "Nach SubBytes",
@@ -193,10 +198,12 @@
         "roundTenLabel": "Runde 10",
         "cipherTextLabel": "Geheimtext"
     },
+
     "page-13": {
         "title": "Schlüsselgenerierung",
         "text": "(Expandierung des gegebenen Hauptschlüssels in 11 Teilschlüssel, die in der Initial-Runde, den 9 Haupt-Runden und in der Final-Runde benutzt werden)"
     },
+
     "page-14": {
         "title": "Schlüsselgenerierung",
         "RotWordLabel": "RotWord",
@@ -207,7 +214,6 @@
         "WTwo": "W<sub>i-1</sub>",
         "WThree": "W<sub>i</sub>",
         "RconFourLabel": "Rcon(4)",
-
 
         "textIntro": "Der expandierte Schlüssel kann als Vektor von 32-Bit-Worten (Spalten) betrachtet werden. Die Indizes der Spalten W<sub>i</sub> laufen von 0 bis 43. Die ersten vier Spalten werden mit dem gegebenen Hauptschlüssel gefüllt.",
         "text": "Die Worte auf durch 4 teilbaren Positionen (W<sub>4</sub>, W<sub>8</sub>,...,W<sub>40</sub>) werden folgendermaßen berechnet:",
@@ -220,5 +226,14 @@
         "roundKeyTwoLabel": "Rundenschlüssel 2",
         "roundKeyThreeLabel": "Rundenschlüssel 3",
         "roundKeyTenLabel": "Rundenschlüssel 10"
+    },
+
+    "page-15": {
+        "finishOverlayBackToEncryption": "Verschlüsselungsprozess erneut anschauen",
+        "finishOverlayBackToKeySchedule": "Schlüsselplanerstellung erneut anschauen",
+        "finishOverlayBackToStart": "Animation neu starten",
+
+        "encryptionTitle": "Seite 4: A) Verschlüsselungsprozess",
+        "keyScheduleTitle": "Seite 13: B) Hauptschlüssel"
     }
 }

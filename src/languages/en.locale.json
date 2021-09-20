@@ -1,14 +1,9 @@
 {
-
     "playButtonTooltip": "Play / pause",
     "jumpForwardsTooltip": "Jump forwards",
     "jumpBackwardsTooltip": "Jump backwards",
     "settingsButtonTooltip": "Settings",
     "settingsCloseBtn": "Close",
-
-    "finishOverlayBackToEncryption": "View encryption process again",
-    "finishOverlayBackToKeySchedule": "View key schedule again",
-    "finishOverlayBackToStart": "Restart animation",
 
 
     "infoButtLabel": "Info",
@@ -19,8 +14,10 @@
     "settingsThemeLabel": "Theme:",
     "settingsJumpLabel": "Jump duration (seconds)",
     "settingsLanguageLabel": "Language",
-    "settingsInfo": "<p>The user interface of this animation consists of a animation display field that shows the animation. Below this is a control bar where the animation can be started/stopped, as well as buttons to go directly to individual animation pages. There is also a \"jump forwards\" and a \"jump backwards\" button. These allow you to move directly across the page boundaries through the animation timeline in the set second jumps.</p><p>Below the control bar there is another section with an info text about the page displayed in each case, and at the very bottom a form for entering the parameters and the message, used in the animation, and for the output.</p>",
 
+    "settingsNotice": "If you click on the gear again, you will return to the animation.",
+    "settingsNoticeJump": "Sets the jump distance in the animation timeline for the control buttons \"Jump backwards\" and \"Jump forwards\".",
+    "settingsInfo": "<p>The user interface of this animation consists of a animation display field that shows the animation. Below this is a control bar where the animation can be started/stopped, as well as buttons to go directly to individual animation pages. There is also a \"jump forwards\" and a \"jump backwards\" button. These allow you to move directly across the page boundaries through the animation timeline in the set second jumps.</p><p>Below the control bar there is another section with an info text about the page displayed in each case, and at the very bottom a form for entering the parameters and the message, used in the animation, and for the output.</p>",
 
     "themeOptionDefault": "Default",
     "themeOptionNew": "Theme 2",
@@ -38,7 +35,6 @@
     "plaintextHexadecimalLabelTwo": "Plaintext (Input in hex)",
     "keyLabel": "Key (Input in hex)",
     "outputLabel": "Ciphertext (Output in hex)",
-
     "encryptButtonLabel": "Encrypt",
     "formErrorMessage": "Key must be 32 char hexadecimal.",
     "formErrorPlaintextNotEmpty": "The input must not be empty.",
@@ -86,22 +82,22 @@
     "page-14-title": "Page 14: Key Expansion",
     "page-14-info": "<p>The key schedule is the means by which the cipher key gets expanded into a set of round keys. This happens before the encryption/decryption process. The number of resulting round key bits is equal to the block length multiplied by the number of rounds plus one (here 128 bits * 11 = 1408 round key bits).</p><p>Reminder: Nb = number of words in message block, Nk = number of words in cipher key.</p><p>This expanded key is an array of 4-byte words (W). The first Nb words are filled with the cipher key. The following words are then recursively defined using words with smaller indices.</p><p>The exact operations used for this depend on the value of Nk. There are two sets of operations, one for Nk ≤ 6 and one for Nk > 6.</p><p>Each word following the cipher key gets created by using an XOR on the previous word W[i-1] and the word Nk positions earlier W[i-Nk]. </p><p>For words in positions that are a multiple of Nk, a transformation is applied to W[i-1] before the XOR. Additionally a round constant (Rcon) is XORed. </p><p>The transformation on W[i-1] consists of a cyclic shift of the bytes in the word (RotByte), followed by a table lookup to all four bytes of the word (SubBytes).</p><p>The individual round key (i) can then be defined by selecting the sub-array W[Nb * i] to W[Nb *  (i+1)].</p>",
 
+    "page-15-title": "Page 15: Animation Finish Card",
+    "page-15-info": "Page 15: Animation Finish Card",
 
-    "page-15-title": "Page 15: Animation Finish card",
-    "page-15-info": "Page 15: Animation Finish card",
-
-  
     "page-1": {
         "titlePartOne": "Rijndael",
         "titlePartTwo": "Cipher",
         "text": "The animation uses a 128 bit size for both the data block and the key"
     },
+
     "page-2": {
         "boxText": "Rijndael Encryptor",
         "textLeft": "Cipher key",
         "textBottom": "Ciphertext",
         "textTop": "Plaintext"
     },
+
     "page-3": {
         "title": "Input",
         "subtitleLeft": "State",
@@ -111,10 +107,12 @@
         "textLeft": "to Encryption Process",
         "textRight": "to key Schedule"
     },
+
     "page-4": {
         "title": "Encryption Process",
         "text": "(Performing the encryption of the given plaintext block using 4 diffrent transformation in the initial round, the 9 main rounds, and the final round)"
     },
+
     "page-5": {
         "title": "Encryption Process",
 
@@ -135,6 +133,7 @@
         "boxTitleThree": "Round key 10",
         "round": "Round"
     },
+
     "page-6": {
         "title": "The 4 types of transformations:",
         "labelone": "1 - SubBytes",
@@ -142,28 +141,33 @@
         "labelThree": "3 - MixColumns",
         "labelFour": "4 - addRoundKey"
     },
+
     "page-7": {
         "title": "1 - SubBytes",
         "round": "Round 1",
         "sboxLabel": "S-Box",
         "sboxExplanation": "byte substitution table"
     },
+
     "page-8": {
         "title": "2 - ShiftRows",
         "rotateTextOne": "rotate over 2 bytes",
         "rotateTextTwo": "rotate over 2 bytes",
         "rotateTextThree": "rotate over 2 bytes"
     },
+    
     "page-9": {
         "title": "3 - MixColumns",
         "text": "The four numbers of one column are modulo multiplied in Rijndael's Galois Field by a given matrix.",
         "text2": "The MixColumns step along wit hthe ShiftRows step is the primary source of diffusion in Rijndael."
     },
+
     "page-10": {
         "title": "4 - AddRoundKey",
         "roundKeyLabel": "Round key",
         "roundKeyText": "(Produced as round key 1 during the key schedule - see slide 14"
     },
+
     "page-11": {
         "introText": "These transformations are applied to the State for 9 more rounds. The final round does not include the MixColumns transformation.",
         "roundLabel": "Start of round",
@@ -178,6 +182,7 @@
         "roundFourLabel": "Round 4",
         "roundFiveLabel": "Round 5"
     },
+
     "page-12": {
         "roundLabel": "Start of round",
         "subBytesLabel": "SubBytes",
@@ -192,10 +197,12 @@
         "roundTenLabel": "Round 10",
         "cipherTextLabel": "Ciphertext"
     },
+
     "page-13": {
         "title": "Key Schedule",
         "text": "(Expansion of the given cipher key into 11 partial keys, used in the initial round, the 9 main rounds and the final round)"
     },
+
     "page-14": {
         "title": "Key Schedule",
         "RotWordLabel": "RotWord",
@@ -206,7 +213,6 @@
         "WTwo": "Wi-1",
         "WThree": "Wi",
         "RconFourLabel": "Rcon(4)",
-
 
         "textIntro": "The expanded key can be seen as an array of 32-bit words (columns), numbered from 0 to 43. The first four columns are filled with the given cipher key",
         "text": "Words in positions that are multiples of 4 (W<sub>4</sub>, W<sub>8</sub>, ..., W<sub>40</sub>) are calculated by:",
@@ -219,5 +225,14 @@
         "roundKeyTwoLabel": "Round key 2",
         "roundKeyThreeLabel": "Round key 3",
         "roundKeyTenLabel": "Round key 10"
+    },
+
+    "page-15": {
+        "finishOverlayBackToEncryption": "View encryption process again",
+        "finishOverlayBackToKeySchedule": "View key schedule again",
+        "finishOverlayBackToStart": "Restart animation",
+
+        "encryptionTitle": "Page 4: A) Encryption Process",
+        "keyScheduleTitle":  "Page 13: B) Key Schedule"
     }
 }
