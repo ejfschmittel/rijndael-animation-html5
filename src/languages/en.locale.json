@@ -151,9 +151,9 @@
 
     "page-8": {
         "title": "2 - ShiftRows",
-        "rotateTextOne": "rotate over 2 bytes",
-        "rotateTextTwo": "rotate over 2 bytes",
-        "rotateTextThree": "rotate over 2 bytes"
+        "rotateTextOne": "rotate over one byte",
+        "rotateTextTwo": "rotate over two bytes",
+        "rotateTextThree": "rotate over three bytes"
     },
     
     "page-9": {
