@@ -84,7 +84,7 @@
     "page-14-info": "<p>The \"key schedule\" is the process by which the cipher key gets expanded into a set of round keys. This happens before the encryption/decryption process. The overall number of resulting round key bits is equal to the block length multiplied by the number of rounds plus one (here 128 bit * 11 = 1408 bit).</p><p>Reminder: Nb = number of words in message block, Nk = number of words in cipher key.</p><p>This expanded key is an array of 4-byte words (W). The first Nb words are filled with the cipher key. The following words are then recursively defined using words with smaller indices.</p><p>The exact operations used for this depend on the value of Nk. There are two sets of operations, one for Nk ≤ 6 and one for Nk > 6.</p><p>Each word following the cipher key gets created by using an XOR on the previous word W[i-1] and the word Nk positions earlier W[i-Nk]. </p><p>For words in positions that are a multiple of Nk, a transformation is applied to W[i-1] before the XOR. Additionally a round constant (Rcon) is XORed. </p><p>The transformation on W[i-1] consists of a cyclic shift of the bytes in the word (RotByte), followed by a table lookup to all four bytes of the word (SubBytes).</p><p>The individual round key (i) can then be defined by selecting the sub-array W[Nb * i] to W[Nb *  (i+1)].</p>",
 
     "page-15-title": "Page 15: Animation Finish Page",
-    "page-15-info": "Page 15: Animation Finish Page",
+    "page-15-info": "</p>Thank you for watching. You can use the buttons shown above to jump back to the start or directly revisit parts A) and B) of the animation.</p>",
 
     "page-1": {
         "titlePartOne": "Rijndael",

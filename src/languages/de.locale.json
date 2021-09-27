@@ -89,7 +89,8 @@
     "page-14-info": "<p>Bei der Schlüsselexpansion (key schedule) werden aus dem Hauptschlüssel die Rundenschlüssel generiert. Dies geschieht vor dem Verschlüsselungs-/Entschlüsselungsprozess. Die Gesamtanzahl der resultierenden Rundenschlüssel-Bits ist gleich der Blocklänge multipliziert mit der Anzahl der Runden plus eins (hier 128 bit * 11 = 1408 bit).</p><p>Zur Erinnerung: Nb = Anzahl der Wörter im Nachrichtenblock, Nk = Anzahl der Wörter im Hauptschlüssel.</p><p>Dieser expandierte Rundenschlüssel ist ein Array von 4-Byte-Wörtern (W). Die ersten Nb Wörter werden mit dem Hauptschlüssel gefüllt. Die folgenden Wörter werden dann rekursiv durch Wörter mit kleineren Indizes definiert.</p><p>Die genauen Operationen, die dafür verwendet werden, hängen vom Wert von Nk ab. Es gibt zwei Gruppen von Operationen, eine für Nk ≤ 6 und eine für Nk > 6.</p><p>Jedes Wort, das auf den Hauptschlüssel folgt, wird durch eine XOR-Verknüpfung des vorherigen Wortes W[i-1] und des Wortes, das Nk Positionen davor liegt W[i-Nk], erzeugt.</p><p>Für Wörter an Positionen, die ein Vielfaches von Nk sind, wird vor der XOR-Verknüpfung eine Transformation auf W[i-1] angewendet. Zusätzlich wird eine Rundungskonstante (Rcon) mit XOR verknüpft.</p><p>Die Transformation von W[i-1] besteht aus einer zyklischen Verschiebung der Bytes im Wort (RotByte), gefolgt von einem Tabellen-Lookup auf alle vier Bytes des Wortes (SubBytes).</p><p>Der individuelle Rundenschlüssel (i) kann dann durch Auswahl des Unterarrays W[Nb * i] bis W[Nb * (i+1)] definiert werden.</p>",
     
     "page-15-title": "Seite 15: Ende",
-    "page-15-info": "",
+    "page-15-info": "<p>Vielen Dank fürs Anschauen. Sie können die oben gezeigten Buttons verwenden, um zum Anfang zurückzuspringen oder direkt zu den Teilen A) und B) der Animation zurückzukehren.</p>",
+
 
     "page-1": {
         "titlePartOne": "Rijndael",
